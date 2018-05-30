@@ -1,4 +1,5 @@
 ﻿using BO;
+using DAL;
 using Services;
 using System;
 using System.Collections.Generic;
@@ -27,12 +28,12 @@ namespace ProjetParkingTest2.Models
             List<ParkingViewModel> listParkings = new List<ParkingViewModel>();
             //listLivres = Dal.Get
 
-            using (BiblioContext context = new BiblioContext())
+            using (ParkingContext context = new ParkingContext())
             {
                 List<Parking> parkings = ServiceParking.GetAll();
                 foreach (Parking parking in parkings)
                 {
-                    listParkings.Add(new EvenementViewModel(parking));
+                    listParkings.Add(new ParkingViewModel(parking));
                 }
             }
             return listParkings;
@@ -46,12 +47,12 @@ namespace ProjetParkingTest2.Models
         public static Parking GetById(Guid id)
         {
             Parking parking = null;
-            using (BiblioContext context = new BiblioContext())
+            using (ParkingContext context = new ParkingContext())
             {
                 parking = ServiceParking.GetById(id, context);
                 //Parking = context.Parkings.FirstOrDefault(l => l.Id == id);
             }
-            return Parking;
+            return parking;
         }
 
 

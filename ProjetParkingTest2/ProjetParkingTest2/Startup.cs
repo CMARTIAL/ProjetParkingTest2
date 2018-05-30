@@ -12,6 +12,7 @@ namespace ProjetParkingTest2
         public void Configuration(IAppBuilder app)
         {
             ConfigureAuth(app);
+            //CreateRolesAndUsers();
         }
 
         private void CreateRolesAndUsers()

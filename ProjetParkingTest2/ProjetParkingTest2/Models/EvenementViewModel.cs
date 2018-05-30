@@ -1,4 +1,6 @@
-﻿using Services;
+﻿using BO;
+using DAL;
+using Services;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -26,7 +28,7 @@ namespace ProjetParkingTest2.Models
             List<EvenementViewModel> listEvenements = new List<EvenementViewModel>();
             //listLivres = Dal.Get
 
-            using (BiblioContext context = new BiblioContext())
+            using (ParkingContext context = new ParkingContext())
             {
                 List<Evenement> evenements = ServiceEvenement.GetAll();
                 foreach (Evenement evenement in evenements)
@@ -46,7 +48,7 @@ namespace ProjetParkingTest2.Models
             List<EvenementViewModel> listEvenements = new List<EvenementViewModel>();
             //listLivres = Dal.Get
 
-            using (BiblioContext context = new BiblioContext())
+            using (ParkingContext context = new ParkingContext())
             {
                 List<Evenement> evenements = ServiceEvenement.GetNotPassed();
                 foreach (Evenement evenement in evenements)
@@ -67,7 +69,7 @@ namespace ProjetParkingTest2.Models
             List<EvenementViewModel> listEvenements = new List<EvenementViewModel>();
             //listLivres = Dal.Get
 
-            using (BiblioContext context = new BiblioContext())
+            using (ParkingContext context = new ParkingContext())
             {
                 List<Evenement> evenements = ServiceEvenement.GetByTheme(theme);
                 foreach (Evenement evenement in evenements)

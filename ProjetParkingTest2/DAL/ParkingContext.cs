@@ -25,7 +25,7 @@ namespace DAL
             : base("name=ParkingContext")
         {
             //Database.SetInitializer<BiblioContext>(new BiblioContextInitializer());
-            Database.SetInitializer(new MigrateDatabaseToLatestVersion<ParkingContext, DAL.Migrations.Configuration>());
+            //Database.SetInitializer(new MigrateDatabaseToLatestVersion<ParkingContext, DAL.Migrations.Configuration>());
         }
 
         public static ParkingContext Create()
