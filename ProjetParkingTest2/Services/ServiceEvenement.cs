@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace Services
 {
-    class ServiceEvenement
+    public class ServiceEvenement
     {
         public static void Insert(Evenement e)
         {
@@ -43,6 +43,26 @@ namespace Services
             using (BiblioContext context = new BiblioContext())
             {
                 listEvenements = context.Evenements.ToList();
+            }
+            return listEvenements;
+        }
+
+        public static List<Evenement> GetNotPassed()
+        {
+            List<Evenement> listEvenements = new List<Evenement>();
+            using (BiblioContext context = new BiblioContext())
+            {
+                listEvenements = context.Evenements.Where(ev => ev.DateEvenement > DateTime.Now).ToList();
+            }
+            return listEvenements;
+        }
+
+        public static List<Evenement> GetByTheme(string theme)
+        {
+            List<Evenement> listEvenements = new List<Evenement>();
+            using (BiblioContext context = new BiblioContext())
+            {
+                listEvenements = context.Evenements.Where(ev => ev.Theme == theme).ToList();
             }
             return listEvenements;
         }
