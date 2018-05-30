@@ -1,9 +1,11 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 15
-VisualStudioVersion = 15.0.27703.2018
+VisualStudioVersion = 15.0.27130.0
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ProjetParkingTest2", "ProjetParkingTest2\ProjetParkingTest2.csproj", "{183F7677-07AC-4C2E-8FBF-3819900B104D}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DAL", "DAL\DAL.csproj", "{CEB4DA5F-6C7D-46FB-94DC-CD77309231D5}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -15,6 +17,10 @@ Global
 		{183F7677-07AC-4C2E-8FBF-3819900B104D}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{183F7677-07AC-4C2E-8FBF-3819900B104D}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{183F7677-07AC-4C2E-8FBF-3819900B104D}.Release|Any CPU.Build.0 = Release|Any CPU
+		{CEB4DA5F-6C7D-46FB-94DC-CD77309231D5}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{CEB4DA5F-6C7D-46FB-94DC-CD77309231D5}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{CEB4DA5F-6C7D-46FB-94DC-CD77309231D5}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{CEB4DA5F-6C7D-46FB-94DC-CD77309231D5}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
