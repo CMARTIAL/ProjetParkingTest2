@@ -1,4 +1,5 @@
 ﻿using BO;
+using Services;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -28,7 +29,7 @@ namespace ProjetParkingTest2.Models
 
             using (BiblioContext context = new BiblioContext())
             {
-                List<Parking> parkings = ServiceParking.GetNotPassed();
+                List<Parking> parkings = ServiceParking.GetAll();
                 foreach (Parking parking in parkings)
                 {
                     listParkings.Add(new EvenementViewModel(parking));
@@ -36,6 +37,23 @@ namespace ProjetParkingTest2.Models
             }
             return listParkings;
         }
+
+        /// <summary>
+        /// Recupere un parking par son id
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns></returns>
+        public static Parking GetById(Guid id)
+        {
+            Parking parking = null;
+            using (BiblioContext context = new BiblioContext())
+            {
+                parking = ServiceParking.GetById(id, context);
+                //Parking = context.Parkings.FirstOrDefault(l => l.Id == id);
+            }
+            return Parking;
+        }
+
 
         /// <summary>
         /// Enregistre ou met a jour un parking

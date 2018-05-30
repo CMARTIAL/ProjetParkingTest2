@@ -4,10 +4,15 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 VisualStudioVersion = 15.0.27130.0
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ProjetParkingTest2", "ProjetParkingTest2\ProjetParkingTest2.csproj", "{183F7677-07AC-4C2E-8FBF-3819900B104D}"
+	ProjectSection(ProjectDependencies) = postProject
+		{CEB4DA5F-6C7D-46FB-94DC-CD77309231D5} = {CEB4DA5F-6C7D-46FB-94DC-CD77309231D5}
+	EndProjectSection
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DAL", "DAL\DAL.csproj", "{CEB4DA5F-6C7D-46FB-94DC-CD77309231D5}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BO", "BO\BO.csproj", "{9C43ADAE-6C1F-44D5-8FDD-586BDC788E5E}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Services", "Services\Services.csproj", "{23E62191-9A1D-4454-9BE5-5C6579CCC884}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -27,6 +32,10 @@ Global
 		{9C43ADAE-6C1F-44D5-8FDD-586BDC788E5E}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{9C43ADAE-6C1F-44D5-8FDD-586BDC788E5E}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{9C43ADAE-6C1F-44D5-8FDD-586BDC788E5E}.Release|Any CPU.Build.0 = Release|Any CPU
+		{23E62191-9A1D-4454-9BE5-5C6579CCC884}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{23E62191-9A1D-4454-9BE5-5C6579CCC884}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{23E62191-9A1D-4454-9BE5-5C6579CCC884}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{23E62191-9A1D-4454-9BE5-5C6579CCC884}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
