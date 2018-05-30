@@ -298,6 +298,10 @@
       <Project>{9C43ADAE-6C1F-44D5-8FDD-586BDC788E5E}</Project>
       <Name>BO</Name>
     </ProjectReference>
+    <ProjectReference Include="..\DAL\DAL.csproj">
+      <Project>{CEB4DA5F-6C7D-46FB-94DC-CD77309231D5}</Project>
+      <Name>DAL</Name>
+    </ProjectReference>
     <ProjectReference Include="..\Services\Services.csproj">
       <Project>{23e62191-9a1d-4454-9be5-5c6579ccc884}</Project>
       <Name>Services</Name>
