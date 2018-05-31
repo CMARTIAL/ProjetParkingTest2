@@ -13,6 +13,9 @@ namespace BO
             Id = id;
             Titre = titre;
             AdressePark = adressePark;
+
+
+
             NBPlaceTotal = nBPlaceTotal;
             NBPlaceLibre = nBPlaceLibre;
             Tarif = tarif;
@@ -21,9 +24,15 @@ namespace BO
             Statut = statut;
         }
 
+        public Parking(Guid id, string titre, Adresse adressePark, int nBPlaceTotal, int nBPlaceLibre, int tarif, TimeSpan heureOuverture, TimeSpan heureFermeture, string statut, double coordonee0, double coordonee1) : this(id, titre, adressePark, nBPlaceTotal, nBPlaceLibre, tarif, heureOuverture, heureFermeture, statut) 
+        {
+            Coordonee0 = coordonee0;
+            Coordonee1 = coordonee1;
+        }
+
         public Parking() { }
 
-        public Guid Id { get => throw new NotImplementedException(); set => throw new NotImplementedException(); }
+        public Guid Id { get; set; }
         public string Titre { get; set; }
         public Adresse AdressePark { get; set; }
         public int NBPlaceTotal { get; set; }
@@ -32,6 +41,9 @@ namespace BO
         public TimeSpan HeureOuverture { get; set; }
         public TimeSpan HeureFermeture { get; set; }
         public string Statut { get; set; }
+
+        public double Coordonee0 { get; set; }
+        public double Coordonee1 { get; set; }
 
     }
 }
