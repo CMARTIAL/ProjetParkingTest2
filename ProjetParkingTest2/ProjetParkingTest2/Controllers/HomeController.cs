@@ -1,9 +1,11 @@
-﻿using ProjetParkingTest2.Models;
+﻿using Newtonsoft.Json.Linq;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Net;
 using System.Web;
 using System.Web.Mvc;
+using System.Web.Script.Serialization;
 
 namespace ProjetParkingTest2.Controllers
 {
@@ -11,7 +13,13 @@ namespace ProjetParkingTest2.Controllers
     {
         public ActionResult Index()
         {
-            return View(EvenementViewModel.GetAll());
+            //recupere les parkings
+            using (WebClient wc = new WebClient())
+            {
+               var json = wc.DownloadString("http://data.citedia.com/r1/parks/");
+            }
+            
+            return View();
         }
 
         public ActionResult About()
