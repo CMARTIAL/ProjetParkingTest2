@@ -67,5 +67,15 @@ namespace Services
             }
             return listEvenements;
         }
+
+        public static Evenement GetByGuid(Guid id)
+        {
+            Evenement listEvenements = new Evenement();
+            using (ParkingContext context = new ParkingContext())
+            {
+                listEvenements = context.Evenements.Where(ev => ev.Id == id).FirstOrDefault();
+            }
+            return listEvenements;
+        }
     }
 }

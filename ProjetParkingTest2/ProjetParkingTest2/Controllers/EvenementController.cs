@@ -9,24 +9,17 @@ namespace ProjetParkingTest2.Controllers
 {
     public class EvenementController : Controller
     {
-        private List<EvenementViewModel> liste = null;
-
-        public EvenementController()
-        {
-            //liste = RepositoryData.ListeVM;
-        }
-
+   
         // GET: Evenement
         public ActionResult Index()
         {
-            return View(liste);
+            return View(EvenementViewModel.GetAll());
         }
 
         // GET: Evenement/Details/5
         public ActionResult Details(Guid id)
         {
-            EvenementViewModel rVM = liste.FirstOrDefault(r => r.Id == id);
-            return View(rVM);
+            return View(EvenementViewModel.GetByGuid(id));
         }
 
         // GET: Evenement/Create

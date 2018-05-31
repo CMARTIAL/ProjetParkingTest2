@@ -23,7 +23,7 @@ namespace ProjetParkingTest2.Models
         /// Recupere tout les evenementsviewmodel
         /// </summary>
         /// <returns></returns>
-        public List<EvenementViewModel> GetAll()
+        public static List<EvenementViewModel> GetAll()
         {
             List<EvenementViewModel> listEvenements = new List<EvenementViewModel>();
             //listLivres = Dal.Get
@@ -43,7 +43,7 @@ namespace ProjetParkingTest2.Models
         /// Retourne la liste des EvenemntViewModel qui ne sont pas encore passé
         /// </summary>
         /// <returns></returns>
-        public List<EvenementViewModel> GetNotPassed()
+        public static List<EvenementViewModel> GetNotPassed()
         {
             List<EvenementViewModel> listEvenements = new List<EvenementViewModel>();
             //listLivres = Dal.Get
@@ -64,7 +64,7 @@ namespace ProjetParkingTest2.Models
         /// </summary>
         /// <param name="theme"></param>
         /// <returns></returns>
-        public List<EvenementViewModel> GetByTheme(String theme)
+        public static List<EvenementViewModel> GetByTheme(String theme)
         {
             List<EvenementViewModel> listEvenements = new List<EvenementViewModel>();
             //listLivres = Dal.Get
@@ -76,6 +76,18 @@ namespace ProjetParkingTest2.Models
                 {
                     listEvenements.Add(new EvenementViewModel(evenement));
                 }
+            }
+            return listEvenements;
+        }
+
+
+        public static EvenementViewModel GetByGuid(Guid id)
+        {
+            EvenementViewModel listEvenements = new EvenementViewModel();
+            using (ParkingContext context = new ParkingContext())
+            {
+                Evenement evenements = ServiceEvenement.GetByGuid(id);
+                listEvenements = new EvenementViewModel(evenements);
             }
             return listEvenements;
         }
