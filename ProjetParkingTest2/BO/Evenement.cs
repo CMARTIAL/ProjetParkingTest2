@@ -23,7 +23,7 @@ namespace BO
 
         public Evenement() { }
 
-        public Guid Id { get => throw new NotImplementedException(); set => throw new NotImplementedException(); }
+        public Guid Id { get; set; }
         public string Titre { get; set; }
         public Adresse AdresseEvenement { get; set; }
         public int Duree { get; set; }

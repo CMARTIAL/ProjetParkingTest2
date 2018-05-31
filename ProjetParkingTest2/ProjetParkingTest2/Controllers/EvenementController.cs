@@ -1,4 +1,5 @@
 ﻿using ProjetParkingTest2.Models;
+using Services;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -30,12 +31,11 @@ namespace ProjetParkingTest2.Controllers
 
         // POST: Evenement/Create
         [HttpPost]
-        public ActionResult Create(FormCollection collection)
+        public ActionResult Create(EvenementViewModel evenement)
         {
             try
             {
-                // TODO: Add insert logic here
-
+                evenement.Save();
                 return RedirectToAction("Index");
             }
             catch
@@ -55,9 +55,15 @@ namespace ProjetParkingTest2.Controllers
         [HttpPost]
         public ActionResult Edit(EvenementViewModel rVM)
         {
-           
+            try
+            {
+                rVM.Save();
+                return RedirectToAction("Index");
+            }
+            catch
+            {
                 return View();
-            
+            }
         }
 
         // GET: Evenement/Delete/5

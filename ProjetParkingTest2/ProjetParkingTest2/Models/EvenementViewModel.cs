@@ -3,6 +3,7 @@ using DAL;
 using Services;
 using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Web;
 
@@ -18,7 +19,7 @@ namespace ProjetParkingTest2.Models
         {
             this.Metier = parking;
         }
-    
+
         /// <summary>
         /// Recupere tout les evenementsviewmodel
         /// </summary>
@@ -106,6 +107,64 @@ namespace ProjetParkingTest2.Models
             {
                 ServiceEvenement.Update(this.Metier);
             }
+        }
+
+        [Display(Name = "Nom de l'évènement")]
+        public string Titre
+        {
+            get
+            { return Metier.Titre; }
+            set
+            { Metier.Titre = value; }
+        }
+        public Adresse AdresseEvenement
+        {
+            get
+            { return Metier.AdresseEvenement; }
+            set
+            { Metier.AdresseEvenement = value; }
+        }
+        public int Duree
+        {
+            get
+            { return Metier.Duree; }
+            set
+            { Metier.Duree = value; }
+        }
+        public string Theme
+            {
+            get
+            { return Metier.Theme; }
+            set
+            { Metier.Theme = value; }
+        }
+        public int Tarif
+        {
+            get
+            { return Metier.Tarif; }
+            set
+            { Metier.Tarif = value; }
+        }
+        public string Description
+        {
+            get
+            { return Metier.Description; }
+            set
+            { Metier.Description = value; }
+        }
+        public virtual ICollection<Image> Images
+        {
+            get
+            { return Metier.Images; }
+            set
+            { Metier.Images = value; }
+        }
+        public DateTime DateEvenement
+        {
+            get
+            { return Metier.DateEvenement; }
+            set
+            { Metier.DateEvenement = value; }
         }
     }
 }
