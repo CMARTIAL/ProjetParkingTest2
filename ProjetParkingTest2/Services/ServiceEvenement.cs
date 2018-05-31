@@ -19,6 +19,15 @@ namespace Services
             }
         }
 
+        public static void Delete(Evenement e)
+        {
+            using (ParkingContext context = new ParkingContext())
+            {
+                context.Evenements.Remove(context.Evenements.FirstOrDefault(Evenement => Evenement.Id == e.Id));
+                context.SaveChanges();
+            }
+        }
+
         public static void Update(Evenement e)
         {
             using (ParkingContext context = new ParkingContext())

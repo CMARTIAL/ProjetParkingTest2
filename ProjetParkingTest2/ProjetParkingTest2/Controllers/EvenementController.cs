@@ -45,10 +45,10 @@ namespace ProjetParkingTest2.Controllers
         }
 
         // GET: Evenement/Edit/5
-        public ActionResult Edit(Guid? id)
+        public ActionResult Edit(Guid id)
         {
 
-            return View();
+            return View(EvenementViewModel.GetByGuid(id));
         }
 
         // POST: Evenement/Edit/5
@@ -67,18 +67,18 @@ namespace ProjetParkingTest2.Controllers
         }
 
         // GET: Evenement/Delete/5
-        public ActionResult Delete(int id)
+        public ActionResult Delete(Guid id)
         {
-            return View();
+            return View(EvenementViewModel.GetByGuid(id));
         }
 
         // POST: Evenement/Delete/5
         [HttpPost]
-        public ActionResult Delete(int id, FormCollection collection)
+        public ActionResult Delete(Guid id, EvenementViewModel evenement)
         {
             try
             {
-                // TODO: Add delete logic here
+                evenement.Delete();
 
                 return RedirectToAction("Index");
             }

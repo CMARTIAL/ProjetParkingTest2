@@ -109,6 +109,17 @@ namespace ProjetParkingTest2.Models
             }
         }
 
+        /// <summary>
+        /// Enregistre ou met a jour un evenement 
+        /// </summary>
+        public void Delete()
+        {
+            if (this.Id != Guid.Empty)
+            {
+                ServiceEvenement.Delete(this.Metier);
+            }
+        }
+
         [Display(Name = "Nom de l'évènement")]
         public string Titre
         {
@@ -116,6 +127,14 @@ namespace ProjetParkingTest2.Models
             { return Metier.Titre; }
             set
             { Metier.Titre = value; }
+        }
+
+        public Guid Id
+        {
+            get
+            { return Metier.Id; }
+            set
+            { Metier.Id = value; }
         }
         public Adresse AdresseEvenement
         {
