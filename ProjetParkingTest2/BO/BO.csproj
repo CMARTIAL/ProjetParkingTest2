@@ -79,6 +79,7 @@
     <Compile Include="IEntityIdentifiable.cs" />
     <Compile Include="Image.cs" />
     <Compile Include="Parking.cs" />
+    <Compile Include="ParkingJson.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
