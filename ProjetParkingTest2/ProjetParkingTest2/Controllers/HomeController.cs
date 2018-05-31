@@ -1,4 +1,8 @@
-﻿using Newtonsoft.Json.Linq;
+﻿using BO;
+using Microsoft.Ajax.Utilities;
+using Newtonsoft.Json;
+using Newtonsoft.Json.Linq;
+using ProjetParkingTest2.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -13,12 +17,7 @@ namespace ProjetParkingTest2.Controllers
     {
         public ActionResult Index()
         {
-            //recupere les parkings
-            using (WebClient wc = new WebClient())
-            {
-               var json = wc.DownloadString("http://data.citedia.com/r1/parks/");
-            }
-            
+            //ParkingViewModel.AddtoBase();
             return View();
         }
 
