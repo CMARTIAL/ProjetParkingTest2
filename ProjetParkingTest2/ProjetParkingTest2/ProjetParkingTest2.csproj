@@ -273,6 +273,7 @@
     <Content Include="Views\Evenement\Index.cshtml" />
     <Content Include="Views\Evenement\Create.cshtml" />
     <Content Include="Views\Evenement\Details.cshtml" />
+    <Content Include="Views\Home\Maps.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

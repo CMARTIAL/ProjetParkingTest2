@@ -34,5 +34,10 @@ namespace ProjetParkingTest2.Controllers
 
             return View();
         }
+
+        public ActionResult Maps()
+        { 
+            return View();
+        }
     }
 }
