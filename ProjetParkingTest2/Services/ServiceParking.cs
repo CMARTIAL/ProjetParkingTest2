@@ -59,5 +59,20 @@ namespace Services
             }
             return listParking;
         }
+
+        /// <summary>
+        /// Ne pas utiliser en cours d'ecriture
+        /// </summary>
+        /// <param name="adresse"></param>
+        /// <returns></returns>
+        public static List<Parking> Get3(Adresse adresse)
+        {
+            List<Parking> listParking = new List<Parking>();
+            using (ParkingContext context = new ParkingContext())
+            {
+                listParking = context.Parkings.Take(3).ToList();
+            }
+            return listParking;
+        }
     }
 }
