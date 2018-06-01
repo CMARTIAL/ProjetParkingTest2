@@ -124,5 +124,6 @@ namespace ProjetParkingTest2.Models
             set
             { Metier.Pays = value; }
         }
+
     }
 }

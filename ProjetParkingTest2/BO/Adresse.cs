@@ -26,5 +26,12 @@ namespace BO
         public int CodePostal { get; set; }
         public string Ville { get; set; }
         public string Pays { get; set; }
+        public double? lat { get; set; }
+        public double? lng { get; set; }
+
+        public override string ToString()
+        {
+            return Numero + "+" + Rue + "+" + CodePostal + "+" + Ville + "+" + Pays;
+        }
     }
 }

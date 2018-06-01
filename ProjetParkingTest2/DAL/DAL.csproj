@@ -62,6 +62,14 @@
     <Compile Include="Migrations\201805310905495_Ajout coordonees.Designer.cs">
       <DependentUpon>201805310905495_Ajout coordonees.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201806011420029_ajout lat lng.cs" />
+    <Compile Include="Migrations\201806011420029_ajout lat lng.Designer.cs">
+      <DependentUpon>201806011420029_ajout lat lng.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201806011421115_modif lat lng.cs" />
+    <Compile Include="Migrations\201806011421115_modif lat lng.Designer.cs">
+      <DependentUpon>201806011421115_modif lat lng.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="ParkingContext.cs" />
     <Compile Include="ParkingContextInitializer.cs" />
@@ -83,6 +91,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201805310905495_Ajout coordonees.resx">
       <DependentUpon>201805310905495_Ajout coordonees.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201806011420029_ajout lat lng.resx">
+      <DependentUpon>201806011420029_ajout lat lng.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201806011421115_modif lat lng.resx">
+      <DependentUpon>201806011421115_modif lat lng.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

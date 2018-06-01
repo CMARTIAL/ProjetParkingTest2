@@ -1,10 +1,12 @@
 ﻿using BO;
 using DAL;
+using Newtonsoft.Json;
 using Services;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.Linq;
+using System.Net;
 using System.Web;
 
 namespace ProjetParkingTest2.Models
@@ -100,12 +102,27 @@ namespace ProjetParkingTest2.Models
         {
             if (this.Id == Guid.Empty)
             {
-                
+
+
                 this.Metier.Id = Guid.NewGuid();
                 this.Metier.AdresseEvenement.Id = Guid.NewGuid();
                 using (ParkingContext context = new ParkingContext())
                 {
                     ServiceAdresse.Insert(this.Metier.AdresseEvenement, context);
+
+                string query = "https://maps.googleapis.com/maps/api/geocode/json?address=" + this.Metier.AdresseEvenement.ToString() + "&key=AIzaSyCyoqbqJVd_MtZRT_0DmYmznxxJWRfMjQI";
+
+                using (WebClient wc = new WebClient())
+                {
+                    var json = wc.DownloadString(query);
+                    RootObjectGoogle item = JsonConvert.DeserializeObject<RootObjectGoogle>(json);
+                        if (item != null)
+                        {
+                        this.Metier.AdresseEvenement.lat = item.results.FirstOrDefault().geometry.location.lat;
+                        this.Metier.AdresseEvenement.lng = item.results.FirstOrDefault().geometry.location.lng;
+                        }
+                }
+
                     ServiceEvenement.Insert(this.Metier, context);
                     context.SaveChanges();
                 }
