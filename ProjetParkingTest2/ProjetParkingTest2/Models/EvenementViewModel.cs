@@ -110,7 +110,7 @@ namespace ProjetParkingTest2.Models
         }
 
         /// <summary>
-        /// Enregistre ou met a jour un evenement 
+        /// Supprime un evenement 
         /// </summary>
         public void Delete()
         {
@@ -136,6 +136,7 @@ namespace ProjetParkingTest2.Models
             set
             { Metier.Id = value; }
         }
+        [Display(Name = "Emplacement")]
         public Adresse AdresseEvenement
         {
             get
@@ -143,6 +144,7 @@ namespace ProjetParkingTest2.Models
             set
             { Metier.AdresseEvenement = value; }
         }
+        [Display(Name = "Durée de l'évènement")]
         public int Duree
         {
             get
@@ -150,6 +152,7 @@ namespace ProjetParkingTest2.Models
             set
             { Metier.Duree = value; }
         }
+        [Display(Name = "Thème'évènement")]
         public string Theme
             {
             get
@@ -157,6 +160,8 @@ namespace ProjetParkingTest2.Models
             set
             { Metier.Theme = value; }
         }
+
+        [Display(Name = "^Prix de l'évènement")]
         public int Tarif
         {
             get
@@ -178,6 +183,8 @@ namespace ProjetParkingTest2.Models
             set
             { Metier.Images = value; }
         }
+
+        [Display(Name = "Date de l'évènement")]
         public DateTime DateEvenement
         {
             get

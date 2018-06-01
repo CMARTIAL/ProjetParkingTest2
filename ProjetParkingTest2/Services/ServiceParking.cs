@@ -65,7 +65,7 @@ namespace Services
         /// </summary>
         /// <param name="adresse"></param>
         /// <returns></returns>
-        public static List<Parking> Get3(Adresse adresse)
+        public static List<Parking> Get3()
         {
             List<Parking> listParking = new List<Parking>();
             using (ParkingContext context = new ParkingContext())
@@ -73,6 +73,15 @@ namespace Services
                 listParking = context.Parkings.Take(3).ToList();
             }
             return listParking;
+        }
+
+         public static void Delete(Parking e)
+        {
+            using (ParkingContext context = new ParkingContext())
+            {
+                context.Parkings.Remove(context.Parkings.FirstOrDefault(Parking => Parking.Id == e.Id));
+                context.SaveChanges();
+            }
         }
     }
 }

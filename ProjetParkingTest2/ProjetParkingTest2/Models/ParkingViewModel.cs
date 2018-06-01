@@ -57,7 +57,7 @@ namespace ProjetParkingTest2.Models
 
 
 
-        public static void AddtoBase()
+       /* public static void AddtoBase()
         {
             List<Parking> parkingToAdd = new List<Parking>();
             //recupere les parkings
@@ -92,13 +92,13 @@ namespace ProjetParkingTest2.Models
                 context.Parkings.AddRange(parkingToAdd);
                 context.SaveChanges();
             }
-        }
+        }*/
 
         /// <summary>
         /// retourne la liste de tout les parkingviewmodel
         /// </summary>
         /// <returns></returns>
-        public List<ParkingViewModel> GetAll()
+        public static List<ParkingViewModel> GetAll()
         {
             List<ParkingViewModel> listParkings = new List<ParkingViewModel>();
             //listLivres = Dal.Get
@@ -144,6 +144,16 @@ namespace ProjetParkingTest2.Models
             else
             {
                 ServiceParking.Update(this.Metier);
+            }
+        }
+        /// <summary>
+        /// Supprime un parking
+        /// </summary>
+        public void Delete()
+        {
+            if (this.Id != Guid.Empty)
+            {
+                ServiceParking.Delete(this.Metier);
             }
         }
 
