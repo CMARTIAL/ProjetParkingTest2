@@ -55,13 +55,8 @@ namespace ProjetParkingTest2.Controllers
             adresseConvive = adresseConvive.Replace(" ", "+");
             string query = "https://maps.googleapis.com/maps/api/geocode/json?address="+ adresseConvive + "& key=AIzaSyCyoqbqJVd_MtZRT_0DmYmznxxJWRfMjQI";
             
-            string xmlStr;
-            using (var wc = new WebClient())
-            {
-                xmlStr = wc.DownloadString(query);
-            }
-            var xmlDoc = new XmlDocument();
-            xmlDoc.LoadXml(xmlStr);
+                var item = JsonConvert.DeserializeObject(query);
+            
 
             return View();
         }
