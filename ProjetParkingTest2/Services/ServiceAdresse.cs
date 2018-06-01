@@ -20,6 +20,12 @@ namespace Services
             }
         }
 
+        public static void Insert(Adresse e, ParkingContext context)
+        {
+
+            context.Adresses.Add(e);
+        }
+
         public static void Delete(Adresse e)
         {
             using (ParkingContext context = new ParkingContext())

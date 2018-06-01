@@ -100,8 +100,17 @@ namespace ProjetParkingTest2.Models
         {
             if (this.Id == Guid.Empty)
             {
+                
                 this.Metier.Id = Guid.NewGuid();
-                ServiceEvenement.Insert(this.Metier);
+                this.Metier.AdresseEvenement.Id = Guid.NewGuid();
+                using (ParkingContext context = new ParkingContext())
+                {
+                    ServiceAdresse.Insert(this.Metier.AdresseEvenement, context);
+                    ServiceEvenement.Insert(this.Metier, context);
+                    context.SaveChanges();
+                }
+               
+
             }
             else
             {
