@@ -53,7 +53,7 @@ namespace ProjetParkingTest2.Controllers
         {
             EvenementViewModel eVM = EvenementViewModel.GetByGuid(Id);
             adresseConvive = adresseConvive.Replace(" ", "+");
-            string query = "https://nominatim.openstreetmap.org/search?q=" + adresseConvive;
+            string query = "https://maps.googleapis.com/maps/api/geocode/json?address="+ adresseConvive + "& key=AIzaSyCyoqbqJVd_MtZRT_0DmYmznxxJWRfMjQI";
             
             string xmlStr;
             using (var wc = new WebClient())
