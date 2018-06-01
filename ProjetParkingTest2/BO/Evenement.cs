@@ -11,14 +11,14 @@ namespace BO
         public Evenement(Guid id, string titre, Adresse adresseEvenement, int duree, string theme, int tarif, string description, ICollection<Image> images, DateTime dateEvenement)
         {
             Id = id;
-            Titre = titre;
-            AdresseEvenement = adresseEvenement;
+            Titre = titre;   
             Duree = duree;
             Theme = theme;
             Tarif = tarif;
             Description = description;
             Images = images;
             DateEvenement = dateEvenement;
+            AdresseEvenement = adresseEvenement;
         }
 
         public Evenement() { }

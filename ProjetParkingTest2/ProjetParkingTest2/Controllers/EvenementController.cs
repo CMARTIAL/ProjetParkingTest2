@@ -40,7 +40,7 @@ namespace ProjetParkingTest2.Controllers
             }
             catch
             {
-                return View();
+             return View();
             }
         }
 

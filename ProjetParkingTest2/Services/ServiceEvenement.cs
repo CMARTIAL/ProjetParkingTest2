@@ -19,6 +19,11 @@ namespace Services
             }
         }
 
+        public static void Insert(Evenement e, ParkingContext context)
+        {
+                context.Evenements.Add(e);
+        }
+
         public static void Delete(Evenement e)
         {
             using (ParkingContext context = new ParkingContext())
