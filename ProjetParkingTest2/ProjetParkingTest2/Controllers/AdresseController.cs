@@ -7,33 +7,33 @@ using System.Web.Mvc;
 
 namespace ProjetParkingTest2.Controllers
 {
-    public class ParkingController : Controller
+    public class AdresseController : Controller
     {
-        // GET: Parking
+        // GET: Adresse
         public ActionResult Index()
         {
-            return View(ParkingViewModel.GetAll());
+            return View(AdresseViewModel.GetAll());
         }
 
-        // GET: Parking/Details/5
+        // GET: Adresse/Details/5
         public ActionResult Details(Guid id)
         {
-            return View(ParkingViewModel.GetById(id));
+            return View(AdresseViewModel.GetByGuid(id));
         }
 
-        // GET: Parking/Create
+        // GET: Adresse/Create
         public ActionResult Create()
         {
             return View();
         }
 
-        // POST: Parking/Create
+        // POST: Adresse/Create
         [HttpPost]
-        public ActionResult Create(ParkingViewModel Parking)
+        public ActionResult Create(AdresseViewModel Adresse)
         {
             try
             {
-                Parking.Save();
+                Adresse.Save();
                 return RedirectToAction("Index");
             }
             catch
@@ -42,16 +42,16 @@ namespace ProjetParkingTest2.Controllers
             }
         }
 
-        // GET: Parking/Edit/5
+        // GET: Adresse/Edit/5
         public ActionResult Edit(Guid id)
         {
 
-            return View(ParkingViewModel.GetById(id));
+            return View(AdresseViewModel.GetByGuid(id));
         }
 
-        // POST: Parking/Edit/5
+        // POST: Adresse/Edit/5
         [HttpPost]
-        public ActionResult Edit(ParkingViewModel rVM)
+        public ActionResult Edit(AdresseViewModel rVM)
         {
             try
             {
@@ -64,19 +64,19 @@ namespace ProjetParkingTest2.Controllers
             }
         }
 
-        // GET: Parking/Delete/5
+        // GET: Adresse/Delete/5
         public ActionResult Delete(Guid id)
         {
-            return View(ParkingViewModel.GetById(id));
+            return View(AdresseViewModel.GetByGuid(id));
         }
 
-        // POST: Parking/Delete/5
+        // POST: Adresse/Delete/5
         [HttpPost]
-        public ActionResult Delete(Guid id, ParkingViewModel Parking)
+        public ActionResult Delete(Guid id, AdresseViewModel Adresse)
         {
             try
             {
-                Parking.Delete();
+                Adresse.Delete();
 
                 return RedirectToAction("Index");
             }

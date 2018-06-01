@@ -28,12 +28,12 @@
                         if (User.IsInRole("Organisateur"))
                         {
                             <li>@Html.ActionLink("Gestion Evenements", "Index", "Evenement")</li>
+                            <li>@Html.ActionLink("Gestion Adresses", "Index", "Adresse")</li>
                             <li>@Html.ActionLink("Gestion Parking", "Index", "Parking")</li>
                         }
-                        <li>@Html.ActionLink("Rechercher un parking", "Index", "Parking")</li>
+                        <li>@Html.ActionLink("Liste des parking", "Index", "Parking")</li>
                     }
-                    <li>@Html.ActionLink("Contact", "Contact", "Home")</li>
-                    <li>@Html.ActionLink("Carte", "GoogleMaps", "Home")</li>
+                    <li>@Html.ActionLink("Carte", "Maps", "Home")</li>
                 </ul>
                 @Html.Partial("_LoginPartial")
             </div>

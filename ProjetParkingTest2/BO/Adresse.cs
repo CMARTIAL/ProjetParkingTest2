@@ -20,7 +20,7 @@ namespace BO
 
         public Adresse() { }
 
-        public Guid Id { get => throw new NotImplementedException(); set => throw new NotImplementedException(); }
+        public Guid Id { get; set; }
         public string Rue { get; set; }
         public int Numero { get; set; }
         public int CodePostal { get; set; }
