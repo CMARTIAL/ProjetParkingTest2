@@ -49,6 +49,9 @@ initialize = function () {
         position: latLng
     });
 
+
+
+
     google.maps.event.addListener(marker, 'click', function () {
         infoWindow.open(map, marker);
     });
@@ -66,12 +69,11 @@ initialize = function () {
 };
 
 
-
 calculate = function () {
     origin = document.getElementById('origin').value; // Le point départ
     destination = document.getElementById('destination').value; // Le point d'arrivé
 
-if (origin && destination) {
+    if (origin && destination) {
         var request = {
             origin: origin,
             destination: destination,
@@ -86,4 +88,36 @@ if (origin && destination) {
     }
 };
 
+var myMarkers = [];
+
+function SetMarkers() {
+    var geocoder = new google.maps.Geocoder();
+    var myData = [];
+
+    // here you can change this JSON for a call to your database 
+    myData = [
+        new google.maps.LatLng(48.866667, 2.333333),
+        new google.maps.LatLng(2.333333, 48.866667)
+    ];
+
+    for (i = 0; i < myData.length; i++) {
+
+
+        
+    };
+
+}
+
+
+var marker = new google.maps.Marker({
+    position: new google.maps.LatLng(-34.397, 150.644),
+    map: map,
+    title: 'Hello World!'
+});
+
+
+
+marker.setMap(map);
+
+SetMarkers();
 initialize();
