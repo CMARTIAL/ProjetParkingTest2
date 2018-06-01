@@ -70,7 +70,8 @@ initialize = function () {
 calculate = function () {
     origin = document.getElementById('origin').value; // Le point départ
     destination = document.getElementById('destination').value; // Le point d'arrivé
-    if (origin && destination) {
+
+if (origin && destination) {
         var request = {
             origin: origin,
             destination: destination,
