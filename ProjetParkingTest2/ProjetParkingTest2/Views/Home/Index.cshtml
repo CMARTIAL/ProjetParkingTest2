@@ -6,10 +6,13 @@
 
     <div class="jumbotron">
         <div>
-            <label for="uname">Veuillez saisir votre adresse :</label>
-            <input type="text" id="adressse_id" placeholder="Veuillez saisir votre adresse" />
+            <form action="Home/Edit">
+
+            <label for="name">Veuillez saisir votre adresse :</label>
+            <input type="text" id="adressse_id" name="adresseConvive" placeholder="Veuillez saisir votre adresse" />
             @Html.DropDownListFor(model => model.Id, new SelectList(EvenementViewModel.GetAll(), "Id", "Titre"))
             <input type="submit" value="Submit" />
+            </form>
         </div>
         <h1>ASP.NET</h1>
         <p class="lead">ASP.NET is a free web framework for building great Web sites and Web applications using HTML, CSS and JavaScript.</p>

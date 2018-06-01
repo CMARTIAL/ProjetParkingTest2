@@ -213,6 +213,7 @@
     <Content Include="Content\bootstrap.min.css" />
     <Content Include="Content\bootstrap.yeti.css" />
     <Content Include="Content\bootstrap.yeti.min.css" />
+    <Content Include="Content\jquery-ui-1.8.12.custom.css" />
     <Content Include="favicon.ico" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
@@ -223,11 +224,14 @@
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <None Include="Scripts\jquery-3.3.1.intellisense.js" />
+    <Content Include="Scripts\functions.js" />
     <Content Include="Scripts\jquery-3.3.1.js" />
     <Content Include="Scripts\jquery-3.3.1.min.js" />
     <Content Include="Scripts\jquery-3.3.1.slim.js" />
     <Content Include="Scripts\jquery-3.3.1.slim.min.js" />
     <None Include="Scripts\jquery.validate-vsdoc.js" />
+    <Content Include="Scripts\jquery-ui-1.8.12.custom.min.js" />
+    <Content Include="Scripts\jquery.min.js" />
     <Content Include="Scripts\jquery.validate.js" />
     <Content Include="Scripts\jquery.validate.min.js" />
     <Content Include="Scripts\jquery.validate.unobtrusive.js" />
@@ -276,6 +280,7 @@
     <Content Include="Views\Home\Maps.cshtml" />
     <Content Include="Views\Evenement\Edit.cshtml" />
     <Content Include="Views\Evenement\Delete.cshtml" />
+    <Content Include="Views\Home\GoogleMaps.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
