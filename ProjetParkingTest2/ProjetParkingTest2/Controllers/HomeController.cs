@@ -53,9 +53,13 @@ namespace ProjetParkingTest2.Controllers
         {
             EvenementViewModel eVM = EvenementViewModel.GetByGuid(Id);
             adresseConvive = adresseConvive.Replace(" ", "+");
-            string query = "https://maps.googleapis.com/maps/api/geocode/json?address="+ adresseConvive + "& key=AIzaSyCyoqbqJVd_MtZRT_0DmYmznxxJWRfMjQI";
-            
-                var item = JsonConvert.DeserializeObject(query);
+            string query = "https://maps.googleapis.com/maps/api/geocode/json?address="+adresseConvive+"&key=AIzaSyCyoqbqJVd_MtZRT_0DmYmznxxJWRfMjQI";
+
+            using (WebClient wc = new WebClient())
+            {
+                var json = wc.DownloadString(query);
+                RootObjectGoogle item = JsonConvert.DeserializeObject<RootObjectGoogle>(json);
+            }
             
 
             return View();
