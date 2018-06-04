@@ -91,5 +91,16 @@ namespace Services
                 context.SaveChanges();
             }
         }
+
+        public static void DeleteAll()
+        {
+            using (ParkingContext context = new ParkingContext())
+            {
+                foreach (Parking item in GetAll())
+                {
+                    Delete(item);
+                }
+            }
+        }
     }
 }

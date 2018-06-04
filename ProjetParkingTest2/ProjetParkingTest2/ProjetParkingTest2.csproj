@@ -307,7 +307,7 @@
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\BO\BO.csproj">
-      <Project>{9C43ADAE-6C1F-44D5-8FDD-586BDC788E5E}</Project>
+      <Project>{9c43adae-6c1f-44d5-8fdd-586bdc788e5e}</Project>
       <Name>BO</Name>
     </ProjectReference>
     <ProjectReference Include="..\DAL\DAL.csproj">

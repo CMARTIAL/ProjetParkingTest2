@@ -85,5 +85,21 @@ namespace ProjetParkingTest2.Controllers
                 return View();
             }
         }
+
+        public ActionResult Synchro()
+        {
+
+            try
+            {
+                ParkingViewModel.AddtoBase();
+                return RedirectToAction("Index");
+            }
+            catch
+            {
+                return RedirectToAction("Index");
+            }
+
+        }
+
     }
 }

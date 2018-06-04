@@ -8,7 +8,7 @@ namespace BO
 {
     public class Evenement : IEntityIdentifiable
     {
-        public Evenement(Guid id, string titre, Adresse adresseEvenement, int duree, string theme, int tarif, string description, ICollection<Image> images, DateTime dateEvenement)
+        public Evenement(Guid id, string titre, Adresse adresseEvenement, int duree, string theme, int tarif, string description, Image ImageEvenement, DateTime dateEvenement)
         {
             Id = id;
             Titre = titre;   
@@ -16,7 +16,7 @@ namespace BO
             Theme = theme;
             Tarif = tarif;
             Description = description;
-            Images = images;
+            this.ImageEvenement = ImageEvenement;
             DateEvenement = dateEvenement;
             AdresseEvenement = adresseEvenement;
         }
@@ -30,7 +30,7 @@ namespace BO
         public string Theme { get; set; }
         public int Tarif { get; set; }
         public string Description { get; set; }
-        public virtual ICollection<Image> Images { get; set; }
+        public virtual Image ImageEvenement { get; set; }
         public DateTime DateEvenement { get; set; }
 
     }

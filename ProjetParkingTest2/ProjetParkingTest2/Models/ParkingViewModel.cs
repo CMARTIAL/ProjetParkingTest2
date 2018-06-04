@@ -82,6 +82,8 @@ namespace ProjetParkingTest2.Models
             {
                 using (WebClient wc = new WebClient())
                 {
+
+                    ServiceParking.DeleteAll();
                     var json = wc.DownloadString("http://data.citedia.com/r1/parks/");
                     dynamic data = JsonConvert.DeserializeObject<RootObject>(json);
                     foreach (Park park in data.parks)

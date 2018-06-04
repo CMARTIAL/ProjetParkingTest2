@@ -46,7 +46,7 @@ namespace Services
                 oldEvenement.Theme = e.Theme;
                 oldEvenement.Tarif = e.Tarif;
                 oldEvenement.Description = e.Description;
-                oldEvenement.Images = e.Images;
+                oldEvenement.ImageEvenement = e.ImageEvenement;
                 oldEvenement.DateEvenement = e.DateEvenement;
                 context.SaveChanges();
             }

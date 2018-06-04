@@ -80,6 +80,7 @@
     <Compile Include="ServiceAdresse.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="ServiceEvenement.cs" />
+    <Compile Include="ServiceImage.cs" />
     <Compile Include="ServiceParking.cs" />
   </ItemGroup>
   <ItemGroup>
