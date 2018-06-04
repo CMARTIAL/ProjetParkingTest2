@@ -57,7 +57,7 @@ namespace ProjetParkingTest2.Models
 
 
 
-       /* public static void AddtoBase()
+        public static void AddtoBase()
         {
             List<Parking> parkingToAdd = new List<Parking>();
             //recupere les parkings
@@ -92,7 +92,7 @@ namespace ProjetParkingTest2.Models
                 context.Parkings.AddRange(parkingToAdd);
                 context.SaveChanges();
             }
-        }*/
+        }
 
         /// <summary>
         /// retourne la liste de tout les parkingviewmodel

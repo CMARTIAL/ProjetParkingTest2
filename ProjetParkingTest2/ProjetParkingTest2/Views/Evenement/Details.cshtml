@@ -1,7 +1,7 @@
 ﻿@model ProjetParkingTest2.Models.EvenementViewModel
 
 <div>
-    <h4>EvenementViewModel</h4>
+    <h4>Evenement - @Html.DisplayFor(model => model.Titre)</h4>
     <hr />
     <dl class="dl-horizontal">
         <dt>
@@ -54,7 +54,16 @@
 
     </dl>
 </div>
+
+
+
 <p>
-    @Html.ActionLink("Edit", "Edit", new { id = Model.Id }) |
-    @Html.ActionLink("Back to List", "Index")
+    @if (User.Identity.IsAuthenticated)
+    {
+        if (User.IsInRole("Organisateur"))
+        {
+            @Html.ActionLink("Edit ", "Edit", new { id = Model.Id }) 
+    }
+}
+    @Html.ActionLink(" Back to List", "Index")
 </p>

@@ -97,27 +97,21 @@ function SetMarkers() {
     // here you can change this JSON for a call to your database 
     myData = [
         new google.maps.LatLng(48.866667, 2.333333),
-        new google.maps.LatLng(2.333333, 48.866667)
+        new google.maps.LatLng(-34.397, 150.644)
     ];
 
     for (i = 0; i < myData.length; i++) {
 
+        new google.maps.Marker({
+            position: myData[i],
+            map: map,
+            title: 'Hello World!'
+        });
 
-        
+
     };
 
 }
 
-
-var marker = new google.maps.Marker({
-    position: new google.maps.LatLng(-34.397, 150.644),
-    map: map,
-    title: 'Hello World!'
-});
-
-
-
-marker.setMap(map);
-
-SetMarkers();
 initialize();
+SetMarkers();
