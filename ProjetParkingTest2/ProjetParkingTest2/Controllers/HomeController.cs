@@ -56,9 +56,8 @@ namespace ProjetParkingTest2.Controllers
                 var json = wc.DownloadString(query);
                 RootObjectGoogle item = JsonConvert.DeserializeObject<RootObjectGoogle>(json);
             }
-            
-
-            return View();
+            List<EvenementViewModel> eVMs = EvenementViewModel.GetAll();
+            return View(eVMs);
         }
 
     }

@@ -86,13 +86,13 @@ namespace ProjetParkingTest2.Models
 
         public static EvenementViewModel GetByGuid(Guid id)
         {
-            EvenementViewModel listEvenements = new EvenementViewModel();
+            EvenementViewModel evm = new EvenementViewModel();
             using (ParkingContext context = new ParkingContext())
             {
-                Evenement evenements = ServiceEvenement.GetByGuid(id);
-                listEvenements = new EvenementViewModel(evenements);
+                Evenement evenement = ServiceEvenement.GetByGuid(id);
+                evm = new EvenementViewModel(evenement);
             }
-            return listEvenements;
+            return evm;
         }
 
         /// <summary>
@@ -105,7 +105,7 @@ namespace ProjetParkingTest2.Models
 
 
                 this.Metier.Id = Guid.NewGuid();
-                this.Metier.ImageEvenement.Id = Guid.NewGuid();
+                //this.Metier.ImageEvenement.Id = Guid.NewGuid();
                 this.Metier.AdresseEvenement.Id = Guid.NewGuid();
 
                 using (ParkingContext context = new ParkingContext())

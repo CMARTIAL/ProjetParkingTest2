@@ -92,7 +92,6 @@ calculate = function () {
 var myMarkers = [];
 
 function SetMarkers() {
-    var model = @Html.Raw(Json.Encode(Model));
     var geocoder = new google.maps.Geocoder();
     var myData = [];
     // here you can change this JSON for a call to your database 
