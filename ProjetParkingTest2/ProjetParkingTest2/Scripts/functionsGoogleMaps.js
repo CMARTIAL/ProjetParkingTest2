@@ -1,15 +1,13 @@
-@using ProjetParkingTest2.Models
-@model EvenementViewModel
 var map;
 var panel;
 var initialize;
 var calculate;
-var direction; 
+var direction;
 initialize = function () {
     var latLng = new google.maps.LatLng(50.6371834, 3.063017400000035); // Correspond au coordonnées de Lille
     var myOptions = {
         zoom: 14, // Zoom par défaut
-        center: latLng, // Coordonnées de départ de la carte de type latLng 
+        center: latLng, // Coordonnées de départ de la carte de type latLng
         mapTypeId: google.maps.MapTypeId.TERRAIN, // Type de carte, différentes valeurs possible HYBRID, ROADMAP, SATELLITE, TERRAIN
         maxZoom: 20
     };
@@ -89,32 +87,34 @@ calculate = function () {
     }
 };
 
-var myMarkers = [];
+function SetMarkers(model) {
 
-function SetMarkers() {
-    var geocoder = new google.maps.Geocoder();
-    var myData = [];
-    // here you can change this JSON for a call to your database 
-    //myData = [
-    //    new google.maps.LatLng(48.866667, 2.333333),
-    //    new google.maps.LatLng(2.333333, 48.866667)
-    //];
-
-    myData = [new google.maps.LatLng(@Model.AdresseEvenement.lat, @Model.AdresseEvenement.lng)];
-
-    for (i = 0; i < myData.length; i++) {
-
+    model.forEach(function (element) {
+        var latlng = new google.maps.LatLng((element.AdresseEvenement.lat), (element.AdresseEvenement.lng));
         var marker = new google.maps.Marker({
-            position: myData[i],
+            position: latlng,
             map: map,
-            title: 'Hello World!'
+            title: element.AdresseEvenement.Titre
         });
 
-
         marker.setMap(map);
-    };
+    });
 
 }
 
 initialize();
-SetMarkers();
+//SetMarkers();
+
+function codeAddress(geocoder, map, adress) {
+    geocoder.geocode({ 'address': address }, function (results, status) {
+        if (status === 'OK') {
+            map.setCenter(results[0].geometry.location);
+            var marker = new google.maps.Marker({
+                map: map,
+                position: results[0].geometry.location
+            });
+        } else {
+            alert('Geocode was not successful for the following reason: ' + status);
+        }
+    });
+}
