@@ -6,6 +6,7 @@ using System.IO;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
+using BO;
 
 namespace ProjetParkingTest2.Controllers
 {
@@ -39,24 +40,30 @@ namespace ProjetParkingTest2.Controllers
 
                 if (Request.Files.Count > 0)
                 {
-                    var file = Request.Files[0];
-
-                    if (file != null && file.ContentLength > 0)
+                    for (int i = 0; i < Request.Files.Count; i++)
                     {
-                        var fileName = Path.GetFileName(file.FileName);
-                        var path = Path.Combine(Server.MapPath("~/Images/"), fileName);
-                        file.SaveAs(path);
+                        Image img = new Image();
+                        var fileI = Request.Files[i];
+                        if (fileI != null && fileI.ContentLength > 0)
+                        {
+                            var fileName = Path.GetFileName(fileI.FileName);
+                            var path = Path.Combine(Server.MapPath("~/Images/"), fileName);
+                            if (!System.IO.File.Exists(path))
+                            {
+                                fileI.SaveAs(path);
+                                img.Titre = fileName;
+                                img.Path = path;
+                                evenement.ImageEvenement = img;
+                            }
+                        }
                     }
                 }
-            
-
-
 
                 evenement.Save();
                 return RedirectToAction("Index");
             }
-            catch
-            {
+            catch(Exception e)
+            { 
              return View();
             }
         }

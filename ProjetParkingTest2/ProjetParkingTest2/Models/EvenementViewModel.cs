@@ -8,6 +8,7 @@ using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Net;
 using System.Web;
+using System.Xml.Linq;
 
 namespace ProjetParkingTest2.Models
 {
@@ -105,7 +106,7 @@ namespace ProjetParkingTest2.Models
 
 
                 this.Metier.Id = Guid.NewGuid();
-                //this.Metier.ImageEvenement.Id = Guid.NewGuid();
+                this.Metier.ImageEvenement.Id = Guid.NewGuid();
                 this.Metier.AdresseEvenement.Id = Guid.NewGuid();
 
                 using (ParkingContext context = new ParkingContext())
@@ -181,7 +182,7 @@ namespace ProjetParkingTest2.Models
             set
             { Metier.Duree = value; }
         }
-        [Display(Name = "Thème'évènement")]
+        [Display(Name = "Thème de l'évènement")]
         public string Theme
             {
             get
@@ -205,7 +206,10 @@ namespace ProjetParkingTest2.Models
             set
             { Metier.Description = value; }
         }
-        public virtual Image ImageEvenement
+
+        [Display(Name = "Illustration")]
+        [DataType(DataType.Upload)]
+        public Image ImageEvenement
         {
             get
             { return Metier.ImageEvenement; }

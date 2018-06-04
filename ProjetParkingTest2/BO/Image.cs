@@ -14,7 +14,13 @@ namespace BO
             Titre = titre;
             Path = path;
         }
-        
+
+        public Image(string titre, string path)
+        {
+            Titre = titre;
+            Path = path;
+        }
+
         public Image() { }
 
         public Guid Id { get; set; }
