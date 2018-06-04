@@ -58,6 +58,10 @@ namespace Services
             using (ParkingContext context = new ParkingContext())
             {
                 listEvenements = context.Evenements.ToList();
+                foreach (Evenement ev in listEvenements)
+                {
+                    ev.AdresseEvenement = context.Adresses.FirstOrDefault();
+                }
             }
             return listEvenements;
         }
@@ -68,6 +72,10 @@ namespace Services
             using (ParkingContext context = new ParkingContext())
             {
                 listEvenements = context.Evenements.Where(ev => ev.DateEvenement > DateTime.Now).ToList();
+                foreach (Evenement ev in listEvenements)
+                {
+                    ev.AdresseEvenement = context.Adresses.FirstOrDefault();
+                }
             }
             return listEvenements;
         }
@@ -78,18 +86,23 @@ namespace Services
             using (ParkingContext context = new ParkingContext())
             {
                 listEvenements = context.Evenements.Where(ev => ev.Theme == theme).ToList();
+                foreach (Evenement ev in listEvenements)
+                {
+                    ev.AdresseEvenement = context.Adresses.FirstOrDefault();
+                }
             }
             return listEvenements;
         }
 
         public static Evenement GetByGuid(Guid id)
         {
-            Evenement listEvenements = new Evenement();
+            Evenement evenement = new Evenement();
             using (ParkingContext context = new ParkingContext())
             {
-                listEvenements = context.Evenements.Where(ev => ev.Id == id).FirstOrDefault();
+                evenement = context.Evenements.Where(ev => ev.Id == id).FirstOrDefault();
+                evenement.AdresseEvenement = context.Adresses.FirstOrDefault();
             }
-            return listEvenements;
+            return evenement;
         }
     }
 }

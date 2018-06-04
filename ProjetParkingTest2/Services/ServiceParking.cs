@@ -74,12 +74,24 @@ namespace Services
             {
                 listParking = context.Parkings.Where(p =>p.NBPlaceLibre>0).Take(3).ToList();
             }
-
+            /*
             JavaScriptSerializer serializer = new JavaScriptSerializer();
             string json = serializer.Serialize(listParking);
 
-            System.IO.File.WriteAllText(@"C:\jsonParking.txt", json);
+            string path =  @"./jsonParking.txt";
+            if (!File.Exists(path))
+            {
+                File.Create(path);
+            System.IO.File.WriteAllText(path, json);
 
+            }
+            else
+            {
+                File.WriteAllText(path, string.Empty); // vide le fichier 
+                System.IO.File.WriteAllText(path, json);
+
+            }
+            */
             return listParking;
         }
 
