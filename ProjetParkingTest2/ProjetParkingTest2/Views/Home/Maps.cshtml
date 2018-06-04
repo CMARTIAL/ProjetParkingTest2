@@ -1,42 +1,82 @@
-﻿
+﻿@using ProjetParkingTest2.Models
 @{
-    ViewBag.Title = "Maps";
+    ViewBag.Title = "GoogleMaps";
 }
-    <title>OpenLayers Basic Example</title>
+@model EvenementViewModel
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+    <title>Google Map Api v3</title>
+    <link rel="stylesheet" href="~/Content/jquery-ui-1.8.12.custom.css" type="text/css" />
+</head>
+<style type="text/css">
 
-    <script src="http://www.openlayers.org/api/OpenLayers.js"></script>
-    <script>
-        function init() {
-            map = new OpenLayers.Map("mapdiv");
-            var mapnik = new OpenLayers.Layer.OSM();
-            map.addLayer(mapnik);
+    #container {
+        position: relative;
+        width: 990px;
+        margin: auto;
+    }
 
-            var lonlat = new OpenLayers.LonLat(-1.788, 53.571).transform(
-                new OpenLayers.Projection("EPSG:4326"), // transform from WGS 1984
-                new OpenLayers.Projection("EPSG:900913") // to Spherical Mercator
-            );
-
-            var zoom = 13;
-
-            var markers = new OpenLayers.Layer.Markers("Markers");
-            map.addLayer(markers);
-            markers.addMarker(new OpenLayers.Marker(lonlat));
-
-            map.setCenter(lonlat, zoom);
+        #container #map {
+            width: 500px;
+            height: 500px;
+            margin: auto;
         }
-    </script>
+</style>
+<body>
+    <div id="container">
+        <h1>Calcul d'itinéraire Google Maps Api V3</h1>
+        <div id="destinationForm">
+            @*<form action="" method="get" name="direction" id="direction">
+                    <label>Point de départ :</label>
+                    <input type="text" name="origin" id="origin">
+                    <label>Destination :</label>
+                    <input type="text" name="destination" id="destination">
+                    <input type="button" value="Calculer l'itinéraire" onclick="javascript:calculate()">
+                </form>*@
+            @*<form action="Home/Edit">
 
-    <style>
-        #mapdiv {
-            width: 100%;
-            height: 800px;
-        }
+                    <label for="name">Veuillez saisir votre adresse :</label>
+                    <input type="text" id="adressse_id" name="adresseConvive" placeholder="Veuillez saisir votre adresse" />
+                    @Html.DropDownListFor(model => model.Id, new SelectList(EvenementViewModel.GetAll(), "Id", "Titre"))
+                    <input type="submit" value="Submit" />
+                </form>*@
+        </div>
+        <div id="panel"></div>
+        <div id="map">
+            <p>Veuillez patienter pendant le chargement de la carte...</p>
+        </div>
+    </div>
 
-        div.olControlAttribution {
-            bottom: 3px;
-        }
-    </style>
 
-<body onload="init();">
-    <div id="mapdiv"></div>
+    <!-- Include Javascript -->
+    <script type="text/javascript" src="~/Scripts/jquery.min.js"></script>
+    <script type="text/javascript" src="~/Scripts/jquery-ui-1.8.12.custom.min.js"></script>
+    <script type="text/javascript" src="http://maps.google.com/maps/api/js?key=AIzaSyCyoqbqJVd_MtZRT_0DmYmznxxJWRfMjQI&callback=initMap"></script>
+    <script type="text/javascript" src="~/Scripts/functionsGoogleMaps.js"></script>
+
+    function SetMarkers() {
+    var model = @Html.Raw(Json.Encode(Model));
+    var geocoder = new google.maps.Geocoder();
+    var myData = [];
+    // here you can change this JSON for a call to your database
+    //myData = [
+    //    new google.maps.LatLng(48.866667, 2.333333),
+    //    new google.maps.LatLng(2.333333, 48.866667)
+    //];
+
+    myData = [new google.maps.LatLng(@Model.AdresseEvenement.lat, @Model.AdresseEvenement.lng)];
+
+    for (i = 0; i < myData.length; i++) {
+
+    var marker = new google.maps.Marker({
+    position: myData[i],
+    map: map,
+    title: 'Hello World!'
+    });
+
+
+    marker.setMap(map);
+    };
+
+    }
 </body>

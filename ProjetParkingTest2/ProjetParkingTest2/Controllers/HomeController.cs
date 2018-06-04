@@ -36,12 +36,7 @@ namespace ProjetParkingTest2.Controllers
 
             return View();
         }
-
-        public ActionResult Maps()
-        { 
-            return View();
-        }
-
+        
         public ActionResult GoogleMaps()
         {
             return View();
@@ -49,7 +44,7 @@ namespace ProjetParkingTest2.Controllers
 
         // Edit? adresseConvive = sdsdsds & Id = da5f6d63 - 40e9 - 4fdd-9ac8-621edb427ecd
         // GET: Evenement/Edit/5
-        public ActionResult Edit(String adresseConvive, Guid Id)
+        public ActionResult Maps(String adresseConvive, Guid Id)
         {
             List<ParkingViewModel> listParking = ParkingViewModel.Get3();
             EvenementViewModel eVM = EvenementViewModel.GetByGuid(Id);

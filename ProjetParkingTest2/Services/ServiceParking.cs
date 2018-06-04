@@ -77,8 +77,19 @@ namespace Services
 
             JavaScriptSerializer serializer = new JavaScriptSerializer();
             string json = serializer.Serialize(listParking);
+            string path =  @"./jsonParking.txt";
+            if (!File.Exists(path))
+            {
+                File.Create(path);
+            System.IO.File.WriteAllText(path, json);
 
-            System.IO.File.WriteAllText(@"C:\jsonParking.txt", json);
+            }
+            else
+            {
+                File.WriteAllText(path, string.Empty); // vide le fichier 
+                System.IO.File.WriteAllText(path, json);
+
+            }
 
             return listParking;
         }

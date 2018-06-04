@@ -1,9 +1,10 @@
+@using ProjetParkingTest2.Models
+@model EvenementViewModel
 var map;
 var panel;
 var initialize;
 var calculate;
-var direction;
-
+var direction; 
 initialize = function () {
     var latLng = new google.maps.LatLng(50.6371834, 3.063017400000035); // Correspond au coordonnées de Lille
     var myOptions = {
@@ -91,35 +92,30 @@ calculate = function () {
 var myMarkers = [];
 
 function SetMarkers() {
+    var model = @Html.Raw(Json.Encode(Model));
     var geocoder = new google.maps.Geocoder();
     var myData = [];
     // here you can change this JSON for a call to your database 
-    myData = [
-        new google.maps.LatLng(48.866667, 2.333333),
-        new google.maps.LatLng(2.333333, 48.866667)
-    ];
+    //myData = [
+    //    new google.maps.LatLng(48.866667, 2.333333),
+    //    new google.maps.LatLng(2.333333, 48.866667)
+    //];
 
-    myData = $.getJSON('C:\jsonParking.txt', function (data) {
-    });;
+    myData = [new google.maps.LatLng(@Model.AdresseEvenement.lat, @Model.AdresseEvenement.lng)];
 
     for (i = 0; i < myData.length; i++) {
 
         var marker = new google.maps.Marker({
             position: myData[i],
-    map: map,
-    title: 'Hello World!'
-});
+            map: map,
+            title: 'Hello World!'
+        });
 
-        
-marker.setMap(map);
+
+        marker.setMap(map);
     };
 
 }
-
-
-
-
-
 
 initialize();
 SetMarkers();
