@@ -17,9 +17,9 @@ namespace ProjetParkingTest2.Models
         {
             this.Metier = new Evenement();
         }
-        public EvenementViewModel(Evenement parking)
+        public EvenementViewModel(Evenement evenement)
         {
-            this.Metier = parking;
+            this.Metier = evenement;
         }
 
         /// <summary>

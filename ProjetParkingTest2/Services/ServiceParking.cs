@@ -67,7 +67,7 @@ namespace Services
         /// </summary>
         /// <param name="adresse"></param>
         /// <returns></returns>
-        public static List<Parking> Get3()
+        public static List<Parking> Get3(Guid eventID)
         {
             List<Parking> listParking = new List<Parking>();
             using (ParkingContext context = new ParkingContext())

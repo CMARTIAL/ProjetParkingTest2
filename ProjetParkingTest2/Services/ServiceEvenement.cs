@@ -57,11 +57,7 @@ namespace Services
             List<Evenement> listEvenements = new List<Evenement>();
             using (ParkingContext context = new ParkingContext())
             {
-                listEvenements = context.Evenements.ToList();
-                foreach (Evenement ev in listEvenements)
-                {
-                    ev.AdresseEvenement = context.Adresses.FirstOrDefault();
-                }
+                listEvenements = context.Evenements.Include("AdresseEvenement").ToList();
             }
             return listEvenements;
         }
@@ -71,11 +67,7 @@ namespace Services
             List<Evenement> listEvenements = new List<Evenement>();
             using (ParkingContext context = new ParkingContext())
             {
-                listEvenements = context.Evenements.Where(ev => ev.DateEvenement > DateTime.Now).ToList();
-                foreach (Evenement ev in listEvenements)
-                {
-                    ev.AdresseEvenement = context.Adresses.FirstOrDefault();
-                }
+                listEvenements = context.Evenements.Include("AdresseEvenement").Where(ev => ev.DateEvenement > DateTime.Now).ToList();
             }
             return listEvenements;
         }
@@ -85,11 +77,7 @@ namespace Services
             List<Evenement> listEvenements = new List<Evenement>();
             using (ParkingContext context = new ParkingContext())
             {
-                listEvenements = context.Evenements.Where(ev => ev.Theme == theme).ToList();
-                foreach (Evenement ev in listEvenements)
-                {
-                    ev.AdresseEvenement = context.Adresses.FirstOrDefault();
-                }
+                listEvenements = context.Evenements.Include("AdresseEvenement").Where(ev => ev.Theme == theme).ToList();
             }
             return listEvenements;
         }
@@ -99,8 +87,7 @@ namespace Services
             Evenement evenement = new Evenement();
             using (ParkingContext context = new ParkingContext())
             {
-                evenement = context.Evenements.Where(ev => ev.Id == id).FirstOrDefault();
-                evenement.AdresseEvenement = context.Adresses.FirstOrDefault();
+                evenement = context.Evenements.Include("AdresseEvenement").Where(ev => ev.Id == id).FirstOrDefault();
             }
             return evenement;
         }
