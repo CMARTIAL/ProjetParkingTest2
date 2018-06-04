@@ -17,7 +17,7 @@ namespace BO
         
         public Image() { }
 
-        public Guid Id { get => throw new NotImplementedException(); set => throw new NotImplementedException(); }
+        public Guid Id { get; set; }
         public string Titre { get; set; }
         public string Path { get; set; }
     }
