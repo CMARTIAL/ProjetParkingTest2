@@ -48,6 +48,23 @@ namespace ProjetParkingTest2.Models
             get { return Metier.Coordonee0; }
             set { Metier.Coordonee0 = value; }
         }
+
+        internal static List<ParkingViewModel> Get3()
+        {
+            List<ParkingViewModel> listParkings = new List<ParkingViewModel>();
+            //listLivres = Dal.Get
+
+            using (ParkingContext context = new ParkingContext())
+            {
+                List<Parking> parkings = ServiceParking.Get3();
+                foreach (Parking parking in parkings)
+                {
+                    listParkings.Add(new ParkingViewModel(parking));
+                }
+            }
+            return listParkings;
+        }
+
         [Display(Name = "Longitude ?")]
         public double Coordonee1
         {
@@ -57,7 +74,7 @@ namespace ProjetParkingTest2.Models
 
 
 
-       /* public static void AddtoBase()
+        public static void AddtoBase()
         {
             List<Parking> parkingToAdd = new List<Parking>();
             //recupere les parkings
@@ -92,7 +109,7 @@ namespace ProjetParkingTest2.Models
                 context.Parkings.AddRange(parkingToAdd);
                 context.SaveChanges();
             }
-        }*/
+        }
 
         /// <summary>
         /// retourne la liste de tout les parkingviewmodel
