@@ -48,6 +48,23 @@ namespace ProjetParkingTest2.Models
             get { return Metier.Coordonee0; }
             set { Metier.Coordonee0 = value; }
         }
+
+        internal static List<ParkingViewModel> Get3()
+        {
+            List<ParkingViewModel> listParkings = new List<ParkingViewModel>();
+            //listLivres = Dal.Get
+
+            using (ParkingContext context = new ParkingContext())
+            {
+                List<Parking> parkings = ServiceParking.Get3();
+                foreach (Parking parking in parkings)
+                {
+                    listParkings.Add(new ParkingViewModel(parking));
+                }
+            }
+            return listParkings;
+        }
+
         [Display(Name = "Longitude ?")]
         public double Coordonee1
         {

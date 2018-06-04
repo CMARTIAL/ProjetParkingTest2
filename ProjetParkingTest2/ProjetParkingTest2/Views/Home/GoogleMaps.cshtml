@@ -1,6 +1,8 @@
-﻿@{
+﻿@using ProjetParkingTest2.Models
+@{
     ViewBag.Title = "GoogleMaps";
 }
+@model EvenementViewModel
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
     <title>Google Map Api v3</title>
@@ -24,12 +26,19 @@
     <div id="container">
         <h1>Calcul d'itinéraire Google Maps Api V3</h1>
         <div id="destinationForm">
-            <form action="" method="get" name="direction" id="direction">
-                <label>Point de départ :</label>
-                <input type="text" name="origin" id="origin">
-                <label>Destination :</label>
-                <input type="text" name="destination" id="destination">
-                <input type="button" value="Calculer l'itinéraire" onclick="javascript:calculate()">
+            @*<form action="" method="get" name="direction" id="direction">
+                    <label>Point de départ :</label>
+                    <input type="text" name="origin" id="origin">
+                    <label>Destination :</label>
+                    <input type="text" name="destination" id="destination">
+                    <input type="button" value="Calculer l'itinéraire" onclick="javascript:calculate()">
+                </form>*@
+            <form action="Home/Edit">
+
+                <label for="name">Veuillez saisir votre adresse :</label>
+                <input type="text" id="adressse_id" name="adresseConvive" placeholder="Veuillez saisir votre adresse" />
+                @Html.DropDownListFor(model => model.Id, new SelectList(EvenementViewModel.GetAll(), "Id", "Titre"))
+                <input type="submit" value="Submit" />
             </form>
         </div>
         <div id="panel"></div>

@@ -2,9 +2,11 @@
 using DAL;
 using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Web.Script.Serialization;
 
 namespace Services
 {
@@ -70,8 +72,14 @@ namespace Services
             List<Parking> listParking = new List<Parking>();
             using (ParkingContext context = new ParkingContext())
             {
-                listParking = context.Parkings.Take(3).ToList();
+                listParking = context.Parkings.Where(p =>p.NBPlaceLibre>0).Take(3).ToList();
             }
+
+            JavaScriptSerializer serializer = new JavaScriptSerializer();
+            string json = serializer.Serialize(listParking);
+
+            System.IO.File.WriteAllText(@"C:\jsonParking.txt", json);
+
             return listParking;
         }
 
