@@ -25,12 +25,11 @@
                     <li>@Html.ActionLink("Accueil", "Index", "Home")</li>
                     @if (User.Identity.IsAuthenticated)
                     {
-                        if (User.IsInRole("Organisateur"))
-                        {
+                        
                             <li>@Html.ActionLink("Gestion Evenements", "Index", "Evenement")</li>
                             <li>@Html.ActionLink("Gestion Adresses", "Index", "Adresse")</li>
                             <li>@Html.ActionLink("Gestion Parking", "Index", "Parking")</li>
-                        }
+                        
                         <li>@Html.ActionLink("Liste des parking", "Index", "Parking")</li>
                     }
                     <li>@Html.ActionLink("Carte", "GoogleMaps", "Home")</li>

@@ -105,10 +105,13 @@ namespace ProjetParkingTest2.Models
 
 
                 this.Metier.Id = Guid.NewGuid();
+                this.Metier.ImageEvenement.Id = Guid.NewGuid();
                 this.Metier.AdresseEvenement.Id = Guid.NewGuid();
+
                 using (ParkingContext context = new ParkingContext())
                 {
                     ServiceAdresse.Insert(this.Metier.AdresseEvenement, context);
+                    ServiceImage.Insert(this.Metier.ImageEvenement, context);
 
                 string query = "https://maps.googleapis.com/maps/api/geocode/json?address=" + this.Metier.AdresseEvenement.ToString() + "&key=AIzaSyCyoqbqJVd_MtZRT_0DmYmznxxJWRfMjQI";
 
@@ -187,7 +190,7 @@ namespace ProjetParkingTest2.Models
             { Metier.Theme = value; }
         }
 
-        [Display(Name = "^Prix de l'évènement")]
+        [Display(Name = "Prix de l'évènement")]
         public int Tarif
         {
             get
@@ -202,12 +205,12 @@ namespace ProjetParkingTest2.Models
             set
             { Metier.Description = value; }
         }
-        public virtual ICollection<Image> Images
+        public virtual Image ImageEvenement
         {
             get
-            { return Metier.Images; }
+            { return Metier.ImageEvenement; }
             set
-            { Metier.Images = value; }
+            { Metier.ImageEvenement = value; }
         }
 
         [Display(Name = "Date de l'évènement")]

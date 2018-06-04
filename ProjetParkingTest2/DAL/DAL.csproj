@@ -70,6 +70,10 @@
     <Compile Include="Migrations\201806011421115_modif lat lng.Designer.cs">
       <DependentUpon>201806011421115_modif lat lng.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201806040912577_UpdateImages.cs" />
+    <Compile Include="Migrations\201806040912577_UpdateImages.Designer.cs">
+      <DependentUpon>201806040912577_UpdateImages.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="ParkingContext.cs" />
     <Compile Include="ParkingContextInitializer.cs" />
@@ -97,6 +101,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201806011421115_modif lat lng.resx">
       <DependentUpon>201806011421115_modif lat lng.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201806040912577_UpdateImages.resx">
+      <DependentUpon>201806040912577_UpdateImages.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
