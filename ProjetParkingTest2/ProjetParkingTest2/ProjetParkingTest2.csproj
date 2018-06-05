@@ -298,6 +298,8 @@
     <Content Include="Views\Adresse\Create.cshtml" />
     <Content Include="Views\Parking\Create.cshtml" />
     <Content Include="Views\Parking\Delete.cshtml" />
+    <Content Include="Views\Adresse\Delete.cshtml" />
+    <Content Include="Views\Adresse\Edit.cshtml" />
   </ItemGroup>
   <ItemGroup />
   <ItemGroup>
