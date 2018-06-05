@@ -46,13 +46,16 @@ namespace ProjetParkingTest2.Controllers
                         var fileI = Request.Files[i];
                         if (fileI != null && fileI.ContentLength > 0)
                         {
-                            var fileName = Path.GetFileName(fileI.FileName);
+                            String timeStamp = GetTimestamp(DateTime.Now);
+                            var fileName = timeStamp + "_" + Path.GetFileName(fileI.FileName);
+                            var partPath = "/Images/" + fileName;
                             var path = Path.Combine(Server.MapPath("~/Images/"), fileName);
+                            
                             if (!System.IO.File.Exists(path))
                             {
                                 fileI.SaveAs(path);
                                 img.Titre = fileName;
-                                img.Path = path;
+                                img.Path = partPath;
                                 evenement.ImageEvenement = img;
                             }
                         }
@@ -66,6 +69,11 @@ namespace ProjetParkingTest2.Controllers
             { 
              return View();
             }
+        }
+
+        public static String GetTimestamp(DateTime value)
+        {
+            return value.ToString("yyyyMMddHHmmssffff");
         }
 
         // GET: Evenement/Edit/5

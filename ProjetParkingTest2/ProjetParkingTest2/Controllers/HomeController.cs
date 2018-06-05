@@ -20,7 +20,7 @@ namespace ProjetParkingTest2.Controllers
         public ActionResult Index()
         {
             //ParkingViewModel.AddtoBase();
-            return View();
+            return View("GoogleMaps");
         }
 
         public ActionResult About()
@@ -44,29 +44,20 @@ namespace ProjetParkingTest2.Controllers
 
         // Edit? adresseConvive = sdsdsds & Id = da5f6d63 - 40e9 - 4fdd-9ac8-621edb427ecd
         // GET: Evenement/Edit/5
-        public ActionResult Maps(String adresseConvive, Guid id)
+        public ActionResult Maps(String adresseConvive, Guid Id)
         {
-            /*
-            List<ParkingViewModel> listParking = ParkingViewModel.Get3();
-
+            List<ParkingViewModel> listParking = ParkingViewModel.Get3(Id);
             EvenementViewModel eVM = EvenementViewModel.GetByGuid(Id);
             adresseConvive = adresseConvive.Replace(" ", "+");
-            string query = "https://maps.googleapis.com/maps/api/geocode/json?address=" + adresseConvive + "&key=AIzaSyCyoqbqJVd_MtZRT_0DmYmznxxJWRfMjQI";
+            string query = "https://maps.googleapis.com/maps/api/geocode/json?address="+adresseConvive+"&key=AIzaSyCyoqbqJVd_MtZRT_0DmYmznxxJWRfMjQI";
 
             using (WebClient wc = new WebClient())
             {
                 var json = wc.DownloadString(query);
                 RootObjectGoogle item = JsonConvert.DeserializeObject<RootObjectGoogle>(json);
             }
-            */
-            //List<EvenementViewModel> eVMs = EvenementViewModel.GetAll();
-            //return View(eVMs);
-
-            
-            EvenementParkingViewModel evpm = EvenementParkingViewModel.Get3ParkingByEvent(id, adresseConvive);
-
-            return View(evpm);
-            
+            List<EvenementViewModel> eVMs = EvenementViewModel.GetAll();
+            return View(eVMs);
         }
 
     }
