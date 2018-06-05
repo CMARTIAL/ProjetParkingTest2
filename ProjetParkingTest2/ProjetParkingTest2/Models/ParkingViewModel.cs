@@ -8,6 +8,7 @@ using System.ComponentModel.DataAnnotations;
 using System.IO;
 using System.Linq;
 using System.Net;
+using System.Text.RegularExpressions;
 using System.Web;
 
 namespace ProjetParkingTest2.Models
@@ -94,52 +95,54 @@ namespace ProjetParkingTest2.Models
                         string line;
                         while ((line = reader.ReadLine()) != null)
                         {
-                            csvfile.Add(line.Split(';'));
+                            csvfile.Add(Regex.Matches(line, @"[\""].+?[\""]|[^;]+").Cast<Match>().Select(m => m.Value).ToArray());
                         }
                         reader.Close();                        
                                             
                     var query = from ligne in csvfile
                                 select new
                                 {
-                                    Parking = ligne[0],
-                                    Horaires = ligne[1],
-                                    Tarifs = ligne[2],
-                                    Adresse = ligne[3],
-                                    Capacite = ligne[4],
-                                    Seuil_Complet = ligne[5],
+                                    Parking = ligne[0],Horaires = ligne[1],Tarifs = ligne[2],Adresse = ligne[3],Capacite = ligne[4],Seuil_Complet = ligne[5]
                                 };
 
+                        int count = 0;
                     foreach (string[] stringtab in csvfile)
                     {
-                    //ServiceParking.DeleteAll();
-                    var json = wc.DownloadString("http://data.citedia.com/r1/parks/");
-                    dynamic data = JsonConvert.DeserializeObject<RootObject>(json);
-                    foreach (Park park in data.parks)
-                    {
-                        Parking parking = new Parking(Guid.NewGuid(),
-                                                      park.parkInformation.name,
-                                                      null,
-                                                      park.parkInformation.max,
-                                                      park.parkInformation.free,
-                                                      0, new TimeSpan(0, 0, 0),
-                                                      new TimeSpan(0, 0, 0),
-                                                      park.parkInformation.status
-                                                      );
-                        foreach (Feature feature in data.features.features)
-                        {
-                            if (feature.id == park.id)
+                            if (count == 0)
                             {
-                                parking.Coordonee0 = feature.geometry.coordinates[0];
-                                parking.Coordonee1 = feature.geometry.coordinates[1];
+
                             }
-                        }
+                            else
+                            {
+                    var json = wc.DownloadString("http://data.citedia.com/r1/parks/"+stringtab[0]);
+                    dynamic data = JsonConvert.DeserializeObject<ParkInformation>(json);
+
+                        Parking parking = new Parking(Guid.NewGuid(),data.name,null,data.max,data.free,0, new TimeSpan(0, 0, 0),new TimeSpan(0, 0, 0),data.status);
+
+                                    string querypark = "https://maps.googleapis.com/maps/api/geocode/json?address=" + stringtab[3] + "&key=AIzaSyCyoqbqJVd_MtZRT_0DmYmznxxJWRfMjQI";
+                                    
+                                        var json2 = wc.DownloadString(querypark);
+                                        RootObjectGoogle item = JsonConvert.DeserializeObject<RootObjectGoogle>(json2);
+                                        if (item.results.Count != 0)
+                                        {
+                                            parking.Coordonee0 = item.results.FirstOrDefault().geometry.location.lat;
+                                            parking.Coordonee1 = item.results.FirstOrDefault().geometry.location.lng;
+                                        }
+
+                                    ServiceParking.Insert(parking);
+                                    context.SaveChanges();
+
+                                
+                                    
                         parkingToAdd.Add(parking);
+                                }
+                                count++;
                     }
                     }
-                    }
-                }
+                    ServiceParking.DeleteAll();
                 context.Parkings.AddRange(parkingToAdd);
                 context.SaveChanges();
+                }
             }
         }
 
