@@ -28,20 +28,7 @@
     <div id="container">
         <h1>Calcul d'itinéraire Google Maps Api V3</h1>
         <div id="destinationForm">
-            @*<form action="" method="get" name="direction" id="direction">
-                    <label>Point de départ :</label>
-                    <input type="text" name="origin" id="origin">
-                    <label>Destination :</label>
-                    <input type="text" name="destination" id="destination">
-                    <input type="button" value="Calculer l'itinéraire" onclick="javascript:calculate()">
-                </form>*@
-            @*<form action="Home/Edit">
 
-                    <label for="name">Veuillez saisir votre adresse :</label>
-                    <input type="text" id="adressse_id" name="adresseConvive" placeholder="Veuillez saisir votre adresse" />
-                    @Html.DropDownListFor(model => model.Id, new SelectList(EvenementViewModel.GetAll(), "Id", "Titre"))
-                    <input type="submit" value="Submit" />
-                </form>*@
         </div>
         <div id="panel">
         </div>
@@ -64,80 +51,138 @@
     <script type="text/javascript">
 
         var map;
-        var panel;
+        var geocoder = new google.maps.Geocoder();
+        var iconBase = 'https://maps.google.com/mapfiles/kml/shapes/';
+        var panel = document.getElementById('panel');
         var initialize;
         var calculate;
         var direction;
-        var geocoder = new google.maps.Geocoder();
+
         initialize = function () {
 
             var latLng = new google.maps.LatLng(48.114789, -1.677848); // Correspond au coordonnées de Rennes
+
             var myOptions = {
                 zoom: 10, // Zoom par défaut
                 center: latLng, // Coordonnées de départ de la carte de type latLng
                 mapTypeId: google.maps.MapTypeId.TERRAIN, // Type de carte, différentes valeurs possible HYBRID, ROADMAP, SATELLITE, TERRAIN
                 maxZoom: 20
             };
-
             map = new google.maps.Map(document.getElementById('map'), myOptions);
-            panel = document.getElementById('panel');
-            /*
-            var marker = new google.maps.Marker({
-                position: latLng,
+
+            //SetMarkers();
+
+            /**
+             * Evnmt
+             */
+
+            //Récupération des coordonnées de l'évènement
+            var latLngEvnmt = codeAddress(geocoder, map, '@Model.Evenement.AdresseEvenement.ToString().Replace(" ","")');
+
+
+            //Marqueur de l'evenement
+            var markerE = new google.maps.Marker({
+                position: latLngEvnmt,
                 map: map,
-                title: "Lille"
-                //icon     : "marker_lille.gif" // Chemin de l'image du marqueur pour surcharger celui par défaut
+                label: {
+                    color: 'white',
+                    fontWeight: 'bold',
+                    text: 'Hello world',
+                },
             });
 
-            var contentMarker = [
-                '<div id="containerTabs">',
-                '<div id="tabs">',
-                '<ul>',
-                '<li><a href="#tab-1"><span>Lorem</span></a></li>',
-                '<li><a href="#tab-2"><span>Ipsum</span></a></li>',
-                '<li><a href="#tab-3"><span>Dolor</span></a></li>',
-                '</ul>',
-                '<div id="tab-1">',
-                '<h3>Lille</h3><p>Suspendisse quis magna dapibus orci porta varius sed sit amet purus. Ut eu justo dictum elit malesuada facilisis. Proin ipsum ligula, feugiat sed faucibus a, <a href="http://www.google.fr">google</a> sit amet mauris. In sit amet nisi mauris. Aliquam vestibulum quam et ligula pretium suscipit ullamcorper metus accumsan.</p>',
-                '</div>',
-                '<div id="tab-2">',
-                '<h3>Aliquam vestibulum</h3><p>Aliquam vestibulum quam et ligula pretium suscipit ullamcorper metus accumsan.</p>',
-                '</div>',
-                '<div id="tab-3">',
-                '<h3>Pretium suscipit</h3><ul><li>Lorem</li><li>Ipsum</li><li>Dolor</li><li>Amectus</li></ul>',
-                '</div>',
-                '</div>',
-                '</div>'
-            ].join('');
+              //Contenu du marqueur
+            var contentMarker ='eeeh';
 
+
+            //Mise en place de la fenêtre d'information du marqueur
             var infoWindow = new google.maps.InfoWindow({
                 content: contentMarker,
-                position: latLng
+                position: latLngEvnmt
             });
 
 
-
-
-            google.maps.event.addListener(marker, 'click', function () {
-                infoWindow.open(map, marker);
+            google.maps.event.addListener(markerE, 'click', function () {
+                infoWindow.open(map, markerE);
             });
 
-            google.maps.event.addListener(infoWindow, 'domready', function () { // infoWindow est biensûr notre info-bulle
-                jQuery("#tabs").tabs();
-            });
-
-
+            // infoWindow est biensûr notre info-bulle
+    
             direction = new google.maps.DirectionsRenderer({
                 map: map,
                 panel: panel // Dom element pour afficher les instructions d'itinéraire
             });
-            */
+
+               //marker du convive
+            var markerC = new google.maps.Marker({
+                  position: codeAddress(geocoder,map,'@Model.AdresseConvive'), //new google.maps.LatLng((item.AdresseEvenement.lng.ToString().Replace(',', '.')), (item.AdresseEvenement.lng.ToString().Replace(',', '.'))),
+                  map: map,
+                  title: 'Mitch',
+                  icon: iconBase + 'info-i_maps.png'
+            });
+
+
+
+
         };
 
 
-        calculate = function () {
-            origin = document.getElementById('origin').value; // Le point départ
-            destination = document.getElementById('destination').value; // Le point d'arrivé
+
+       function SetMarkers() {
+
+               var contentMarker = [
+                '<div id="containerTabs">',
+                    '<div id="tabs1">',
+                        '<ul>',
+                            '<li><a href="#tab-1"><span>Parking</span></a></li>',
+                        '</ul>',
+                        '<div id="tab-1">',
+                            '<h3>Id : @Model.Evenement.AdresseEvenement.ToString()</h3>',
+                        '</div>',
+                    '</div>',
+                '</div>'
+            ].join('');
+
+           @foreach (var item in Model.Parkings)
+                {
+                <text>
+
+                var marker = new google.maps.Marker({
+                    position: codeAddress(geocoder,map,'@(item.AdressePark.ToString().Replace(" ", "+"))'), //new google.maps.LatLng((item.AdresseEvenement.lng.ToString().Replace(',', '.')), (item.AdresseEvenement.lng.ToString().Replace(',', '.'))),
+                    map: map,
+                    title: '@(item.AdressePark.ToString())',
+                    icon: 'https://maps.google.com/mapfiles/ms/icons/blue-dot.png'
+                });
+
+                direction = new google.maps.DirectionsRenderer({
+                    map: map,
+                    panel: panel // Dom element pour afficher les instructions d'itinéraire
+                });
+
+                marker.setMap(map);
+            </text>
+            }
+
+
+        };
+
+        function codeAddress(geocoder, map,address) {
+            geocoder.geocode({ 'address': address }, function (results, status) {
+                if (status === 'OK') {
+                    map.setCenter(results[0].geometry.location);
+                    var marker = new google.maps.Marker({
+                        map: map,
+                        position: results[0].geometry.location
+                    });
+                } else {
+                    alert('Geocode was not successful for the following reason: ' + status);
+                }
+            });
+        }
+
+        calculate = function (origin, destination) {
+            //origin = document.getElementById('origin').value; // Le point départ
+            //destination = document.getElementById('destination').value; // Le point d'arrivé
 
             if (origin && destination) {
                 var request = {
@@ -154,86 +199,8 @@
             }
         };
 
-        function SetMarkers(a) {
-
-            //marker de l'evenement
-                        var marker = new google.maps.Marker({
-                         position: codeAddress(geocoder,map,'@Model.Evenement.AdresseEvenement.ToString().Replace(" ","")'), //new google.maps.LatLng((item.AdresseEvenement.lng.ToString().Replace(',', '.')), (item.AdresseEvenement.lng.ToString().Replace(',', '.'))),
-                         map: map,
-                         title: '@Model.Evenement.Titre',
-                         icon: 'https://maps.google.com/mapfiles/ms/icons/yellow-dot.png',
-            });
-            
-            var contentMarker = [
-                '<div id="containerTabs">',
-                '<div id="tabs">',
-                '<div id="tab-1">',
-                '<h3>Id : @Model.Evenement.AdresseEvenement.ToString()</h3>',
-                '</div>',
-                '</div>',
-                '</div>'
-            ].join('');
-
-
- var infoWindow = new google.maps.InfoWindow({
-                content: contentMarker,
-                position: codeAddress(geocoder,map,'@Model.Evenement.AdresseEvenement.ToString().Replace(" ","")'),
-            });
-
-            google.maps.event.addListener(marker, 'click', function () {
-                infoWindow.open(map, marker);
-            });
-
-            google.maps.event.addListener(infoWindow, 'domready', function () { // infoWindow est biensûr notre info-bulle
-                jQuery("#tabs").tabs();
-            });
-
-                        //marker du convive
-                 var marker = new google.maps.Marker({
-                  position: codeAddress(geocoder,map,'@Model.AdresseConvive'), //new google.maps.LatLng((item.AdresseEvenement.lng.ToString().Replace(',', '.')), (item.AdresseEvenement.lng.ToString().Replace(',', '.'))),
-                  map: map,
-                  title: '@Model.AdresseConvive',
-                  icon: 'https://maps.google.com/mapfiles/ms/icons/green-dot.png',
-                });
-
-            @foreach (var item in Model.Parkings)
-                {
-        <text>
-
-            var marker = new google.maps.Marker({
-                position: codeAddress(geocoder,map,'@(item.AdressePark.ToString().Replace(" ", "+"))'), //new google.maps.LatLng((item.AdresseEvenement.lng.ToString().Replace(',', '.')), (item.AdresseEvenement.lng.ToString().Replace(',', '.'))),
-                map: map,
-                title: '@(item.AdressePark.ToString())',
-                icon: 'https://maps.google.com/mapfiles/ms/icons/blue-dot.png',
-                });
-
-
-
-            direction = new google.maps.DirectionsRenderer({
-                map: map,
-                panel: panel // Dom element pour afficher les instructions d'itinéraire
-            });
-
-            marker.setMap(map);
-            </text>
-            }
-        };
-
-        function codeAddress(geocoder, map,address) {
-            geocoder.geocode({ 'address': address }, function (results, status) {
-                if (status === 'OK') {
-                    map.setCenter(results[0].geometry.location);
-                    var marker = new google.maps.Marker({
-                        map: map,
-                        position: results[0].geometry.location
-                    });
-                } else {
-                    alert('Geocode was not successful for the following reason: ' + status);
-                }
-            });
-        }
         initialize();
-        SetMarkers();
+
     </script>
 
 </body>
