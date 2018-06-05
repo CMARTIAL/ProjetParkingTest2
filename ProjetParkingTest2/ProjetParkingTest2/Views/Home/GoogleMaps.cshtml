@@ -24,7 +24,7 @@
 </style>
 <body>
     <div id="container">
-        <h1>Calcul d'itinéraire Google Maps Api V3</h1>
+        <h1>Trouvez un parking pour l'évènement de votre choix !</h1>
         <div id="destinationForm">
             @*<form action="" method="get" name="direction" id="direction">
                     <label>Point de départ :</label>
@@ -33,12 +33,22 @@
                     <input type="text" name="destination" id="destination">
                     <input type="button" value="Calculer l'itinéraire" onclick="javascript:calculate()">
                 </form>*@
-            <form action="Home/Maps">
 
-                <label for="name">Veuillez saisir votre adresse :</label>
-                <input type="text" id="adressse_id" name="adresseConvive" placeholder="Veuillez saisir votre adresse" />
-                @Html.DropDownListFor(model => model.Id, new SelectList(EvenementViewModel.GetAll(), "Id", "Titre"))
-                <input type="submit" value="Submit" />
+            <form action="Home/Maps">
+                <div style="width: 500px;">
+                    <div style="float: left; width: 200px;">
+                        <label for="name">D'où partez vous ?</label>
+                        <input type="text" id="adressse_id" name="adresseConvive" placeholder="Adresse de départ" />
+                    </div>
+                    <div style="float: left; width: 200px;">
+                        <label for="name">Où allez vous ?</label>
+                        @Html.DropDownListFor(model => model.Id, new SelectList(EvenementViewModel.GetAll(), "Id", "Titre"))
+                    </div>
+                    <div style="float: left; width: 200px;">
+                        <input class="btn-success" type="submit" value="Submit" />
+                    </div
+                </div>
+
             </form>
         </div>
         <div id="panel"></div>
@@ -46,15 +56,4 @@
             @*<p>Veuillez patienter pendant le chargement de la carte...</p>*@
         </div>
     </div>
-
-
-    <!-- Include Javascript -->
-    
-    @*<script type="text/javascript" src="~/Scripts/jquery.min.js"></script>
-    <script type="text/javascript" src="~/Scripts/jquery-ui-1.8.12.custom.min.js"></script>
-    <script type="text/javascript" src="http://maps.google.com/maps/api/js?key=AIzaSyCyoqbqJVd_MtZRT_0DmYmznxxJWRfMjQI&callback=initMap"></script>
-    <script type="text/javascript" src="~/Scripts/functionsGoogleMaps.js"></script>
-    <script type="text/javascript" >*@
-        
-
 </body>
