@@ -46,6 +46,7 @@ namespace ProjetParkingTest2.Controllers
         // GET: Evenement/Edit/5
         public ActionResult Maps(String adresseConvive, Guid Id)
         {
+            /*
             List<ParkingViewModel> listParking = ParkingViewModel.Get3(Id);
             EvenementViewModel eVM = EvenementViewModel.GetByGuid(Id);
             adresseConvive = adresseConvive.Replace(" ", "+");
@@ -57,7 +58,9 @@ namespace ProjetParkingTest2.Controllers
                 RootObjectGoogle item = JsonConvert.DeserializeObject<RootObjectGoogle>(json);
             }
             List<EvenementViewModel> eVMs = EvenementViewModel.GetAll();
-            return View(eVMs);
+            */
+            EvenementParkingViewModel evpm = EvenementParkingViewModel.Get3ParkingByEvent(Id,adresseConvive);
+            return View(evpm);
         }
 
     }

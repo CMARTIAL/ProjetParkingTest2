@@ -94,7 +94,7 @@ namespace Services
                     closestPark = parking;
                 }
             }
-
+            listParking.Add(closestPark); // a Modifier pour ne prendre que les 3 plus proches
 
             return listParking;
         }
