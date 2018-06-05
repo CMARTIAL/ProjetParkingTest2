@@ -49,14 +49,14 @@ namespace ProjetParkingTest2.Models
             set { Metier.Coordonee0 = value; }
         }
 
-        internal static List<ParkingViewModel> Get3()
+        internal static List<ParkingViewModel> Get3(Guid id)
         {
             List<ParkingViewModel> listParkings = new List<ParkingViewModel>();
             //listLivres = Dal.Get
 
             using (ParkingContext context = new ParkingContext())
             {
-                List<Parking> parkings = ServiceParking.Get3();
+                List<Parking> parkings = ServiceParking.Get3(id);
                 foreach (Parking parking in parkings)
                 {
                     listParkings.Add(new ParkingViewModel(parking));

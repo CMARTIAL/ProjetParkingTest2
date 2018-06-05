@@ -20,7 +20,7 @@ namespace ProjetParkingTest2.Controllers
         public ActionResult Index()
         {
             //ParkingViewModel.AddtoBase();
-            return View();
+            return View("GoogleMaps");
         }
 
         public ActionResult About()
@@ -46,7 +46,7 @@ namespace ProjetParkingTest2.Controllers
         // GET: Evenement/Edit/5
         public ActionResult Maps(String adresseConvive, Guid Id)
         {
-            List<ParkingViewModel> listParking = ParkingViewModel.Get3();
+            List<ParkingViewModel> listParking = ParkingViewModel.Get3(Id);
             EvenementViewModel eVM = EvenementViewModel.GetByGuid(Id);
             adresseConvive = adresseConvive.Replace(" ", "+");
             string query = "https://maps.googleapis.com/maps/api/geocode/json?address="+adresseConvive+"&key=AIzaSyCyoqbqJVd_MtZRT_0DmYmznxxJWRfMjQI";

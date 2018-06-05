@@ -164,7 +164,7 @@
             
             //var latlng = new google.maps.LatLng((item.AdresseEvenement.lat.ToString().Replace(',','.')), (item.AdresseEvenement.lng.ToString().Replace(',', '.')));
             var marker = new google.maps.Marker({
-                position: codeAddress(geocoder,map,'@(item.AdresseEvenement.ToString())'), //new google.maps.LatLng((item.AdresseEvenement.lng.ToString().Replace(',', '.')), (item.AdresseEvenement.lng.ToString().Replace(',', '.'))),
+                position: codeAddress(geocoder,map,'@(item.AdresseEvenement.ToString().Trim())'), //new google.maps.LatLng((item.AdresseEvenement.lng.ToString().Replace(',', '.')), (item.AdresseEvenement.lng.ToString().Replace(',', '.'))),
                 map: map,
                 title: '@(item.AdresseEvenement.ToString())'
                 });
