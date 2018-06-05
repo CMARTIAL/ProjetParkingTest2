@@ -97,8 +97,7 @@ namespace ProjetParkingTest2.Models
                             csvfile.Add(line.Split(';'));
                         }
                         reader.Close();                        
-                        
-                    
+                                            
                     var query = from ligne in csvfile
                                 select new
                                 {
@@ -109,8 +108,9 @@ namespace ProjetParkingTest2.Models
                                     Capacite = ligne[4],
                                     Seuil_Complet = ligne[5],
                                 };
-                    }
 
+                    foreach (string[] stringtab in csvfile)
+                    {
                     //ServiceParking.DeleteAll();
                     var json = wc.DownloadString("http://data.citedia.com/r1/parks/");
                     dynamic data = JsonConvert.DeserializeObject<RootObject>(json);
@@ -134,6 +134,8 @@ namespace ProjetParkingTest2.Models
                             }
                         }
                         parkingToAdd.Add(parking);
+                    }
+                    }
                     }
                 }
                 context.Parkings.AddRange(parkingToAdd);
