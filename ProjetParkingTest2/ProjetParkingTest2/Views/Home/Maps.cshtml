@@ -3,7 +3,8 @@
     ViewBag.Title = "GoogleMaps";
 }
 @*@model EvenementViewModel*@
-@model IEnumerable<EvenementViewModel>
+@model EvenementParkingViewModel
+@*@model IEnumerable<EvenementViewModel>*@
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
     <title>Google Map Api v3</title>
@@ -43,7 +44,6 @@
                 </form>*@
         </div>
         <div id="panel">
-            @Model.FirstOrDefault().Id;
         </div>
 
         <div id="map">
@@ -56,11 +56,11 @@
     <script type="text/javascript" src="~/Scripts/jquery.min.js"></script>
     <script type="text/javascript" src="~/Scripts/jquery-ui-1.8.12.custom.min.js"></script>
     <script type="text/javascript" src="http://maps.google.com/maps/api/js?key=AIzaSyCyoqbqJVd_MtZRT_0DmYmznxxJWRfMjQI&callback=initMap"></script>
-@*    <script type="text/javascript" src="~/Scripts/functionsGoogleMaps.js"></script>*@
-    @*<script type="text/javascript">            
-        SetMarkers(Model);
-    </script>*@
-    
+    @*    <script type="text/javascript" src="~/Scripts/functionsGoogleMaps.js"></script>*@
+    @*<script type="text/javascript">
+            SetMarkers(Model);
+        </script>*@
+
     <script type="text/javascript">
 
         var map;
@@ -70,10 +70,10 @@
         var direction;
         var geocoder = new google.maps.Geocoder();
         initialize = function () {
-            /*
-            var latLng = new google.maps.LatLng(50.6371834, 3.063017400000035); // Correspond au coordonnées de Lille
+
+            var latLng = new google.maps.LatLng(48.114789, -1.677848); // Correspond au coordonnées de Rennes
             var myOptions = {
-                zoom: 14, // Zoom par défaut
+                zoom: 10, // Zoom par défaut
                 center: latLng, // Coordonnées de départ de la carte de type latLng
                 mapTypeId: google.maps.MapTypeId.TERRAIN, // Type de carte, différentes valeurs possible HYBRID, ROADMAP, SATELLITE, TERRAIN
                 maxZoom: 20
@@ -81,7 +81,7 @@
 
             map = new google.maps.Map(document.getElementById('map'), myOptions);
             panel = document.getElementById('panel');
-
+            /*
             var marker = new google.maps.Marker({
                 position: latLng,
                 map: map,
@@ -117,7 +117,7 @@
 
 
 
-            
+
             google.maps.event.addListener(marker, 'click', function () {
                 infoWindow.open(map, marker);
             });
@@ -153,40 +153,33 @@
                 });
             }
         };
-        var myMarkers = [];
 
         function SetMarkers(a) {
-            
-            @foreach (var item in Model)
-                {
-        <text>
-//            codeAddress(geocoder, map,(item.AdresseEvenement.ToString()));
-            
-            //var latlng = new google.maps.LatLng((item.AdresseEvenement.lat.ToString().Replace(',','.')), (item.AdresseEvenement.lng.ToString().Replace(',', '.')));
-            var marker = new google.maps.Marker({
-                position: codeAddress(geocoder,map,'@(item.AdresseEvenement.ToString())'), //new google.maps.LatLng((item.AdresseEvenement.lng.ToString().Replace(',', '.')), (item.AdresseEvenement.lng.ToString().Replace(',', '.'))),
-                map: map,
-                title: '@(item.AdresseEvenement.ToString())'
-                });
+
+            //marker de l'evenement
+                        var marker = new google.maps.Marker({
+                         position: codeAddress(geocoder,map,'@Model.Evenement.AdresseEvenement.ToString().Replace(" ","")'), //new google.maps.LatLng((item.AdresseEvenement.lng.ToString().Replace(',', '.')), (item.AdresseEvenement.lng.ToString().Replace(',', '.'))),
+                         map: map,
+                         title: '@Model.Evenement.Titre',
+                         icon: 'https://maps.google.com/mapfiles/ms/icons/yellow-dot.png',
+            });
             
             var contentMarker = [
                 '<div id="containerTabs">',
                 '<div id="tabs">',
                 '<div id="tab-1">',
-                '<h3>Id : @(item.AdresseEvenement.Id)</h3>',
-                '<h3>lat : @(item.AdresseEvenement.lat)</h3>',
-                '<h3>lng : @(item.AdresseEvenement.lng)</h3>',
+                '<h3>Id : @Model.Evenement.AdresseEvenement.ToString()</h3>',
                 '</div>',
                 '</div>',
                 '</div>'
             ].join('');
 
-            
+
  var infoWindow = new google.maps.InfoWindow({
                 content: contentMarker,
-                position: codeAddress(geocoder,map,'@(item.AdresseEvenement.ToString())')
+                position: codeAddress(geocoder,map,'@Model.Evenement.AdresseEvenement.ToString().Replace(" ","")'),
             });
-            
+
             google.maps.event.addListener(marker, 'click', function () {
                 infoWindow.open(map, marker);
             });
@@ -194,6 +187,26 @@
             google.maps.event.addListener(infoWindow, 'domready', function () { // infoWindow est biensûr notre info-bulle
                 jQuery("#tabs").tabs();
             });
+
+                        //marker du convive
+                 var marker = new google.maps.Marker({
+                  position: codeAddress(geocoder,map,'@Model.AdresseConvive'), //new google.maps.LatLng((item.AdresseEvenement.lng.ToString().Replace(',', '.')), (item.AdresseEvenement.lng.ToString().Replace(',', '.'))),
+                  map: map,
+                  title: '@Model.AdresseConvive',
+                  icon: 'https://maps.google.com/mapfiles/ms/icons/green-dot.png',
+                });
+
+            @foreach (var item in Model.Parkings)
+                {
+        <text>
+
+            var marker = new google.maps.Marker({
+                position: codeAddress(geocoder,map,'@(item.AdressePark.ToString().Replace(" ", "+"))'), //new google.maps.LatLng((item.AdresseEvenement.lng.ToString().Replace(',', '.')), (item.AdresseEvenement.lng.ToString().Replace(',', '.'))),
+                map: map,
+                title: '@(item.AdressePark.ToString())',
+                icon: 'https://maps.google.com/mapfiles/ms/icons/blue-dot.png',
+                });
+
 
 
             direction = new google.maps.DirectionsRenderer({
@@ -205,7 +218,7 @@
             </text>
             }
         };
-        
+
         function codeAddress(geocoder, map,address) {
             geocoder.geocode({ 'address': address }, function (results, status) {
                 if (status === 'OK') {
@@ -219,9 +232,8 @@
                 }
             });
         }
-        
         initialize();
         SetMarkers();
-        </script>
-        
-</body >
+    </script>
+
+</body>

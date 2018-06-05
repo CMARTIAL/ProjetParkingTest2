@@ -57,7 +57,7 @@ namespace Services
             List<Parking> listParking = new List<Parking>();
             using (ParkingContext context = new ParkingContext())
             {
-                listParking = context.Parkings.ToList();
+                listParking = context.Parkings.Include("AdressePark").ToList();
             }
             return listParking;
         }
@@ -70,36 +70,58 @@ namespace Services
         public static List<Parking> Get3(Guid eventID)
         {
             List<Parking> listParking = new List<Parking>();
+            Evenement evenement = new Evenement();
             using (ParkingContext context = new ParkingContext())
             {
-                listParking = context.Parkings.Where(p =>p.NBPlaceLibre>0).Take(3).ToList();
+                listParking = context.Parkings.Include("AdressePark").Where(p =>p.NBPlaceLibre>0).ToList();
+                evenement = context.Evenements.Include("AdresseEvenement").Where(e => e.Id == eventID).FirstOrDefault();
             }
-            /*
-            JavaScriptSerializer serializer = new JavaScriptSerializer();
-            string json = serializer.Serialize(listParking);
 
-            string path =  @"./jsonParking.txt";
-            if (!File.Exists(path))
+            Parking closestPark = new Parking();
+            double closestDistance = double.MaxValue;
+            for (int i = 0; i < listParking.Count(); i++)
             {
-                File.Create(path);
-            System.IO.File.WriteAllText(path, json);
-
+                Parking parking = listParking[i];
+                double distance = closestAddress((double)evenement.AdresseEvenement.lat, (double)evenement.AdresseEvenement.lng, parking);
+                if (i == 0)
+                {
+                    closestDistance = distance;
+                    closestPark = parking;
+                }
+                else if (distance < closestDistance)
+                {
+                    closestDistance = distance;
+                    closestPark = parking;
+                }
             }
-            else
-            {
-                File.WriteAllText(path, string.Empty); // vide le fichier 
-                System.IO.File.WriteAllText(path, json);
 
-            }
-            */
+
             return listParking;
         }
 
-         public static void Delete(Parking e)
+        private static double closestAddress(double ULongitude, double ULatitude, Parking parking)
+        {
+            double ALongitude = parking.Coordonee0;
+            double ALatitude = parking.Coordonee1;
+
+            double distance = findDistance(ULongitude, ULatitude, ALongitude, ALatitude);
+            return distance;
+        }
+
+        private static double findDistance(double Ulong, double Ulat, double ALong, double ALat)
+        {
+            double x = (ALong - Ulong) * Math.Cos((Ulat + ALat) / 2);
+            double y = (ALat - Ulat);
+            double d = Math.Sqrt(Math.Pow(x, 2) + Math.Pow(y, 2)) * 6371;
+            return d;
+        }
+
+
+        public static void Delete(Parking e)
         {
             using (ParkingContext context = new ParkingContext())
             {
-                context.Parkings.Remove(context.Parkings.FirstOrDefault(Parking => Parking.Id == e.Id));
+                context.Parkings.Remove(context.Parkings.Include("AdressePark").FirstOrDefault(Parking => Parking.Id == e.Id));
                 context.SaveChanges();
             }
         }

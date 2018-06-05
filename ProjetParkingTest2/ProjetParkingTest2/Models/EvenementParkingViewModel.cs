@@ -18,9 +18,8 @@ namespace ProjetParkingTest2.Models
 
         }
 
-        public EvenementParkingViewModel(List<Parking> parkings, Evenement evenement, string adresseConvive)
+        public EvenementParkingViewModel(Evenement evenement, string adresseConvive)
         {
-            Parkings = parkings;
             Evenement = evenement;
             AdresseConvive = adresseConvive;
         }

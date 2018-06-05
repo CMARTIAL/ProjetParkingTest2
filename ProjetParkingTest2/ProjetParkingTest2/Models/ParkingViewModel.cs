@@ -5,6 +5,7 @@ using Services;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
+using System.IO;
 using System.Linq;
 using System.Net;
 using System.Web;
@@ -49,14 +50,14 @@ namespace ProjetParkingTest2.Models
             set { Metier.Coordonee0 = value; }
         }
 
-        internal static List<ParkingViewModel> Get3()
+        internal static List<ParkingViewModel> Get3(Guid id)
         {
             List<ParkingViewModel> listParkings = new List<ParkingViewModel>();
             //listLivres = Dal.Get
 
             using (ParkingContext context = new ParkingContext())
             {
-                List<Parking> parkings = ServiceParking.Get3();
+                List<Parking> parkings = ServiceParking.Get3(id);
                 foreach (Parking parking in parkings)
                 {
                     listParkings.Add(new ParkingViewModel(parking));
@@ -82,8 +83,35 @@ namespace ProjetParkingTest2.Models
             {
                 using (WebClient wc = new WebClient())
                 {
+                    HttpWebRequest request = (HttpWebRequest)WebRequest.Create("http://data.citedia.com/r1/parks/timetable-and-prices");
 
-                    ServiceParking.DeleteAll();
+                    StreamReader reader;
+
+                    using (HttpWebResponse response = (HttpWebResponse)request.GetResponse())
+                    {
+                        reader = new StreamReader(response.GetResponseStream());
+                        List<string[]> csvfile = new List<string[]>();// = reader.ReadToEnd();
+                        string line;
+                        while ((line = reader.ReadLine()) != null)
+                        {
+                            csvfile.Add(line.Split(';'));
+                        }
+                        reader.Close();                        
+                        
+                    
+                    var query = from ligne in csvfile
+                                select new
+                                {
+                                    Parking = ligne[0],
+                                    Horaires = ligne[1],
+                                    Tarifs = ligne[2],
+                                    Adresse = ligne[3],
+                                    Capacite = ligne[4],
+                                    Seuil_Complet = ligne[5],
+                                };
+                    }
+
+                    //ServiceParking.DeleteAll();
                     var json = wc.DownloadString("http://data.citedia.com/r1/parks/");
                     dynamic data = JsonConvert.DeserializeObject<RootObject>(json);
                     foreach (Park park in data.parks)
