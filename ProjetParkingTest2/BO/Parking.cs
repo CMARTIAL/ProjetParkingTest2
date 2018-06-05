@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -45,5 +46,7 @@ namespace BO
         public double Coordonee0 { get; set; }
         public double Coordonee1 { get; set; }
 
+        [NotMapped]
+        public double Distance { get; set; }
     }
 }

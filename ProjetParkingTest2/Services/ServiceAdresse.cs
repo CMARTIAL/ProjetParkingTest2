@@ -1,8 +1,10 @@
 ﻿using BO;
 using DAL;
+using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Net;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -15,7 +17,10 @@ namespace Services
         {
             using (ParkingContext context = new ParkingContext())
             {
+                Insert(e, context);
+                /*
                 context.Adresses.Add(e);
+                */
                 context.SaveChanges();
             }
         }
@@ -23,7 +28,27 @@ namespace Services
         public static void Insert(Adresse e, ParkingContext context)
         {
 
-            context.Adresses.Add(e);
+            using (WebClient wc = new WebClient())
+            {
+                try
+                {
+                     string querypark = "https://maps.googleapis.com/maps/api/geocode/json?address=" + e.ToString() + "&key=AIzaSyCyoqbqJVd_MtZRT_0DmYmznxxJWRfMjQI";
+                     var json2 = wc.DownloadString(querypark);
+                     RootObjectGoogle item = JsonConvert.DeserializeObject<RootObjectGoogle>(json2);
+                    if (item.results.Count != 0)
+                    {
+                        e.lat = item.results.FirstOrDefault().geometry.location.lat;
+                        e.lng = item.results.FirstOrDefault().geometry.location.lng;
+                    }
+
+                }
+                catch (Exception)
+                {
+                    context.Adresses.Add(e); //meme si il y a une erreur on ajoute l'adresse sans latitude ni longitude
+                    throw;
+                }
+                context.Adresses.Add(e);
+            }
         }
 
         public static void Delete(Adresse e)

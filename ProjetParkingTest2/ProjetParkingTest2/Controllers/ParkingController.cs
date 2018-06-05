@@ -94,8 +94,9 @@ namespace ProjetParkingTest2.Controllers
                 ParkingViewModel.AddtoBase();
                 return RedirectToAction("Index");
             }
-            catch
+            catch(Exception ex)
             {
+                string errore = ex.Message;
                 return RedirectToAction("Index");
             }
 

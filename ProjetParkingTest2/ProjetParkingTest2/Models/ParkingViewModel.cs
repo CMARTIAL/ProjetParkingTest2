@@ -78,6 +78,7 @@ namespace ProjetParkingTest2.Models
 
         public static void AddtoBase()
         {
+
             List<Parking> parkingToAdd = new List<Parking>();
             //recupere les parkings
             using (ParkingContext context = new ParkingContext())
@@ -119,8 +120,10 @@ namespace ProjetParkingTest2.Models
 
                         Parking parking = new Parking(Guid.NewGuid(),data.name,null,data.max,data.free,0, new TimeSpan(0, 0, 0),new TimeSpan(0, 0, 0),data.status);
 
+                                
+                                Adresse adresse = new Adresse(Guid.NewGuid(), stringtab[3], 0, 0, "", "");
+                                /*
                                     string querypark = "https://maps.googleapis.com/maps/api/geocode/json?address=" + stringtab[3] + "&key=AIzaSyCyoqbqJVd_MtZRT_0DmYmznxxJWRfMjQI";
-                                    
                                         var json2 = wc.DownloadString(querypark);
                                         RootObjectGoogle item = JsonConvert.DeserializeObject<RootObjectGoogle>(json2);
                                         if (item.results.Count != 0)
@@ -128,9 +131,13 @@ namespace ProjetParkingTest2.Models
                                             parking.Coordonee0 = item.results.FirstOrDefault().geometry.location.lat;
                                             parking.Coordonee1 = item.results.FirstOrDefault().geometry.location.lng;
                                         }
+                                        */
+                                    ServiceAdresse.Insert(adresse,context);
+                                parking.AdressePark = adresse;
 
-                                    ServiceParking.Insert(parking);
-                                    context.SaveChanges();
+                                //ServiceParking.DeleteAll();
+                                ServiceParking.Insert(parking,context);
+                                context.SaveChanges();
 
                                 
                                     
@@ -139,7 +146,6 @@ namespace ProjetParkingTest2.Models
                                 count++;
                     }
                     }
-                    ServiceParking.DeleteAll();
                 context.Parkings.AddRange(parkingToAdd);
                 context.SaveChanges();
                 }
