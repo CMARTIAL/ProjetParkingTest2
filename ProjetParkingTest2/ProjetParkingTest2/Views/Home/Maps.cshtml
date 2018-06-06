@@ -50,7 +50,7 @@
         var adresse;
         var adresseConvive = '@Model.AdresseConvive';
 
-        var panel;
+        var panel = document.getElementById("panel");
         var initialize;
         var calculate;
         var direction;
@@ -77,7 +77,30 @@
 
             //Marqueur de l'évènement
             adresse = '@Model.Evenement.AdresseEvenement.ToString()';
-            codeAddress(geocoder, map, adresse, adresse, iconBase + 'purple-dot.png');
+
+                var variableTitleE = '@Model.Evenement.Titre';
+                var variableThemeE = '@Model.Evenement.Theme';
+                var variableTarifE = '@Model.Evenement.Tarif';
+                var variableHoraireE = '@Model.Evenement.Duree';
+                var variableDescriptionE = '@Model.Evenement.Description';
+
+                var contentMarkerParking = [
+                    '<div id="containerTabs">',
+                    '<div id="tabs">',
+                    '<h3>' + variableTitleE +'</h3>',
+                    '<ul>',
+                    '<li>Theme</li>',
+                    '<p>' + variableThemeE + ' - ' + variableDescriptionE+ '</p>',
+                    '<li>Tarifs</li>',
+                    '<p>' + variableTarifE +'</p>',
+                    '<li>Durée</li>',
+                    '<p>' + variableHoraireE +'</p>',
+                    '</ul>',
+                    '</div>',
+                    '</div>'
+                ].join('');
+
+                codeAddress(geocoder, map, adresse, contentMarkerParking, iconBase + 'purple-dot.png');
 
             //marqueur du convive
             adresse = '@Model.AdresseConvive';
@@ -110,7 +133,7 @@
                     '</div>'
                 ].join('');
 
-                codeAddressParking(geocoder, map, adresse, contentMarkerParking, iconBase + 'yellow-dot.png');
+                codeAddress(geocoder, map, adresse, contentMarkerParking, iconBase + 'yellow-dot.png');
                 </text>
             }
 
@@ -144,32 +167,6 @@
             });
         }
 
-        function codeAddressParking(geocoder, map, address, contentMarkerParking, iconColor) {
-            geocoder.geocode({ 'address': address }, function (results, status) {
-                if (status === 'OK') {
-
-                    //Recentre la carte sur le dernier point
-                    map.setCenter(results[0].geometry.location);
-
-                    //Création du marqueur
-                    var marker = new google.maps.Marker({
-                        map: map,
-                        position: results[0].geometry.location,
-                        icon: iconColor
-                    });
-
-                    //Attribution de l'infoBulle au marqueur
-                    google.maps.event.addListener(marker, 'click', function () {
-                        infoWindow2.setContent(contentMarkerParking);
-                        infoWindow2.open(map, marker);
-                        calculate(marker);
-                    });
-
-                } else {
-                    alert('Geocode was not successful for the following reason: ' + status + " || Adresse > " + address);
-                }
-            });
-        }
 
 
         calculate = function (de) {

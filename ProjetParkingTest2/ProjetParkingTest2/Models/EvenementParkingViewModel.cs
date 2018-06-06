@@ -27,7 +27,7 @@ namespace ProjetParkingTest2.Models
         public static EvenementParkingViewModel Get3ParkingByEvent(Guid id,string adresseConvive)
         {
             EvenementParkingViewModel epvm = new EvenementParkingViewModel();
-            ParkingViewModel.GetAll();
+            ParkingViewModel.AddtoBase();
             using (ParkingContext context = new ParkingContext())
             {
                 epvm.Evenement = ServiceEvenement.GetByGuid(id);
