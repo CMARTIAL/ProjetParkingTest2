@@ -86,7 +86,7 @@
                 {
                  <text>
                 adresse = '@item.AdressePark';
-                codeAddress(geocoder, map, adresse, adresse, iconBase + 'yellow-dot.png');
+                codeAddressParking(geocoder, map, adresse, adresse, iconBase + 'yellow-dot.png');
                 </text>
             }
 
@@ -119,6 +119,49 @@
 
                 } else {
                     alert('Geocode was not successful for the following reason: ' + status +" || Adresse > "+ address);
+                }
+            });
+        }
+
+        function codeAddressParking(geocoder, map, address, object, iconColor) {
+            geocoder.geocode({ 'address': address }, function (results, status) {
+                if (status === 'OK') {
+
+                    //Recentre la carte sur le dernier point
+                    map.setCenter(results[0].geometry.location);
+
+                    //Création du marqueur
+                    var marker = new google.maps.Marker({
+                        map: map,
+                        position: results[0].geometry.location,
+                        icon: iconColor
+                    });
+
+                    //Ajout d'un texte pour l'infoBulle du marqueur
+                    var contentMarkerParking = [
+                        '<div id="containerTabs">',
+                            '<div id="tabs">',
+                                '<ul>',
+                        '<li>Places libres</li>',
+                        '<p> ICI PLACES LIBRES </p>',
+                        '<li>Tarifs</li>',
+                        '<p> ICI TARIFS </p>',
+                        '<li>Estimation du coûts</li>',
+                        '<p> ICI COUTS </p>',
+                                '</ul>',
+                            '</div>',
+                        '</div>'
+                    ].join('');
+
+                    //Attribution de l'infoBulle au marqueur
+                    google.maps.event.addListener(marker, 'click', function () {
+                        infoWindow2.setContent(contentMarkerParking);
+                        infoWindow2.open(map, marker);
+                        calculate(marker);
+                    });
+
+                } else {
+                    alert('Geocode was not successful for the following reason: ' + status + " || Adresse > " + address);
                 }
             });
         }
