@@ -25,33 +25,28 @@ namespace ProjetParkingTest2.Models
         }
 
         [Display(Name = "Nom du Parking")]
-        public string Titre
-        {
+        public string Titre {
             get { return Metier.Titre; }
             set { Metier.Titre = value; }
         }
         [Display(Name = "Nombre de places totals")]
-        public int NBPlaceTotal
-        {
+        public int NBPlaceTotal {
             get { return Metier.NBPlaceTotal; }
             set { Metier.NBPlaceTotal = value; }
         }
         [Display(Name = "Nombre de places libres")]
-        public int NBPlaceLibre
-        {
+        public int NBPlaceLibre {
             get { return Metier.NBPlaceLibre; }
             set { Metier.NBPlaceLibre = value; }
         }
         [Display(Name = "Statut du parling")]
-        public string Statut
-        {
+        public string Statut {
             get { return Metier.Statut; }
             set { Metier.Statut = value; }
         }
 
         [Display(Name = "Latittude ?")]
-        public double Coordonee0
-        {
+        public double Coordonee0 {
             get { return Metier.Coordonee0; }
             set { Metier.Coordonee0 = value; }
         }
@@ -83,6 +78,7 @@ namespace ProjetParkingTest2.Models
 
         public static void AddtoBase()
         {
+
             List<Parking> parkingToAdd = new List<Parking>();
             //recupere les parkings
             using (ParkingContext context = new ParkingContext())
@@ -102,56 +98,56 @@ namespace ProjetParkingTest2.Models
                         {
                             csvfile.Add(Regex.Matches(line, @"[\""].+?[\""]|[^;]+").Cast<Match>().Select(m => m.Value).ToArray());
                         }
-                        reader.Close();
-
-                        var query = from ligne in csvfile
-                                    select new
-                                    {
-                                        Parking = ligne[0],
-                                        Horaires = ligne[1],
-                                        Tarifs = ligne[2],
-                                        Adresse = ligne[3],
-                                        Capacite = ligne[4],
-                                        Seuil_Complet = ligne[5]
-                                    };
+                        reader.Close();                        
+                                            
+                    var query = from ligne in csvfile
+                                select new
+                                {
+                                    Parking = ligne[0],Horaires = ligne[1],Tarifs = ligne[2],Adresse = ligne[3],Capacite = ligne[4],Seuil_Complet = ligne[5]
+                                };
 
                         int count = 0;
-                        foreach (string[] stringtab in csvfile)
-                        {
+                    foreach (string[] stringtab in csvfile)
+                    {
                             if (count == 0)
                             {
 
                             }
                             else
                             {
-                                var json = wc.DownloadString("http://data.citedia.com/r1/parks/" + stringtab[0]);
-                                dynamic data = JsonConvert.DeserializeObject<ParkInformation>(json);
+                    var json = wc.DownloadString("http://data.citedia.com/r1/parks/"+stringtab[0]);
+                    dynamic data = JsonConvert.DeserializeObject<ParkInformation>(json);
 
-                                Parking parking = new Parking(Guid.NewGuid(), data.name, null, data.max, data.free, 0, new TimeSpan(0, 0, 0), new TimeSpan(0, 0, 0), data.status);
+                        Parking parking = new Parking(Guid.NewGuid(),data.name,null,data.max,data.free,0, new TimeSpan(0, 0, 0),new TimeSpan(0, 0, 0),data.status);
 
-                                string querypark = "https://maps.googleapis.com/maps/api/geocode/json?address=" + stringtab[3] + "&key=AIzaSyCyoqbqJVd_MtZRT_0DmYmznxxJWRfMjQI";
+                                
+                                Adresse adresse = new Adresse(Guid.NewGuid(), stringtab[3], 0, 0, "", "");
+                                /*
+                                    string querypark = "https://maps.googleapis.com/maps/api/geocode/json?address=" + stringtab[3] + "&key=AIzaSyCyoqbqJVd_MtZRT_0DmYmznxxJWRfMjQI";
+                                        var json2 = wc.DownloadString(querypark);
+                                        RootObjectGoogle item = JsonConvert.DeserializeObject<RootObjectGoogle>(json2);
+                                        if (item.results.Count != 0)
+                                        {
+                                            parking.Coordonee0 = item.results.FirstOrDefault().geometry.location.lat;
+                                            parking.Coordonee1 = item.results.FirstOrDefault().geometry.location.lng;
+                                        }
+                                        */
+                                    ServiceAdresse.Insert(adresse,context);
+                                parking.AdressePark = adresse;
 
-                                var json2 = wc.DownloadString(querypark);
-                                RootObjectGoogle item = JsonConvert.DeserializeObject<RootObjectGoogle>(json2);
-                                if (item.results.Count != 0)
-                                {
-                                    parking.Coordonee0 = item.results.FirstOrDefault().geometry.location.lat;
-                                    parking.Coordonee1 = item.results.FirstOrDefault().geometry.location.lng;
-                                }
-
-                                ServiceParking.Insert(parking);
+                                //ServiceParking.DeleteAll();
+                                ServiceParking.Insert(parking,context);
                                 context.SaveChanges();
 
-
-
-                                parkingToAdd.Add(parking);
-                            }
-                            count++;
-                        }
+                                
+                                    
+                        parkingToAdd.Add(parking);
+                                }
+                                count++;
                     }
-                    ServiceParking.DeleteAll();
-                    context.Parkings.AddRange(parkingToAdd);
-                    context.SaveChanges();
+                    }
+                context.Parkings.AddRange(parkingToAdd);
+                context.SaveChanges();
                 }
             }
         }

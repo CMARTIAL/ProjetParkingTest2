@@ -21,6 +21,10 @@ namespace Services
                 context.SaveChanges();
             }
         }
+        public static void Insert(Parking p,ParkingContext context)
+        {
+                context.Parkings.Add(p);
+        }
 
         public static void Update(Parking p)
         {
@@ -70,6 +74,7 @@ namespace Services
         public static List<Parking> Get3(Guid eventID)
         {
             List<Parking> listParking = new List<Parking>();
+            List<Parking> listParkingtoReturn = new List<Parking>();
             Evenement evenement = new Evenement();
             using (ParkingContext context = new ParkingContext())
             {
@@ -83,26 +88,31 @@ namespace Services
             {
                 Parking parking = listParking[i];
                 double distance = closestAddress((double)evenement.AdresseEvenement.lat, (double)evenement.AdresseEvenement.lng, parking);
+                /*
                 if (i == 0)
                 {
                     closestDistance = distance;
+                    parking.Distance = distance;
                     closestPark = parking;
                 }
                 else if (distance < closestDistance)
                 {
                     closestDistance = distance;
+                    parking.Distance = distance;
                     closestPark = parking;
                 }
+                */
+                parking.Distance = distance;
+                listParkingtoReturn.Add(parking); // a Modifier pour ne prendre que les 3 plus proches
             }
-            listParking.Add(closestPark); // a Modifier pour ne prendre que les 3 plus proches
-
-            return listParking;
+            var o = listParkingtoReturn.OrderBy(p => p.Distance).Take(3).ToList();
+            return listParkingtoReturn.OrderBy(p => p.Distance).Take(3).ToList();
         }
 
         private static double closestAddress(double ULongitude, double ULatitude, Parking parking)
         {
-            double ALongitude = parking.Coordonee0;
-            double ALatitude = parking.Coordonee1;
+            double ALongitude = (double)parking.AdressePark.lng;// Coordonee0;
+            double ALatitude = (double)parking.AdressePark.lat;// Coordonee1;
 
             double distance = findDistance(ULongitude, ULatitude, ALongitude, ALatitude);
             return distance;
