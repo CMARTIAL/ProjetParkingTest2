@@ -5,9 +5,11 @@ using Services;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
+using System.Globalization;
 using System.IO;
 using System.Linq;
 using System.Net;
+using System.Text;
 using System.Text.RegularExpressions;
 using System.Web;
 
@@ -25,31 +27,44 @@ namespace ProjetParkingTest2.Models
         }
 
         [Display(Name = "Nom du Parking")]
-        public string Titre {
+        public string Titre
+        {
             get { return Metier.Titre; }
             set { Metier.Titre = value; }
         }
         [Display(Name = "Nombre de places totals")]
-        public int NBPlaceTotal {
+        public int NBPlaceTotal
+        {
             get { return Metier.NBPlaceTotal; }
             set { Metier.NBPlaceTotal = value; }
         }
         [Display(Name = "Nombre de places libres")]
-        public int NBPlaceLibre {
+        public int NBPlaceLibre
+        {
             get { return Metier.NBPlaceLibre; }
             set { Metier.NBPlaceLibre = value; }
         }
         [Display(Name = "Statut du parling")]
-        public string Statut {
+        public string Statut
+        {
             get { return Metier.Statut; }
             set { Metier.Statut = value; }
         }
-
-        [Display(Name = "Latittude ?")]
-        public double Coordonee0 {
-            get { return Metier.Coordonee0; }
-            set { Metier.Coordonee0 = value; }
+        [Display(Name = "Tarification")]
+        public string Tarif
+        {
+            get { return Metier.Tarif; }
+            set { Metier.Tarif = value; }
         }
+
+        [Display(Name = "Horraires")]
+        public string Horraire
+        {
+            get { return Metier.Horraire; }
+            set { Metier.Horraire = value; }
+        }
+
+
 
         internal static List<ParkingViewModel> Get3(Guid id)
         {
@@ -67,14 +82,24 @@ namespace ProjetParkingTest2.Models
             return listParkings;
         }
 
-        [Display(Name = "Longitude ?")]
-        public double Coordonee1
+
+
+        private static string RemoveDiacritics(string text)
         {
-            get { return Metier.Coordonee1; }
-            set { Metier.Coordonee1 = value; }
+            var normalizedString = text.Normalize(NormalizationForm.FormD);
+            var stringBuilder = new StringBuilder();
+
+            foreach (var c in normalizedString)
+            {
+                var unicodeCategory = CharUnicodeInfo.GetUnicodeCategory(c);
+                if (unicodeCategory != UnicodeCategory.NonSpacingMark)
+                {
+                    stringBuilder.Append(c);
+                }
+            }
+
+            return stringBuilder.ToString().Normalize(NormalizationForm.FormC);
         }
-
-
 
         public static void AddtoBase()
         {
@@ -98,56 +123,35 @@ namespace ProjetParkingTest2.Models
                         {
                             csvfile.Add(Regex.Matches(line, @"[\""].+?[\""]|[^;]+").Cast<Match>().Select(m => m.Value).ToArray());
                         }
-                        reader.Close();                        
-                                            
-                    var query = from ligne in csvfile
-                                select new
-                                {
-                                    Parking = ligne[0],Horaires = ligne[1],Tarifs = ligne[2],Adresse = ligne[3],Capacite = ligne[4],Seuil_Complet = ligne[5]
-                                };
+                        reader.Close();
 
+                    
                         int count = 0;
-                    foreach (string[] stringtab in csvfile)
-                    {
-                            if (count == 0)
+                        foreach (string[] stringtab in csvfile)
+                        {
+                            if (count != 0)
                             {
+                                
+                                var json = wc.DownloadString("http://data.citedia.com/r1/parks/" + stringtab[0]);
+                                dynamic data = JsonConvert.DeserializeObject<ParkInformation>(json);
 
+                                Adresse adresse = new Adresse(Guid.NewGuid(), stringtab[3], 0, 35000, "rennes", "france", true);
+                                Parking parking = new Parking(Guid.NewGuid(), RemoveDiacritics(stringtab[0]), adresse, data.max, data.free, RemoveDiacritics(stringtab[2]), RemoveDiacritics(stringtab[1]), data.status);
+
+                                ServiceAdresse.Insert(adresse, context);
+                                ServiceParking.Insert(parking, context);
+
+                                //Suppression des anciennes données
+                                ServiceParking.DeleteAll();
+                                ServiceAdresse.DeleteParking();
+
+                                parkingToAdd.Add(parking);
                             }
-                            else
-                            {
-                    var json = wc.DownloadString("http://data.citedia.com/r1/parks/"+stringtab[0]);
-                    dynamic data = JsonConvert.DeserializeObject<ParkInformation>(json);
-
-                        Parking parking = new Parking(Guid.NewGuid(),data.name,null,data.max,data.free,0, new TimeSpan(0, 0, 0),new TimeSpan(0, 0, 0),data.status);
-
-                                
-                                Adresse adresse = new Adresse(Guid.NewGuid(), stringtab[3],0, 35000, "rennes", "france");
-                                /*
-                                    string querypark = "https://maps.googleapis.com/maps/api/geocode/json?address=" + stringtab[3] + "&key=AIzaSyCyoqbqJVd_MtZRT_0DmYmznxxJWRfMjQI";
-                                        var json2 = wc.DownloadString(querypark);
-                                        RootObjectGoogle item = JsonConvert.DeserializeObject<RootObjectGoogle>(json2);
-                                        if (item.results.Count != 0)
-                                        {
-                                            parking.Coordonee0 = item.results.FirstOrDefault().geometry.location.lat;
-                                            parking.Coordonee1 = item.results.FirstOrDefault().geometry.location.lng;
-                                        }
-                                        */
-                                    ServiceAdresse.Insert(adresse,context);
-                                parking.AdressePark = adresse;
-
-                                //ServiceParking.DeleteAll();
-                                ServiceParking.Insert(parking,context);
-                                context.SaveChanges();
-
-                                
-                                    
-                        parkingToAdd.Add(parking);
-                                }
-                                count++;
+                            count++;
+                        }
                     }
-                    }
-                context.Parkings.AddRange(parkingToAdd);
-                context.SaveChanges();
+                    context.Parkings.AddRange(parkingToAdd);
+                    context.SaveChanges();
                 }
             }
         }

@@ -12,7 +12,7 @@ namespace ProjetParkingTest2.Models
     {
         public List<Parking> Parkings { get; set; }
         public Evenement Evenement { get; set; }
-        public  string AdresseConvive { get; set; }  // l'adresse du convive est un string pour pouvoir faire une rechcerche directement
+        public  string AdresseConvive { get; set; }  // l'adresse du convive est un string pour pouvoir faire une recherche directement
         public EvenementParkingViewModel()
         {
 
@@ -27,13 +27,11 @@ namespace ProjetParkingTest2.Models
         public static EvenementParkingViewModel Get3ParkingByEvent(Guid id,string adresseConvive)
         {
             EvenementParkingViewModel epvm = new EvenementParkingViewModel();
-            //listLivres = Dal.Get
-
+            ParkingViewModel.GetAll();
             using (ParkingContext context = new ParkingContext())
             {
                 epvm.Evenement = ServiceEvenement.GetByGuid(id);
-                epvm.Parkings = ServiceParking.Get3(id); // recupere les 3 parkings par evenements
-                //epvm.Parkings = ServiceParking.GetAll();
+                epvm.Parkings = ServiceParking.Get3(id); 
                 epvm.AdresseConvive = adresseConvive;
             }
             return epvm;

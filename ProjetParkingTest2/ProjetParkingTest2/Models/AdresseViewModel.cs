@@ -125,5 +125,11 @@ namespace ProjetParkingTest2.Models
             { Metier.Pays = value; }
         }
 
+     
+        public bool IsParking
+        {
+            get { return Metier.IsParking; }
+            set { Metier.IsParking = value; }
+        }
     }
 }
