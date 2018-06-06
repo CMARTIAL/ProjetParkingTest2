@@ -121,7 +121,7 @@ namespace ProjetParkingTest2.Models
                         Parking parking = new Parking(Guid.NewGuid(),data.name,null,data.max,data.free,0, new TimeSpan(0, 0, 0),new TimeSpan(0, 0, 0),data.status);
 
                                 
-                                Adresse adresse = new Adresse(Guid.NewGuid(), stringtab[3], 0, 0, "", "");
+                                Adresse adresse = new Adresse(Guid.NewGuid(), stringtab[3],0, 35000, "rennes", "france");
                                 /*
                                     string querypark = "https://maps.googleapis.com/maps/api/geocode/json?address=" + stringtab[3] + "&key=AIzaSyCyoqbqJVd_MtZRT_0DmYmznxxJWRfMjQI";
                                         var json2 = wc.DownloadString(querypark);

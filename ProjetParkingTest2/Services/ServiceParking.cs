@@ -87,7 +87,7 @@ namespace Services
             for (int i = 0; i < listParking.Count(); i++)
             {
                 Parking parking = listParking[i];
-                double distance = closestAddress((double)evenement.AdresseEvenement.lat, (double)evenement.AdresseEvenement.lng, parking);
+                double distance = closestAddress((double)evenement.AdresseEvenement.lng, (double)evenement.AdresseEvenement.lat, parking);
                 /*
                 if (i == 0)
                 {
