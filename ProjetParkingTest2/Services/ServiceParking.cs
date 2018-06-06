@@ -30,15 +30,12 @@ namespace Services
         {
             using (ParkingContext context = new ParkingContext())
             {
-                Parking oldParking = context.Parkings.FirstOrDefault(Parking => Parking.Id == p.Id);// on n'appel pas la methode car il s'agit de 2 cotext differents GetById(l.Id);
-                //Parking oldParking = GetById(p.Id, context);  // on passe le context a la surcharge
+                Parking oldParking = context.Parkings.FirstOrDefault(Parking => Parking.Id == p.Id);
                 oldParking.Titre = p.Titre;
                 oldParking.AdressePark = p.AdressePark;
                 oldParking.NBPlaceTotal = p.NBPlaceTotal;
                 oldParking.NBPlaceLibre = p.NBPlaceLibre;
                 oldParking.Tarif = p.Tarif;
-                oldParking.HeureOuverture = p.HeureFermeture;
-                oldParking.HeureFermeture = p.HeureFermeture;
                 oldParking.Statut = p.Statut;
 
                 context.SaveChanges();
@@ -73,6 +70,7 @@ namespace Services
         /// <returns></returns>
         public static List<Parking> Get3(Guid eventID)
         {
+            
             List<Parking> listParking = new List<Parking>();
             List<Parking> listParkingtoReturn = new List<Parking>();
             Evenement evenement = new Evenement();
@@ -88,20 +86,7 @@ namespace Services
             {
                 Parking parking = listParking[i];
                 double distance = closestAddress((double)evenement.AdresseEvenement.lng, (double)evenement.AdresseEvenement.lat, parking);
-                /*
-                if (i == 0)
-                {
-                    closestDistance = distance;
-                    parking.Distance = distance;
-                    closestPark = parking;
-                }
-                else if (distance < closestDistance)
-                {
-                    closestDistance = distance;
-                    parking.Distance = distance;
-                    closestPark = parking;
-                }
-                */
+               
                 parking.Distance = distance;
                 parking.TarifEstime = CalculTarif(evenement.Duree);
                 listParkingtoReturn.Add(parking); // a Modifier pour ne prendre que les 3 plus proches

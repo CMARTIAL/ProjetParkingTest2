@@ -74,6 +74,18 @@
     <Compile Include="Migrations\201806040912577_UpdateImages.Designer.cs">
       <DependentUpon>201806040912577_UpdateImages.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201806061250414_updateTarifsParking.cs" />
+    <Compile Include="Migrations\201806061250414_updateTarifsParking.Designer.cs">
+      <DependentUpon>201806061250414_updateTarifsParking.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201806061305580_addBoolToAdresse.cs" />
+    <Compile Include="Migrations\201806061305580_addBoolToAdresse.Designer.cs">
+      <DependentUpon>201806061305580_addBoolToAdresse.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201806061311205_addHorraireAndTarifToParking.cs" />
+    <Compile Include="Migrations\201806061311205_addHorraireAndTarifToParking.Designer.cs">
+      <DependentUpon>201806061311205_addHorraireAndTarifToParking.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="ParkingContext.cs" />
     <Compile Include="ParkingContextInitializer.cs" />
@@ -104,6 +116,15 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201806040912577_UpdateImages.resx">
       <DependentUpon>201806040912577_UpdateImages.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201806061250414_updateTarifsParking.resx">
+      <DependentUpon>201806061250414_updateTarifsParking.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201806061305580_addBoolToAdresse.resx">
+      <DependentUpon>201806061305580_addBoolToAdresse.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201806061311205_addHorraireAndTarifToParking.resx">
+      <DependentUpon>201806061311205_addHorraireAndTarifToParking.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

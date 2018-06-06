@@ -94,5 +94,19 @@ namespace Services
             }
             return listAdresses;
         }
+
+        public static void DeleteParking()
+        {
+            using (ParkingContext context = new ParkingContext())
+            {
+                foreach (Adresse item in GetAll())
+                {
+                    if(item.IsParking == true)
+                    {
+                        Delete(item);
+                    }
+                }
+            }
+        }
     }
 }

@@ -44,7 +44,7 @@
     <script type="text/javascript">
 
         var map;
-        var infoWindow2 = new google.maps.InfoWindow({});
+        var infoWindow2 = new google.maps.InfoWindow({ maxWidth: 220 });
         var geocoder = new google.maps.Geocoder();
         var iconBase = "https://maps.google.com/mapfiles/ms/icons/"
         var adresse;
@@ -60,16 +60,17 @@
             var latLng = new google.maps.LatLng(48.114789, -1.677848); // Correspond au coordonnées de Rennes
 
             var myOptions = {
-                zoom: 10, // Zoom par défaut
+                zoom: 5, // Zoom par défaut
                 center: latLng, // Coordonnées de départ de la carte de type latLng
                 mapTypeId: google.maps.MapTypeId.TERRAIN, // Type de carte, différentes valeurs possible HYBRID, ROADMAP, SATELLITE, TERRAIN
-                maxZoom: 20
+                maxZoom: 30
             };
 
             map = new google.maps.Map(document.getElementById('map'), myOptions);
 
             //Mise en place de la direction
             direction = new google.maps.DirectionsRenderer({
+                preserveViewport: true,
                 map: map,
                 panel: panel
             });
@@ -86,7 +87,30 @@
                 {
                  <text>
                 adresse = '@item.AdressePark';
-                codeAddressParking(geocoder, map, adresse, adresse, iconBase + 'yellow-dot.png');
+
+                var variableNBPlaceLibre = '@item.NBPlaceLibre';
+                var variableNBPlaceTotal = '@item.NBPlaceTotal';
+                var variableTarif = '@item.Tarif';
+                var variableHoraire = '@item.Horraire';
+                var variableTitre = '@item.Titre';
+
+                var contentMarkerParking = [
+                    '<div id="containerTabs">',
+                    '<div id="tabs">',
+                    '<h3>Parking ' + variableTitre +'</h3>',
+                    '<ul>',
+                    '<li>Places libres</li>',
+                    '<p>Il reste ' + variableNBPlaceLibre + ' sur ' + variableNBPlaceTotal +' places.</p>',
+                    '<li>Tarifs</li>',
+                    '<p>' + variableTarif +'</p>',
+                    '<li>Horraires</li>',
+                    '<p>' + variableHoraire +'</p>',
+                    '</ul>',
+                    '</div>',
+                    '</div>'
+                ].join('');
+
+                codeAddressParking(geocoder, map, adresse, contentMarkerParking, iconBase + 'yellow-dot.png');
                 </text>
             }
 
@@ -96,9 +120,6 @@
         function codeAddress(geocoder, map, address, libelle, iconColor) {
             geocoder.geocode({ 'address': address }, function (results, status) {
                 if (status === 'OK') {
-
-                    //Recentre la carte sur le dernier point
-                    map.setCenter(results[0].geometry.location);
 
                     //Création du marqueur
                     var marker = new google.maps.Marker({
@@ -123,7 +144,7 @@
             });
         }
 
-        function codeAddressParking(geocoder, map, address, object, iconColor) {
+        function codeAddressParking(geocoder, map, address, contentMarkerParking, iconColor) {
             geocoder.geocode({ 'address': address }, function (results, status) {
                 if (status === 'OK') {
 
@@ -136,22 +157,6 @@
                         position: results[0].geometry.location,
                         icon: iconColor
                     });
-
-                    //Ajout d'un texte pour l'infoBulle du marqueur
-                    var contentMarkerParking = [
-                        '<div id="containerTabs">',
-                            '<div id="tabs">',
-                                '<ul>',
-                        '<li>Places libres</li>',
-                        '<p> ICI PLACES LIBRES </p>',
-                        '<li>Tarifs</li>',
-                        '<p> ICI TARIFS </p>',
-                        '<li>Estimation du coûts</li>',
-                        '<p> ICI COUTS </p>',
-                                '</ul>',
-                            '</div>',
-                        '</div>'
-                    ].join('');
 
                     //Attribution de l'infoBulle au marqueur
                     google.maps.event.addListener(marker, 'click', function () {
@@ -169,7 +174,6 @@
 
         calculate = function (de) {
             origin = adresseConvive; // Le point départ
-
             var lat = de.getPosition().lat();
             var lng = de.getPosition().lng();
             destination = new google.maps.LatLng(lat, lng);; // Le point d'arrivé
@@ -183,6 +187,7 @@
                 var directionsService = new google.maps.DirectionsService(); // Service de calcul d'itinéraire
                 directionsService.route(request, function (response, status) { // Envoie de la requête pour calculer le parcours
                     if (status == google.maps.DirectionsStatus.OK) {
+
                         direction.setDirections(response); // Trace l'itinéraire sur la carte et les différentes étapes du parcours
                     }
                 });

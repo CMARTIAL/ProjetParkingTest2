@@ -9,6 +9,17 @@ namespace BO
 {
     public class Adresse : IEntityIdentifiable
     {
+        public Adresse(Guid id, string rue, int numero, int codePostal, string ville, string pays, bool parking)
+        {
+            Id = id;
+            Rue = rue;
+            Numero = numero;
+            CodePostal = codePostal;
+            Ville = ville;
+            Pays = pays;
+            IsParking = parking;
+        }
+
         public Adresse(Guid id, string rue, int numero, int codePostal, string ville, string pays)
         {
             Id = id;
@@ -17,6 +28,7 @@ namespace BO
             CodePostal = codePostal;
             Ville = ville;
             Pays = pays;
+            IsParking = false;
         }
 
         public Adresse() { }
@@ -29,7 +41,7 @@ namespace BO
         public string Pays { get; set; }
         public double? lat { get; set; }
         public double? lng { get; set; }
-
+        public bool IsParking { get; set; }
         public override string ToString()
         {
             StringBuilder str = new StringBuilder();
