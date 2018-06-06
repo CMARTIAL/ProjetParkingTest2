@@ -81,7 +81,7 @@
 
             map = new google.maps.Map(document.getElementById('map'), myOptions);
             //panel = document.getElementById('panel');
-            
+
             //------
             var marker = new google.maps.Marker({
                 position: latLng,
@@ -102,28 +102,29 @@
                 jQuery("#tabs2").tabs();
             });
             */
-            var l2 = new google.maps.LatLng(48.124789, -1.687848);
+            var iconBase = 'https://maps.google.com/mapfiles/ms/icons/';
+            var l2 = codeAddress(geocoder,map,'Nantes')// 'Model.Evenement.AdresseEvenement.ToString().Replace(" ","+")')
             var marker2 = new google.maps.Marker({
-                         position: l2, //new google.maps.LatLng((item.AdresseEvenement.lng.ToString().Replace(',', '.')), (item.AdresseEvenement.lng.ToString().Replace(',', '.'))),
+                position: l2,
                          map: map,
                          title: '@Model.Evenement.Titre',
                          //icon: 'https://maps.google.com/mapfiles/ms/icons/yellow-dot.png',
+                icon: iconBase + 'yellow-dot.png'
             });
-            
             var contentMarker2 = "contentMarker2"
 
             var infoWindow2 = new google.maps.InfoWindow({
-                position: latLng
             });
 
             google.maps.event.addListener(marker, 'click', function () {
                 infoWindow2.setContent(contentMarker);
+                infoWindow2.setPosition(l2)
                 infoWindow2.open(map, marker);
-            });        
+            });
             google.maps.event.addListener(marker2, 'click', function () {
                 infoWindow2.setContent(contentMarker2);
                 infoWindow2.open(map, marker2);
-            }); 
+            });
             /*
             google.maps.event.addListener(infoWindow, 'domready', function () { // infoWindow est biensûr notre info-bulle
                 jQuery("#tabs2").tabs();
@@ -154,14 +155,14 @@
         function SetMarkers(a) {
 
             //marker de l'evenement
-                        var marker = new google.maps.Marker({
+                        var markerEvenement = new google.maps.Marker({
                          position: codeAddress(geocoder,map,'@Model.Evenement.AdresseEvenement.ToString().Replace(" ","")'), //new google.maps.LatLng((item.AdresseEvenement.lng.ToString().Replace(',', '.')), (item.AdresseEvenement.lng.ToString().Replace(',', '.'))),
                          map: map,
                          title: '@Model.Evenement.Titre',
                          icon: 'https://maps.google.com/mapfiles/ms/icons/yellow-dot.png',
             });
-            
-            var contentMarker = [
+
+            var contentMarkerEvenement = [
                 '<div id="containerTabs">',
                 '<div id="tabs">',
                 '<div id="tab-1">',
@@ -170,48 +171,69 @@
                 '</div>',
                 '</div>'
             ].join('');
+            
 
-
- var infoWindow = new google.maps.InfoWindow({
-                content: contentMarker,
-                position: codeAddress(geocoder,map,'@Model.Evenement.AdresseEvenement.ToString().Replace(" ","")'),
+            google.maps.event.addListener(markerEvenement, 'click', function () {
+                infoWindow2.setContent(contentMarkerEvenement);
+                infoWindow2.open(map, markerEvenement);
             });
 
-            google.maps.event.addListener(marker, 'click', function () {
-                infoWindow.open(map, marker);
-            });
-
-            google.maps.event.addListener(infoWindow, 'domready', function () { // infoWindow est biensûr notre info-bulle
-                jQuery("#tabs2").tabs();
-            });
 
                         //marker du convive
-                 var marker = new google.maps.Marker({
+            var markerConvive = new google.maps.Marker({
                   position: codeAddress(geocoder,map,'@Model.AdresseConvive'), //new google.maps.LatLng((item.AdresseEvenement.lng.ToString().Replace(',', '.')), (item.AdresseEvenement.lng.ToString().Replace(',', '.'))),
                   map: map,
                   title: '@Model.AdresseConvive',
                   icon: 'https://maps.google.com/mapfiles/ms/icons/green-dot.png',
-                });
+            });
+            
+            var contentMarkerConvive = [
+                '<div id="containerTabs">',
+                '<div id="tabs">',
+                '<div id="tab-1">',
+                '<h3>Id : @Model.Evenement.AdresseEvenement.ToString()</h3>',
+                '</div>',
+                '</div>',
+                '</div>'
+            ].join('');
+            
+            google.maps.event.addListener(markerConvive, 'click', function () {
+                infoWindow2.setContent(contentMarkerConvive);
+                infoWindow2.open(map, markerConvive);
+            });
 
             @foreach (var item in Model.Parkings)
                 {
         <text>
 
-            var marker = new google.maps.Marker({
+            var markerParking = new google.maps.Marker({
                 position: codeAddress(geocoder,map,'@(item.AdressePark.ToString().Replace(" ", "+"))'), //new google.maps.LatLng((item.AdresseEvenement.lng.ToString().Replace(',', '.')), (item.AdresseEvenement.lng.ToString().Replace(',', '.'))),
                 map: map,
                 title: '@(item.AdressePark.ToString())',
                 icon: 'https://maps.google.com/mapfiles/ms/icons/blue-dot.png',
                 });
 
-
+             var contentMarkerParking = [
+                '<div id="containerTabs">',
+                '<div id="tabs">',
+                '<div id="tab-1">',
+                '<h3>Id : @Model.Evenement.AdresseEvenement.ToString()</h3>',
+                '</div>',
+                '</div>',
+                '</div>'
+            ].join('');
+            
+            google.maps.event.addListener(markerParking, 'click', function () {
+                infoWindow2.setContent(contentMarkerParking);
+                infoWindow2.open(map, markerParking);
+            });
 
             direction = new google.maps.DirectionsRenderer({
                 map: map,
                 panel: panel // Dom element pour afficher les instructions d'itinéraire
             });
 
-            marker.setMap(map);
+            markerParking.setMap(map);
             </text>
             }
         };
@@ -219,11 +241,13 @@
         function codeAddress(geocoder, map,address) {
             geocoder.geocode({ 'address': address }, function (results, status) {
                 if (status === 'OK') {
+                    /*
                     map.setCenter(results[0].geometry.location);
                     var marker = new google.maps.Marker({
                         map: map,
                         position: results[0].geometry.location
                     });
+                        */
                 } else {
                     alert('Geocode was not successful for the following reason: ' + status);
                 }

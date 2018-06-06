@@ -103,6 +103,7 @@ namespace Services
                 }
                 */
                 parking.Distance = distance;
+                parking.TarifEstime = CalculTarif(evenement.Duree);
                 listParkingtoReturn.Add(parking); // a Modifier pour ne prendre que les 3 plus proches
             }
             var o = listParkingtoReturn.OrderBy(p => p.Distance).Take(3).ToList();
@@ -145,6 +146,24 @@ namespace Services
                     Delete(item);
                 }
             }
+        }
+
+        public static double CalculTarif(int dureeEvenement)
+        {
+            double tarif = 0;
+            if (dureeEvenement == 1)
+            {
+                tarif = 0.30 * (dureeEvenement * 4);
+            }
+            else if (dureeEvenement < 24) // si l'evenement dure mois de 24h
+            {
+                tarif = 0.30 + 0.30 * (dureeEvenement * 4);
+            }
+            else // si l'evenement dure plus de 24h
+            {
+                tarif = (0.30 )+ (0.30 * (dureeEvenement * 4)) + (0.50 *(dureeEvenement/4));
+            }
+            return tarif;
         }
     }
 }

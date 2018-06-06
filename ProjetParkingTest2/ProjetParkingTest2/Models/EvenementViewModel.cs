@@ -221,7 +221,7 @@ namespace ProjetParkingTest2.Models
         public DateTime DateEvenement
         {
             get
-            { return Metier.DateEvenement; }
+            { return Metier.DateEvenement.Date; }
             set
             { Metier.DateEvenement = value; }
         }

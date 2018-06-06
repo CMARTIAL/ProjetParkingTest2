@@ -25,9 +25,12 @@
                     <li>@Html.ActionLink("Carte", "GoogleMaps", "Home")</li>
                     @if (User.Identity.IsAuthenticated)
                     {
-                        <li>@Html.ActionLink("Gestion Evenements", "Index", "Evenement")</li>
+                        <li>@Html.ActionLink("Liste des Evenements", "Index", "Evenement")</li>
+                        if (User.IsInRole("Admin"))
+                        {
                         <li>@Html.ActionLink("Gestion Adresses", "Index", "Adresse")</li>
                         <li>@Html.ActionLink("Gestion Parking", "Index", "Parking")</li>
+                        }
                     }
                 </ul>
                 @Html.Partial("_LoginPartial")

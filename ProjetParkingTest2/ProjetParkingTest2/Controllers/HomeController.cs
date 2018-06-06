@@ -20,7 +20,7 @@ namespace ProjetParkingTest2.Controllers
         public ActionResult Index()
         {
             //ParkingViewModel.AddtoBase();
-            return View("GoogleMaps");
+            return View("GoogleMaps", EvenementViewModel.GetAll().FirstOrDefault());
         }
 
         public ActionResult About()
@@ -39,7 +39,7 @@ namespace ProjetParkingTest2.Controllers
         
         public ActionResult GoogleMaps()
         {
-            return View();
+            return View(EvenementViewModel.GetAll().FirstOrDefault());
         }
 
         // Edit? adresseConvive = sdsdsds & Id = da5f6d63 - 40e9 - 4fdd-9ac8-621edb427ecd
@@ -59,6 +59,13 @@ namespace ProjetParkingTest2.Controllers
              List<EvenementViewModel> eVMs = EvenementViewModel.GetAll();*/
             EvenementParkingViewModel EVMs = EvenementParkingViewModel.Get3ParkingByEvent(Id, adresseConvive);
             return View(EVMs);
+        }
+
+        [HttpGet]
+        public ActionResult ChangeImage(Guid id)
+        {
+            //return View(EvenementViewModel.GetByGuid(id));
+            return PartialView("ImagePartial", EvenementViewModel.GetByGuid(id));
         }
 
     }
