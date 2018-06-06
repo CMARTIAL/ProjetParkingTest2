@@ -1,3 +1,18 @@
 ﻿@using ProjetParkingTest2.Models
 @model EvenementViewModel
+<style type="text/css">
+    .background {
+        background-repeat: no-repeat;
+        background-size: 100%;
+        -webkit-filter: blur(5px);
+        -moz-filter: blur(5px);
+        -ms-filter: blur(5px);
+        filter: blur(5px);
+    }
+</style>
+
+
 <img id="imageevenement" class="center" src=@Model.ImageEvenement.Path alt="imageEvenement" />
+
+<div id="backgroundImage" class="background" style="background-image: url(@Model.ImageEvenement.Path)">
+</div>

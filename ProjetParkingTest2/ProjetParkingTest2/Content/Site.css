@@ -22,3 +22,59 @@ select,
 textarea {
     max-width: 280px;
 }
+
+#container {
+    position: relative;
+    width: 990px;
+    margin: auto;
+}
+
+    #container #map {
+        width: 500px;
+        height: 500px;
+        margin: auto;
+    }
+
+.flex {
+    display: flex
+}
+
+.center {
+    display: flex;
+    margin: 5px auto 5px auto;
+    justify-content: center;
+}
+
+.column {
+    display: flex;
+    flex-direction: column;
+}
+
+.rowflex {
+    display: flex;
+    flex-direction: row;
+}
+
+.flex1{
+    flex:1;
+}
+
+.backgroundGrey {
+    padding: 5px;
+    color: white;
+    BACKGROUND-COLOR: grey;
+    margin: 0 0 0 5px;
+}
+
+.backgroundOrange {
+    background-color: #ff8d00;
+    color: white;
+    padding: 5px;
+    margin: 0 0 0 5px;
+}
+
+.Theme {
+    background-color: #ff8d00;
+    color: white;
+    font-size: 30px;
+}

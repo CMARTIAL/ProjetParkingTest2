@@ -154,7 +154,7 @@ namespace ProjetParkingTest2.Models
         public string Titre
         {
             get
-            { return Metier.Titre; }
+            { return Metier.Titre.ToUpper(); }
             set
             { Metier.Titre = value; }
         }
@@ -186,7 +186,7 @@ namespace ProjetParkingTest2.Models
         public string Theme
             {
             get
-            { return Metier.Theme; }
+            { return Metier.Theme.ToUpper(); }
             set
             { Metier.Theme = value; }
         }
@@ -218,6 +218,7 @@ namespace ProjetParkingTest2.Models
         }
 
         [Display(Name = "Date de l'évènement")]
+        [DisplayFormat(DataFormatString = "{0:dd/MM/yyyy}", ApplyFormatInEditMode = true)]
         public DateTime DateEvenement
         {
             get
