@@ -154,7 +154,7 @@ namespace ProjetParkingTest2.Models
         public string Titre
         {
             get
-            { return Metier.Titre.ToUpper(); }
+            { return Metier.Titre; }
             set
             { Metier.Titre = value; }
         }
@@ -186,7 +186,7 @@ namespace ProjetParkingTest2.Models
         public string Theme
             {
             get
-            { return Metier.Theme.ToUpper(); }
+            { return Metier.Theme; }
             set
             { Metier.Theme = value; }
         }

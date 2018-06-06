@@ -30,9 +30,11 @@
         <div id="destinationForm">
 
         </div>
-        <div id="panel"></div>
-        <div id="map">
-            <p>Veuillez patienter pendant le chargement de la carte...</p>
+        <div id="content" class="">
+            <div id="map">
+                <p>Veuillez patienter pendant le chargement de la carte...</p>
+            </div>
+            <div id="panel"></div>
         </div>
     </div>
 
@@ -44,6 +46,7 @@
     <script type="text/javascript">
 
         var map;
+
         var infoWindow2 = new google.maps.InfoWindow({ maxWidth: 220 });
         var geocoder = new google.maps.Geocoder();
         var iconBase = "https://maps.google.com/mapfiles/ms/icons/"
@@ -67,6 +70,7 @@
             };
 
             map = new google.maps.Map(document.getElementById('map'), myOptions);
+            panel = document.getElementById("panel");
 
             //Mise en place de la direction
             direction = new google.maps.DirectionsRenderer({

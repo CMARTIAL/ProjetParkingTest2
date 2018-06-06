@@ -14,7 +14,7 @@
 @foreach (var item in Model)
 {
         <div id="content" class="flex column" style="margin: 0 0 10px 0;">
-            <div class="Theme">
+            <div class="Theme" style="text-transform:uppercase">
                 @Html.DisplayFor(modelItem => item.Theme)
             </div>
             <div id="event" class="flex" style="margin: 2px 0 0 0 ">
@@ -30,7 +30,7 @@
                         </div>
 
                     </div>
-                    <div id="nom" style="font-size: 40px">
+                    <div id="nom" style="font-size: 40px; text-transform:uppercase">
                         @Html.DisplayFor(modelItem => item.Titre)
                     </div>
                     <div id="desctarif" class="rowflex">
