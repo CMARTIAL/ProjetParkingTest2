@@ -78,7 +78,7 @@ namespace Services
             Evenement evenement = new Evenement();
             using (ParkingContext context = new ParkingContext())
             {
-                listParking = context.Parkings.Include("AdressePark").Where(p =>p.NBPlaceLibre>10).ToList();
+                listParking = context.Parkings.Include("AdressePark").Where(p =>p.NBPlaceLibre>0).ToList();
                 evenement = context.Evenements.Include("AdresseEvenement").Where(e => e.Id == eventID).FirstOrDefault();
             }
 
@@ -87,13 +87,26 @@ namespace Services
             for (int i = 0; i < listParking.Count(); i++)
             {
                 Parking parking = listParking[i];
-                double distance = closestAddress((double)evenement.AdresseEvenement.lat, (double)evenement.AdresseEvenement.lng, parking);
-            
+                double distance = closestAddress((double)evenement.AdresseEvenement.lng, (double)evenement.AdresseEvenement.lat, parking);
+                /*
+                if (i == 0)
+                {
+                    closestDistance = distance;
+                    parking.Distance = distance;
+                    closestPark = parking;
+                }
+                else if (distance < closestDistance)
+                {
+                    closestDistance = distance;
+                    parking.Distance = distance;
+                    closestPark = parking;
+                }
+                */
                 parking.Distance = distance;
                 parking.TarifEstime = CalculTarif(evenement.Duree);
-                listParkingtoReturn.Add(parking);
+                listParkingtoReturn.Add(parking); // a Modifier pour ne prendre que les 3 plus proches
             }
-            
+            var o = listParkingtoReturn.OrderBy(p => p.Distance).Take(3).ToList();
             return listParkingtoReturn.OrderBy(p => p.Distance).Take(3).ToList();
         }
 

@@ -33,6 +33,7 @@ namespace ProjetParkingTest2.Models
             {
                 epvm.Evenement = ServiceEvenement.GetByGuid(id);
                 epvm.Parkings = ServiceParking.Get3(id); // recupere les 3 parkings par evenements
+                //epvm.Parkings = ServiceParking.GetAll();
                 epvm.AdresseConvive = adresseConvive;
             }
             return epvm;
