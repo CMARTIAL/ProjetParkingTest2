@@ -3,49 +3,97 @@
     ViewBag.Title = "GoogleMaps";
 }
 @model EvenementViewModel
+@Scripts.Render("~/bundles/jquery")
+
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
     <title>Google Map Api v3</title>
     <link rel="stylesheet" href="~/Content/jquery-ui-1.8.12.custom.css" type="text/css" />
-</head>
-<style type="text/css">
+    <style type="text/css">
 
-    #container {
-        position: relative;
-        width: 990px;
-        margin: auto;
-    }
-
-        #container #map {
-            width: 500px;
-            height: 500px;
+        #container {
+            position: relative;
+            width: 990px;
             margin: auto;
         }
-</style>
+
+            #container #map {
+                width: 500px;
+                height: 500px;
+                margin: auto;
+            }
+
+        .flex {
+            display: flex
+        }
+
+        .center {
+            display: flex;
+            margin: 5px auto 5px auto;
+            justify-content: center;
+        }
+
+        .column {
+            display: flex;
+            flex-direction: column;
+        }
+    </style>
+</head>
 <body>
     <div id="container">
         <h1>Trouvez un parking pour l'évènement de votre choix !</h1>
         <div id="destinationForm">
-            <form action="Maps">
-                <div style="width: 500px;">
-                    <div style="float: left; width: 200px;">
-                        <label for="name">D'où partez vous ?</label>
-                        <input type="text" id="adressse_id" name="adresseConvive" placeholder="Adresse de départ" />
-                    </div>
-                    <div style="float: left; width: 200px;">
-                        <label for="name">Où allez vous ?</label>
-                        @Html.DropDownListFor(model => model.Id, new SelectList(EvenementViewModel.GetAll(), "Id", "Titre"))
-                    </div>
-                    <div style="float: left; width: 200px;">
-                        <input class="btn-success" type="submit" value="Submit" />
+            <form action="Home/Maps">
+                <div id="imageEventPartial" class="center column">
+                    <label for="name" class="center">Veuillez Selectionner un evenement</label>
+                    @Html.Partial("ImagePartial")
+                </div>
+                <div id="champAdresseEvenemnt">
+                    <div id="listEvent" class="center">
+                        @Html.DropDownListFor(model => model.Id, new SelectList(EvenementViewModel.GetAll(), "Id", "Titre"), new { id = "ddList" })
+
                     </div>
                 </div>
-
+                <div id="champAdresseConvive" class="column">
+                    <label class="center" for="name">D'où partez vous ?</label>
+                    <input class="center" style="width:600px" type="text" id="adressse_id" name="adresseConvive" placeholder="Adresse de départ" />
+                </div>
+                <input class="btn-success center" type="submit" value="Rechercher" />
             </form>
-        </div>
-        <div id="panel"></div>
-        <div id="map">
-            @*<p>Veuillez patienter pendant le chargement de la carte...</p>*@
         </div>
     </div>
 </body>
+@section scripts
+{
+    <script type="text/javascript">
+        $(document).ready(function () {
+            $("#ddList").change(function () {
+                $("#imageEventPartial").load('@(Url.Action("ChangeImage", "Home", null, Request.Url.Scheme))?id=' + $("#ddList").val());
+        });
+    });
+
+
+    /*
+    $('#ddList').onchange(function (e) {
+        e.preventDefault(); // <------------------ stop default behaviour of button
+        var element = this;
+        $.ajax({
+            url: "Homecontroller/ChangeImage",
+            type: "POST",
+            data: e,
+            traditional: true,
+            success: function (result) {
+                if (data.status == "Success") {
+                    $("#imageEventPartial").html(result);
+                } else {
+                    alert("Une erreur s'est produite lors de la recuperation de l'image");
+                }
+            },
+            error: function () {
+                alert("An error has occured!!!");
+            }
+        });
+    });
+    */
+    </script>
+}

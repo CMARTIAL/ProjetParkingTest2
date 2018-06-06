@@ -26,7 +26,7 @@
                     @if (User.Identity.IsAuthenticated)
                     {
                         <li>@Html.ActionLink("Liste des Evenements", "Index", "Evenement")</li>
-                        if (User.IsInRole("Admin"))
+                        if (User.IsInRole("Organisateur"))
                         {
                         <li>@Html.ActionLink("Gestion Adresses", "Index", "Adresse")</li>
                         <li>@Html.ActionLink("Gestion Parking", "Index", "Parking")</li>
