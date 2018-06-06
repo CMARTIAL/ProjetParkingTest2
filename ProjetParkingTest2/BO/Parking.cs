@@ -48,5 +48,7 @@ namespace BO
 
         [NotMapped]
         public double Distance { get; set; }
+        [NotMapped]
+        public double TarifEstime { get; set; }
     }
 }

@@ -300,6 +300,7 @@
     <Content Include="Views\Parking\Delete.cshtml" />
     <Content Include="Views\Adresse\Delete.cshtml" />
     <Content Include="Views\Adresse\Edit.cshtml" />
+    <Content Include="Views\Home\ImagePartial.cshtml" />
   </ItemGroup>
   <ItemGroup />
   <ItemGroup>
