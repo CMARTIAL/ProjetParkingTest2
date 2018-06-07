@@ -21,3 +21,88 @@
     width: 100%;
     z-index: 11;
 }
+
+.petitStreet {
+    position: relative;
+    font-family: 'Candal', sans-serif;
+    font-size: 19px;
+    font-style: italic;
+    -webkit-text-stroke: 0.1px #ed2121;
+    color: #fff;
+    text-shadow: -3px 3px 0px #ed2121;
+    margin-left: 10px;
+}
+
+    .petitStreet:before {
+        content: '';
+        position: absolute;
+        height: 1px;
+        width: 100px;
+        top: 9px;
+        margin-left: 22px;
+        left: 7px;
+        background: #ed2121;
+        box-shadow: -8px 13px #ed2121;
+    }
+
+.windows .petitStreet:before {
+    left: 7px;
+    width: 91px;
+}
+
+.petitStreet:after {
+    content: '';
+    position: absolute;
+    height: 2px;
+    width: 89px;
+    top: 12px;
+    left: 5px;
+    margin-left: 22px;
+    background: #ed2121;
+    box-shadow: -4px 13px #ed2121;
+}
+
+
+.Retro {
+    position: relative;
+    background-image: -webkit-linear-gradient(#0238fb 28%, #B6E8F1 46%, #ffffff 50%, #00094c 54%, #5800a7 65%, #ffffff 94%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    -webkit-text-stroke: 1px #54d4fb;
+    font-size: 30px;
+    font-family: fantasy, sans-serif;
+    font-style: italic;
+    margin: 0;
+    line-height: 1;
+    font-weight: bold;
+}
+
+.petitvictoryblue {
+    position: relative;
+    font-family: 'Permanent Marker', cursive;
+    font-variant: small-caps;
+    font-size: 22px;
+    -webkit-transform: skew(-15deg,-2deg);
+    background-image: -webkit-linear-gradient(#56f7ff 0%, #F9F9F7 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    margin: 0;
+    -webkit-filter: drop-shadow(2px 2px 20px #56f7ff);
+    font-weight: bold;
+    z-index: 20;
+}
+
+.petitvictorypurple {
+    position: relative;
+    font-family: 'Permanent Marker', cursive;
+    font-variant: small-caps;
+    font-size: 22px;
+    -webkit-transform: skew(-15deg,0deg);
+    background-image: -webkit-linear-gradient(#FF0FF8 0%, #F9F9F7 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    margin: 0;
+    -webkit-filter: drop-shadow(2px 2px 20px #f008b7);
+    font-weight: bold;
+    z-index: 20;
+}
