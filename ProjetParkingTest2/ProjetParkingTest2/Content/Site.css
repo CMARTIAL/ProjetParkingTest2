@@ -98,8 +98,15 @@ textarea {
 
 .Zindex{
     z-index:1;
-    background-color: #ffffffcf;
+    background-color: #00000091;
         padding : 10px
+}
+
+.Panelgoogle {
+    width: 500px;
+    height: 700px;
+    overflow: scroll;
+    background-color: white;
 }
 
 div#content {

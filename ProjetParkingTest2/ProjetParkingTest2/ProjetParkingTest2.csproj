@@ -227,6 +227,7 @@
     <Content Include="Content\bootstrap.yeti.css" />
     <Content Include="Content\bootstrap.yeti.min.css" />
     <Content Include="Content\jquery-ui-1.8.12.custom.css" />
+    <Content Include="Content\Site2.css" />
     <Content Include="favicon.ico" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
@@ -238,6 +239,7 @@
     <Content Include="ApplicationInsights.config">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
+    <Content Include="Content\Yellowtail-Regular.ttf" />
     <None Include="Scripts\jquery-3.3.1.intellisense.js" />
     <Content Include="Scripts\functionsGoogleMaps.js" />
     <Content Include="Scripts\jquery-3.3.1.js" />
