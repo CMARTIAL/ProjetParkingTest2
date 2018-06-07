@@ -3,18 +3,18 @@
 
 
 <div class="center" style="margin-top: 120px;">
-    <h3 class="victoryTitre" style="font-size: 35px; border-bottom:none">Evenement - @Html.DisplayFor(model => model.Titre)</h3>
+    <h3 class="victoryTitre" style="margin-top:-50px; position:absolute; font-size: 35px; border-bottom:none">Evenement - @Html.DisplayFor(model => model.Titre)</h3>
     <div>
-        <div>
-            <img src="@Url.Content(Model.ImageEvenement.Path)" alt="Image" />
 
-            <label class="petitvictorypurple">Titre de l'évènement : @Html.DisplayFor(model => model.Titre)</label>
-            <label class="petitvictorypurple">Thème de l'évènement : @Html.DisplayFor(model => model.Theme)</label>
-            <label class="petitvictorypurple">Description de l'évènement : @Html.DisplayFor(model => model.Description)</label>
-            <label class="petitvictorypurple">Durée de l'évènement : @Html.DisplayFor(model => model.Duree)</label>
-            <label class="petitvictorypurple">Tarif de l'évènement : @Html.DisplayFor(model => model.Tarif)</label>
-            <label class="petitvictorypurple">Date de l'évènement : @Html.DisplayFor(model => model.DateEvenement)</label>
-        </div>
+        <img src="@Url.Content(Model.ImageEvenement.Path)" alt="Image" />
+
+        <label class="petitvictorypurple">Titre de l'évènement : @Html.DisplayFor(model => model.Titre)</label>
+        <label class="petitvictorypurple">Thème de l'évènement : @Html.DisplayFor(model => model.Theme)</label>
+        <label class="petitvictorypurple">Description de l'évènement : @Html.DisplayFor(model => model.Description)</label>
+        <label class="petitvictorypurple">Durée de l'évènement : @Html.DisplayFor(model => model.Duree) H</label>
+        <label class="petitvictorypurple">Tarif de l'évènement : @Html.DisplayFor(model => model.Tarif) €</label>
+        <label class="petitvictorypurple">Date de l'évènement : @Html.DisplayFor(model => model.DateEvenement)</label>
+
     </div>
 </div>
 
@@ -24,8 +24,7 @@
     {
         if (User.IsInRole("Organisateur"))
         {
-    <button class="pulse center" onclick="location.href='@Url.Action("Edit", "Evenement", new { id = Model.Id })'">Editer</button>
-        
+            <button class="pulse center" onclick="location.href='@Url.Action("Edit", "Evenement", new { id = Model.Id })'">Editer</button>
         }
     }
     <button class="pulse center" onclick="location.href='@Url.Action("Index", "Evenement")'">Retour</button>
