@@ -13,38 +13,45 @@
     <link rel="stylesheet" href="~/Content/Site2.css" type="text/css" />
 </head>
 <body>
-    <div id="container" >
+    <div id="container">
         <h1>Calcul d'itinéraire Google Maps Api V3</h1>
         <div id="destinationForm">
 
         </div>
         <div id="content" class="flex">
-            <div id="evenementDetails" class="column  Zindex" style="width:300px; height:700px;">
-                <label class="theory">@Model.Evenement.Titre</label>
-                                <img src="@Url.Content(@Model.Evenement.ImageEvenement.Path)" alt="Image" />
-                                @Model.Evenement.Description
-                                @Model.Evenement.Theme
-                                @Model.Evenement.DateEvenement
-                                Durée : @Model.Evenement.Duree
-                                @Model.Evenement.Tarif €
-                                <div id="markerlegend" class="flex column">
-                                    <div class="rowflex">
-                                        <img src="https://maps.google.com/mapfiles/ms/icons/yellow-dot.png" alt="Image" /><label>Parkings</label>
-                                    </div>
-                                    <div class="rowflex">
-                                        <img src="https://maps.google.com/mapfiles/ms/icons/blue-dot.png" alt="Image" /><label>Votre Adresse</label>
-                                    </div>
-                                    <div class="rowflex">
-                                        <img src="https://maps.google.com/mapfiles/ms/icons/purple-dot.png" alt="Image" /><label>Evenement</label>
-                                    </div>
+            <div id="evenementDetails" class="column  Zindex" style="width:400px; height:700px;">
 
-                                </div>
-</div>
-            <div id="map" style="color:red">
-                <p>Veuillez patienter pendant le chargement de la carte...</p>
+                <label class="theory">@Model.Evenement.Titre</label>
+
+                <div id="eventline" style="margin:10px 0 10px 0">
+                    <img src="@Url.Content(@Model.Evenement.ImageEvenement.Path)" alt="Image" style="width: 100%;"/>
+                    <h2 class="petitvictory"> @Model.Evenement.Theme</h2>
+                    <h2 class="petitvictory">  @Model.Evenement.Description</h2>
+                    <div class="rowflex">
+                        <h2 class="petitvictory">@Model.Evenement.DateEvenement</h2>
+                            <h2 class="petitvictory"> Durée : @Model.Evenement.Duree H</h2>
+                    </div>
+                    <h2 class="petitvictory">  @Model.Evenement.Tarif €</h2>
+                </div>
+
+                <div id="markerlegend" class="flex column" style="margin-top:auto">
+                    <div class="petitStreet rowflex">
+                        <img src="https://maps.google.com/mapfiles/ms/icons/yellow-dot.png" alt="Image" /><label>Parkings</label>
+                    </div>
+                    <div class="petitStreet rowflex">
+                        <img src="https://maps.google.com/mapfiles/ms/icons/blue-dot.png" alt="Image" /><label>Votre Adresse</label>
+                    </div>
+                    <div class="petitStreet rowflex">
+                        <img src="https://maps.google.com/mapfiles/ms/icons/purple-dot.png" alt="Image" /><label>Evenement</label>
+                    </div>
+
+                </div>
             </div>
-            <div id="panel" class="Zindex Panelgoogle"></div>
-        </div>
+                <div id="map" style="color:red">
+                    <p>Veuillez patienter pendant le chargement de la carte...</p>
+                </div>
+                <div id="panel" class="Zindex Panelgoogle"></div>
+            </div>
     </div>
 
 

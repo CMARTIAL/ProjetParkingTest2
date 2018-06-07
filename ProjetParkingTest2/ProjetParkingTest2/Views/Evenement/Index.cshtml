@@ -35,30 +35,30 @@
 
 
     <div id="content" class="flex column" style="margin: 0 0 10px 0;">
-        <div class="ThemeTitle" style="text-transform:uppercase">
+        <div class="Retro" style="text-transform:uppercase">
             @Html.DisplayFor(modelItem => item.Theme)
         </div>
         <div id="event" class="flex" style="margin: 2px 0 0 0 ">
             <img src="@Url.Content(item.ImageEvenement.Path)" alt="Image" />
             <div id="descev" class="flex column flex1" style="justify-content: center; margin:10px;">
                 <div id="dateduree" class="rowflex">
-                    <div class="backgroundGrey">
+                    <div class="petitvictorypurple">
                         @Html.DisplayFor(modelItem => item.DateEvenement)
                     </div>
 
-                    <div class="backgroundOrange">
+                    <div class="petitvictory">
                         Durée : @Html.DisplayFor(modelItem => item.Duree) H
                     </div>
 
                 </div>
-                <div id="nom" style="font-size: 40px; text-transform:uppercase">
+                <div id="nom" class="theory" style="font-size: 40px; text-transform:uppercase">
                     @Html.DisplayFor(modelItem => item.Titre)
                 </div>
                 <div id="desctarif" class="rowflex">
-                    <div class="backgroundOrange">
+                    <div class="petitvictory">
                         @Html.DisplayFor(modelItem => item.Description)
                     </div>
-                    <div class="backgroundGrey">
+                    <div class="petitvictorypurple">
                         @Html.DisplayFor(modelItem => item.Tarif) €
                     </div>
 
