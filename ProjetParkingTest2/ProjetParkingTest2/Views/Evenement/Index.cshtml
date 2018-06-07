@@ -1,5 +1,6 @@
 ﻿@model IEnumerable<ProjetParkingTest2.Models.EvenementViewModel>
 <link rel="stylesheet" href="~/Content/Site.css" type="text/css" />
+<link rel="stylesheet" href="~/Content/Site2.css" type="text/css" />
 
 @if (User.Identity.IsAuthenticated)
 {
@@ -11,23 +12,6 @@
     }
 }
 
-
-@*
-<div>
-         <h3 class="dreams">Dreams</h3>
-<h1 class="vectro"><span class="vectro-body">VECTRO</span><span class="vectro-red">I</span><span class="vectro-green">I</span><span class="vectro-blue">I</span></h1>
-<div class="street-machine">
-    <h1 class="street">STREET</h1>
-    <h3 class="machine">Machine</h3>
-</div>
-<h1 class="victory"><span class="victory-v">V</span>ictory</h1>
-<div class="future-cop">
-    <h3 class="future">Future</h3>
-    <h1 class="cop">COP</h1>
-</div>
-            </div>*@
-
-
 @foreach (var item in Model)
 {
 
@@ -35,44 +19,32 @@
 
 
     <div id="content" class="flex column" style="margin: 0 0 10px 0;">
-        <div class="Retro" style="text-transform:uppercase">
+        <div class="petitvictoryblue" style="text-transform:uppercase; align-self:center;">
             @Html.DisplayFor(modelItem => item.Theme)
         </div>
         <div id="event" class="flex" style="margin: 2px 0 0 0 ">
             <img src="@Url.Content(item.ImageEvenement.Path)" alt="Image" />
             <div id="descev" class="flex column flex1" style="justify-content: center; margin:10px;">
-                <div id="dateduree" class="rowflex">
-                    <div class="petitvictorypurple">
-                        @Html.DisplayFor(modelItem => item.DateEvenement)
-                    </div>
+                <div class="divContour">
+                    <label class="petitvictorypurple">@Html.DisplayFor(modelItem => item.DateEvenement)</label>
 
-                    <div class="petitvictory">
-                        Durée : @Html.DisplayFor(modelItem => item.Duree) H
-                    </div>
+                    <label class="petitvictorypurple">Durée : @Html.DisplayFor(modelItem => item.Duree) H</label>
 
-                </div>
-                <div id="nom" class="theory" style="font-size: 40px; text-transform:uppercase">
-                    @Html.DisplayFor(modelItem => item.Titre)
-                </div>
-                <div id="desctarif" class="rowflex">
-                    <div class="petitvictory">
-                        @Html.DisplayFor(modelItem => item.Description)
-                    </div>
-                    <div class="petitvictorypurple">
-                        @Html.DisplayFor(modelItem => item.Tarif) €
-                    </div>
+                    <label class="petitvictorypurple">@Html.DisplayFor(modelItem => item.Titre)</label>
 
+                    <label class="petitvictorypurple"> @Html.DisplayFor(modelItem => item.Description)</label>
+
+                    <label class="petitvictorypurple">@Html.DisplayFor(modelItem => item.Tarif) €</label>
                 </div>
             </div>
 
             <div id="button" class="flex column">
-                <input type="button" class="btn-primary center" value="Modifier" onclick="location.href='@Url.Action("Details", "Details", new { id = item.Id })'" />
+                <button class="pulse center" onclick="location.href='@Url.Action("Details", "Details", new { id = item.Id })'">Détails</button>
                 @*@Html.ActionLink("Details", "Details", new { id = item.Id })*@
                 @if (User.IsInRole("Organisateur"))
                 {
-
-                    <input type="button" class="btn-warning center" value="Modifier" onclick="location.href='@Url.Action("Edit", "Edit", new { id = item.Id })'" />
-                    <input type="button" class="btn-danger center" value="Supprimer" onclick="location.href='@Url.Action("Delete", "Delete", new { id = item.Id })'" />
+                    <button class="pulse center" onclick="location.href='@Url.Action("Edit", "Edit", new { id = item.Id })'">Modifier</button>
+                    <button class="pulse center" onclick="location.href='@Url.Action("Delete", "Delete", new { id = item.Id })'">Supprimer</button>
                 }
             </div>
         </div>
