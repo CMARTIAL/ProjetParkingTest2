@@ -111,7 +111,6 @@ namespace ProjetParkingTest2.Controllers
             try
             {
                 evenement.Delete();
-
                 return RedirectToAction("Index");
             }
             catch

@@ -218,8 +218,5 @@ namespace ProjetParkingTest2.Models
                 ServiceParking.Delete(this.Metier);
             }
         }
-
-
-
     }
 }

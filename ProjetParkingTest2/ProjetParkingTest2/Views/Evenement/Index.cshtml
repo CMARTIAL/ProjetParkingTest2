@@ -11,125 +11,77 @@
     }
 }
 
+
+@*
+<div>
+         <h3 class="dreams">Dreams</h3>
+<h1 class="vectro"><span class="vectro-body">VECTRO</span><span class="vectro-red">I</span><span class="vectro-green">I</span><span class="vectro-blue">I</span></h1>
+<div class="street-machine">
+    <h1 class="street">STREET</h1>
+    <h3 class="machine">Machine</h3>
+</div>
+<h1 class="victory"><span class="victory-v">V</span>ictory</h1>
+<div class="future-cop">
+    <h3 class="future">Future</h3>
+    <h1 class="cop">COP</h1>
+</div>
+            </div>*@
+
+
 @foreach (var item in Model)
 {
-        <div id="content" class="flex column" style="margin: 0 0 10px 0;">
-            <div class="Theme" style="text-transform:uppercase">
-                @Html.DisplayFor(modelItem => item.Theme)
-            </div>
-            <div id="event" class="flex" style="margin: 2px 0 0 0 ">
-                <img src="@Url.Content(item.ImageEvenement.Path)" alt="Image" />
-                <div id="descev" class="flex column flex1" style="justify-content: center; margin:10px;">
-                    <div id="dateduree" class="rowflex">
-                        <div class="backgroundGrey">
-                            @Html.DisplayFor(modelItem => item.DateEvenement)
-                        </div>
 
-                        <div class="backgroundOrange">
-                            Durée : @Html.DisplayFor(modelItem => item.Duree) H
-                        </div>
 
-                    </div>
-                    <div id="nom" style="font-size: 40px; text-transform:uppercase">
-                        @Html.DisplayFor(modelItem => item.Titre)
-                    </div>
-                    <div id="desctarif" class="rowflex">
-                        <div class="backgroundOrange">
-                            @Html.DisplayFor(modelItem => item.Description)
-                        </div>
-                        <div class="backgroundGrey">
-                            @Html.DisplayFor(modelItem => item.Tarif) €
-                        </div>
 
-                    </div>
+
+    <div id="content" class="flex column" style="margin: 0 0 10px 0;">
+        <div class="ThemeTitle" style="text-transform:uppercase">
+            @Html.DisplayFor(modelItem => item.Theme)
+        </div>
+        <div id="event" class="flex" style="margin: 2px 0 0 0 ">
+            <img src="@Url.Content(item.ImageEvenement.Path)" alt="Image" />
+            <div id="descev" class="flex column flex1" style="justify-content: center; margin:10px;">
+                <div id="dateduree" class="rowflex">
+                    <div class="backgroundGrey">
+                        @Html.DisplayFor(modelItem => item.DateEvenement)
                     </div>
 
-                <div id="button" class="flex column">
-                    <input type="button" class="btn-primary center" value="Modifier" onclick="location.href='@Url.Action("Details", "Details", new { id = item.Id })'" />
-                    @*@Html.ActionLink("Details", "Details", new { id = item.Id })*@
-                    @if (User.IsInRole("Organisateur"))
-                    {
+                    <div class="backgroundOrange">
+                        Durée : @Html.DisplayFor(modelItem => item.Duree) H
+                    </div>
 
-                        <input type="button" class="btn-warning center" value="Modifier" onclick="location.href='@Url.Action("Edit", "Edit", new { id = item.Id })'" />
-                        <input type="button" class="btn-danger center" value="Supprimer" onclick="location.href='@Url.Action("Delete", "Delete", new { id = item.Id })'" />
-                    }
+                </div>
+                <div id="nom" style="font-size: 40px; text-transform:uppercase">
+                    @Html.DisplayFor(modelItem => item.Titre)
+                </div>
+                <div id="desctarif" class="rowflex">
+                    <div class="backgroundOrange">
+                        @Html.DisplayFor(modelItem => item.Description)
+                    </div>
+                    <div class="backgroundGrey">
+                        @Html.DisplayFor(modelItem => item.Tarif) €
+                    </div>
+
                 </div>
             </div>
-           </div>
-}
 
-    @*<table class="table">
-
-        <tr>
-            <th>
-                @Html.DisplayNameFor(model => model.ImageEvenement)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Titre)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Duree)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Theme)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Tarif)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Description)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.DateEvenement)
-            </th>
-            <th></th>
-        </tr>
-
-        @foreach (var item in Model)
-        {
-            <tr>
-
-                <td>
-                    <img src="@Url.Content(item.ImageEvenement.Path)" alt="Image" />
-                </td>
-
-                <td>
-                    @Html.DisplayFor(modelItem => item.Titre)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.Duree)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.Theme)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.Tarif)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.Description)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.DateEvenement)
-                </td>
-                @if (User.Identity.IsAuthenticated)
+            <div id="button" class="flex column">
+                <input type="button" class="btn-primary center" value="Modifier" onclick="location.href='@Url.Action("Details", "Details", new { id = item.Id })'" />
+                @*@Html.ActionLink("Details", "Details", new { id = item.Id })*@
+                @if (User.IsInRole("Organisateur"))
                 {
 
-                    <td>
-                        <input type="button" class="btn-primary center" value="Modifier" onclick="location.href='@Url.Action("Details", "Details", new { id = item.Id })'" />
-                        @Html.ActionLink("Details", "Details", new { id = item.Id })
-                        @if (User.IsInRole("Organisateur"))
-                        {
-
-                            <input type="button" class="btn-warning center" value="Modifier" onclick="location.href='@Url.Action("Edit", "Edit", new { id = item.Id })'" />
-                            <input type="button" class="btn-danger center" value="Supprimer" onclick="location.href='@Url.Action("Delete", "Delete", new { id = item.Id })'" />
-                            @Html.ActionLink("Edit ", "Edit", new { id = item.Id })
-                                @Html.ActionLink(" Delete", "Delete", new { id = item.Id })
-                        }
-                    </td>
+                    <input type="button" class="btn-warning center" value="Modifier" onclick="location.href='@Url.Action("Edit", "Edit", new { id = item.Id })'" />
+                    <input type="button" class="btn-danger center" value="Supprimer" onclick="location.href='@Url.Action("Delete", "Delete", new { id = item.Id })'" />
                 }
-
-            </tr>
-
+            </div>
+        </div>
+    </div>
+    <script type="text/javascript">
+        if (navigator.platform.indexOf('Win') != -1) {
+            window.document.getElementById("wrapper").setAttribute("class", "windows");
+        } else if (navigator.platform.indexOf('Mac') != -1) {
+            window.document.getElementById("wrapper").setAttribute("class", "mac");
         }
-
-    </table>*@
+    </script>
+}
