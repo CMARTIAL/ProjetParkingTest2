@@ -18,19 +18,19 @@
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                 </button>
-                @Html.ActionLink("ParkMap", "Index", "Home", new { area = "" }, new { @class = "navbar-brand" })
+                <div id="wrapper">
+                    <h1 class="chrome">PARKING</h1>
+                    <h1 class="victory">Dreams</h1>
+                </div>
+                @*@Html.ActionLink("ParkMap", "Index", "Home", new { area = "" }, new { @class = "navbar-brand" })*@
             </div>
             <div class="navbar-collapse collapse">
                 <ul class="nav navbar-nav">
-                    <li>@Html.ActionLink("Carte", "GoogleMaps", "Home")</li>
+                    <li><h1 class="street">@Html.ActionLink("Itinéraire", "GoogleMaps", "Home")</h1></li>
                     @if (User.Identity.IsAuthenticated)
                     {
-                        <li>@Html.ActionLink("Liste des Evenements", "Index", "Evenement")</li>
-                        if (User.IsInRole("Organisateur"))
-                        {
-                        <li>@Html.ActionLink("Gestion Adresses", "Index", "Adresse")</li>
-                        <li>@Html.ActionLink("Gestion Parking", "Index", "Parking")</li>
-                        }
+                    <li><h1 class="street">@Html.ActionLink("Les Evenements", "Index", "Evenement")</h1></li>
+                    <li><h1 class="street">@Html.ActionLink("Les Parkings", "Index", "Parking")</h1></li>
                     }
                 </ul>
                 @Html.Partial("_LoginPartial")

@@ -283,8 +283,6 @@
     <Content Include="Views\Manage\VerifyPhoneNumber.cshtml" />
     <Content Include="Views\Shared\Lockout.cshtml" />
     <Content Include="Views\Shared\_LoginPartial.cshtml" />
-    <Content Include="Views\Parking\Details.cshtml" />
-    <Content Include="Views\Parking\Edit.cshtml" />
     <Content Include="Views\Parking\Index.cshtml" />
     <Content Include="Views\Evenement\Index.cshtml" />
     <Content Include="Views\Evenement\Create.cshtml" />
@@ -293,13 +291,6 @@
     <Content Include="Views\Evenement\Edit.cshtml" />
     <Content Include="Views\Evenement\Delete.cshtml" />
     <Content Include="Views\Home\GoogleMaps.cshtml" />
-    <Content Include="Views\Adresse\Details.cshtml" />
-    <Content Include="Views\Adresse\Index.cshtml" />
-    <Content Include="Views\Adresse\Create.cshtml" />
-    <Content Include="Views\Parking\Create.cshtml" />
-    <Content Include="Views\Parking\Delete.cshtml" />
-    <Content Include="Views\Adresse\Delete.cshtml" />
-    <Content Include="Views\Adresse\Edit.cshtml" />
     <Content Include="Views\Home\ImagePartial.cshtml" />
   </ItemGroup>
   <ItemGroup />
