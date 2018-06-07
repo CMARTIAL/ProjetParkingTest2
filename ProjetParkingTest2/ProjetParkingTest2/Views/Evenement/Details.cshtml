@@ -1,67 +1,21 @@
 ﻿@model ProjetParkingTest2.Models.EvenementViewModel
 
-<div>
-    <h4>Evenement - @Html.DisplayFor(model => model.Titre)</h4>
-    <hr />
-    <dl class="dl-horizontal">
-        <dt>
-            @Html.DisplayNameFor(model => model.Titre)
-        </dt>
 
-        <dd>
-            @Html.DisplayFor(model => model.Titre)
-        </dd>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.Duree)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.Duree)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.Theme)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.Theme)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.Tarif)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.Tarif)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.Description)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.Description)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.DateEvenement)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.DateEvenement)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.ImageEvenement)
-        </dt>
-
-        <dd>
+<div class="center" style="margin-top: 120px;">
+    <h3 class="victoryTitre" style="font-size: 35px; border-bottom:none">Evenement - @Html.DisplayFor(model => model.Titre)</h3>
+    <div>
+        <div>
             <img src="@Url.Content(Model.ImageEvenement.Path)" alt="Image" />
-            
-        </dd>
 
-    </dl>
+            <label class="petitvictorypurple">Titre de l'évènement : @Html.DisplayFor(model => model.Titre)</label>
+            <label class="petitvictorypurple">Thème de l'évènement : @Html.DisplayFor(model => model.Theme)</label>
+            <label class="petitvictorypurple">Description de l'évènement : @Html.DisplayFor(model => model.Description)</label>
+            <label class="petitvictorypurple">Durée de l'évènement : @Html.DisplayFor(model => model.Duree)</label>
+            <label class="petitvictorypurple">Tarif de l'évènement : @Html.DisplayFor(model => model.Tarif)</label>
+            <label class="petitvictorypurple">Date de l'évènement : @Html.DisplayFor(model => model.DateEvenement)</label>
+        </div>
+    </div>
 </div>
 
 
@@ -70,8 +24,10 @@
     {
         if (User.IsInRole("Organisateur"))
         {
-            @Html.ActionLink("Edit ", "Edit", new { id = Model.Id })
+    <button class="pulse center" onclick="location.href='@Url.Action("Edit", "Evenement", new { id = Model.Id })'">Editer</button>
+        
         }
     }
-    @Html.ActionLink(" Back to List", "Index")
+    <button class="pulse center" onclick="location.href='@Url.Action("Index", "Evenement")'">Retour</button>
+
 </p>

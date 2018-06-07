@@ -14,10 +14,6 @@
 
 @foreach (var item in Model)
 {
-
-
-
-
     <div id="content" class="flex column" style="margin: 0 0 10px 0;">
         <div class="petitvictoryblue" style="text-transform:uppercase; align-self:center;">
             @Html.DisplayFor(modelItem => item.Theme)
@@ -39,12 +35,12 @@
             </div>
 
             <div id="button" class="flex column">
-                <button class="pulse center" onclick="location.href='@Url.Action("Details", "Details", new { id = item.Id })'">Détails</button>
+                <button class="pulse center" onclick="location.href='@Url.Action("Details", "Evenement", new { id = item.Id })'">Détails</button>
                 @*@Html.ActionLink("Details", "Details", new { id = item.Id })*@
                 @if (User.IsInRole("Organisateur"))
                 {
-                    <button class="pulse center" onclick="location.href='@Url.Action("Edit", "Edit", new { id = item.Id })'">Modifier</button>
-                    <button class="pulse center" onclick="location.href='@Url.Action("Delete", "Delete", new { id = item.Id })'">Supprimer</button>
+                    <button class="pulse center" onclick="location.href='@Url.Action("Edit", "Evenement", new { id = item.Id })'">Modifier</button>
+                    <button class="pulse center" onclick="location.href='@Url.Action("Delete", "Evenement", new { id = item.Id })'">Supprimer</button>
                 }
             </div>
         </div>
