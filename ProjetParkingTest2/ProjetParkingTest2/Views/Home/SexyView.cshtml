@@ -1,0 +1,132 @@
+﻿<div class="wrapper">
+
+    <h1 class="bath">Parking </h1>
+    <h2 class="bath">Dreams</h2>
+
+    <svg height="320" width="400" class="logo-triangle">
+        <defs>
+            <linearGradient id="grad1" x1="0%" y1="100%" x2="100%" y2="0%">
+                <stop offset="0%" style="stop-color:rgb(50,50,50);stop-opacity:1" />
+                <stop offset="100%" style="stop-color:black;stop-opacity:1" />
+            </linearGradient>
+        </defs>
+        <filter id="dropshadow" height="130%">
+            <feGaussianBlur in="SourceAlpha" stdDeviation="3" />
+            <feOffset dx="2" dy="2" result="offsetblur" />
+            <feMerge>
+                <feMergeNode />
+                <feMergeNode in="SourceGraphic" />
+            </feMerge>
+        </filter>
+        <polygon points="0,0 400,0 200,300" stroke="#36e2f8" stroke-width="3" />
+    </svg>
+
+</div>
+<script id="vertexShader" type="x-shader/x-vertex">
+
+    // Uniforms
+    uniform float time;
+    varying vec3 vNormal;
+
+    void main(void) {
+    vec3 v = position;
+    vNormal = normal;
+    v.z += sin(2.0 * position.x + (time)) * 925.5;
+
+    gl_Position = projectionMatrix *
+    modelViewMatrix *
+    vec4(v, 0.9);
+    }
+
+</script>
+
+
+<script id="fragmentShader" type="x-shader/x-fragment">
+    varying vec3 vNormal;
+    uniform float time;
+
+    void main(void) {
+    vec3 light = vec3(0.3, .9, .1);
+
+    light = normalize(light);
+
+    float dProd = max(0.2, dot(vNormal, light));
+
+    gl_FragColor = vec4(0, // R
+    84, // G
+    25, // B
+    1.0);  // A
+    }
+
+</script>
+@Scripts.Render("https://cdnjs.cloudflare.com/ajax/libs/three.js/r58/three.min.js")
+
+<script type="text/javascript">
+        var vertexHeight = 15000;
+        var planeDefinition = 100;
+        var planeSize = 1245000;
+        var totalObjects = 500000;
+        var frame = 60;
+
+        var container = document.createElement('div');
+        document.body.appendChild(container);
+
+        var camera = new THREE.PerspectiveCamera(55, window.innerWidth / window.innerHeight, 1, 400000)
+        camera.position.z = 50000;
+        camera.position.y = 15000;
+        camera.lookAt(new THREE.Vector3(0, 15900, 0));
+
+        var scene = new THREE.Scene();
+        scene.fog = new THREE.Fog(0x23233f, 1, 300000);
+
+        var uniforms = {
+            time: {
+                type: "f",
+                value: 0.0
+            }
+        };
+
+        var material = new THREE.ShaderMaterial({
+            uniforms: uniforms,
+            vertexShader: document.getElementById('vertexShader').textContent,
+            fragmentShader: document.getElementById('fragmentShader').textContent,
+            wireframe: true,
+            fog: true
+        });
+
+        var plane = new THREE.Mesh(new THREE.PlaneGeometry(planeSize, planeSize, planeDefinition, planeDefinition), material);
+        plane.rotation.x -= Math.PI * .500;
+
+        scene.add(plane);
+
+        var geometry = new THREE.Geometry();
+
+        for (i = 0; i < totalObjects; i++) {
+            var vertex = new THREE.Vector3();
+            vertex.x = Math.random() * planeSize - (planeSize * .5);
+            vertex.y = (Math.random() * 100000) + 10000;
+            vertex.z = Math.random() * planeSize - (planeSize * .5);
+            geometry.vertices.push(vertex);
+        }
+
+        var material = new THREE.ParticleBasicMaterial({
+            size: 40
+        });
+        var particles = new THREE.ParticleSystem(geometry, material);
+
+        scene.add(particles);
+
+        var renderer = new THREE.WebGLRenderer();
+        renderer.setSize(window.innerWidth, window.innerHeight);
+        container.appendChild(renderer.domElement);
+
+        render();
+
+        function render() {
+            requestAnimationFrame(render);
+            camera.position.z -= 150;
+            uniforms.time.value = frame;
+            frame += .03;
+            //  dateVerts();
+            renderer.render(scene, camera);
+        }</script>

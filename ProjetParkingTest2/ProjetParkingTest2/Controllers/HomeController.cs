@@ -19,8 +19,7 @@ namespace ProjetParkingTest2.Controllers
     {
         public ActionResult Index()
         {
-            //ParkingViewModel.AddtoBase();
-            return View("GoogleMaps", EvenementViewModel.GetAll().FirstOrDefault());
+            return View("SexyView");
         }
 
         public ActionResult About()

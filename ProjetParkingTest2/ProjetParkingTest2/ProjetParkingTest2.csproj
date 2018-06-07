@@ -234,6 +234,7 @@
     <Content Include="Content\Site.css" />
     <Content Include="Images\images %283%29.jpg" />
     <Content Include="Images\images.jpg" />
+    <Content Include="Scripts\bath.js" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
     <Content Include="ApplicationInsights.config">
@@ -294,6 +295,7 @@
     <Content Include="Views\Evenement\Delete.cshtml" />
     <Content Include="Views\Home\GoogleMaps.cshtml" />
     <Content Include="Views\Home\ImagePartial.cshtml" />
+    <Content Include="Views\Home\SexyView.cshtml" />
   </ItemGroup>
   <ItemGroup />
   <ItemGroup>
