@@ -50,7 +50,7 @@
                         @Html.Partial("ImagePartial")
                     </div>
                     <div id="champAdresseEvenemnt">
-                        <div id="listEvent" class="center">
+                        <div id="listEvent" class="center" style="color:#ff27ff">
                             @Html.DropDownListFor(model => model.Id, new SelectList(EvenementViewModel.GetAll(), "Id", "Titre"), new { id = "ddList" })
 
                         </div>
