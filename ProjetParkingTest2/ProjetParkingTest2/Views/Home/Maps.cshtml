@@ -11,26 +11,37 @@
     <link rel="stylesheet" href="~/Content/jquery-ui-1.8.12.custom.css" type="text/css" />
 </head>
 <body>
-    <div id="container">
+    <div id="container" >
         <h1>Calcul d'itinéraire Google Maps Api V3</h1>
         <div id="destinationForm">
 
         </div>
         <div id="content" class="flex">
-            <div id="evenementDetails" class="column Margin50 Zindex" style="width:500px; height:700px;">
+            <div id="evenementDetails" class="column  Zindex" style="width:300px; height:700px;">
                 @Model.Evenement.Titre
                 <img src="@Url.Content(@Model.Evenement.ImageEvenement.Path)" alt="Image" />
                 @Model.Evenement.Description
                 @Model.Evenement.Theme
                 @Model.Evenement.DateEvenement
-                Durée : @Model.Evenement.Duree 
+                Durée : @Model.Evenement.Duree
                 @Model.Evenement.Tarif €
+                <div id="markerlegend" class="flex column">
+                    <div class="rowflex">
+                        <img src="https://maps.google.com/mapfiles/ms/icons/yellow-dot.png" alt="Image" /><label>Parkings</label>
+                    </div>
+                    <div class="rowflex">
+                        <img src="https://maps.google.com/mapfiles/ms/icons/blue-dot.png" alt="Image" /><label>Votre Adresse</label>
+                    </div>
+                    <div class="rowflex">
+                        <img src="https://maps.google.com/mapfiles/ms/icons/purple-dot.png" alt="Image" /><label>Evenement</label>
+                    </div>
 
+                </div>
             </div>
             <div id="map">
                 <p>Veuillez patienter pendant le chargement de la carte...</p>
             </div>
-            <div id="panel" class="Margin50 Zindex" style="width:500px; height:700px; overflow:scroll"></div>
+            <div id="panel" class="Zindex" style="width:500px; height:700px; overflow:scroll"></div>
         </div>
     </div>
 
