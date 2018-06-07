@@ -24,34 +24,32 @@
                 <label class="theory">@Model.Evenement.Titre</label>
 
                 <div id="eventline" style="margin:10px 0 10px 0">
-                    <img src="@Url.Content(@Model.Evenement.ImageEvenement.Path)" alt="Image" style="width: 100%;"/>
-                    <h2 class="petitvictory"> @Model.Evenement.Theme</h2>
-                    <h2 class="petitvictory">  @Model.Evenement.Description</h2>
-                    <div class="rowflex">
-                        <h2 class="petitvictory">@Model.Evenement.DateEvenement</h2>
-                            <h2 class="petitvictory"> Durée : @Model.Evenement.Duree H</h2>
-                    </div>
-                    <h2 class="petitvictory">  @Model.Evenement.Tarif €</h2>
+                    <img src="@Url.Content(@Model.Evenement.ImageEvenement.Path)" alt="Image" style="width: 100%;" />
+                    <h2 class="petitvictoryblue">@Model.Evenement.Theme</h2>
+                    <h2 class="petitvictoryblue"> @Model.Evenement.Description</h2>
+                    <h2 class="petitvictoryblue">Date : @Model.Evenement.DateEvenement</h2>
+                    <h2 class="petitvictoryblue"> Durée : @Model.Evenement.Duree H</h2>
+                    <h2 class="petitvictoryblue">Tarif : @Model.Evenement.Tarif €</h2>
                 </div>
 
                 <div id="markerlegend" class="flex column" style="margin-top:auto">
-                    <div class="petitStreet rowflex">
-                        <img src="https://maps.google.com/mapfiles/ms/icons/yellow-dot.png" alt="Image" /><label>Parkings</label>
+                    <div class="rowflex">
+                        <img src="https://maps.google.com/mapfiles/ms/icons/yellow-dot.png" alt="Image" /><label class="petitStreet">Parkings</label>
                     </div>
-                    <div class="petitStreet rowflex">
-                        <img src="https://maps.google.com/mapfiles/ms/icons/blue-dot.png" alt="Image" /><label>Votre Adresse</label>
+                    <div class="rowflex">
+                        <img src="https://maps.google.com/mapfiles/ms/icons/blue-dot.png" alt="Image" /><label class="petitStreet">Votre Adresse</label>
                     </div>
-                    <div class="petitStreet rowflex">
-                        <img src="https://maps.google.com/mapfiles/ms/icons/purple-dot.png" alt="Image" /><label>Evenement</label>
+                    <div class="rowflex">
+                        <img src="https://maps.google.com/mapfiles/ms/icons/purple-dot.png" alt="Image" /><label class="petitStreet">Evenement</label>
                     </div>
 
                 </div>
             </div>
-                <div id="map" style="color:red">
-                    <p>Veuillez patienter pendant le chargement de la carte...</p>
-                </div>
-                <div id="panel" class="Zindex Panelgoogle"></div>
+            <div id="map" style="color:red">
+                <p>Veuillez patienter pendant le chargement de la carte...</p>
             </div>
+            <div id="panel" class="Zindex Panelgoogle"></div>
+        </div>
     </div>
 
 
@@ -87,6 +85,7 @@
 
             map = new google.maps.Map(document.getElementById('map'), myOptions);
             panel = document.getElementById("panel");
+
 
             //Mise en place de la direction
             direction = new google.maps.DirectionsRenderer({
@@ -179,6 +178,7 @@
                         infoWindow2.setContent(contentMarkerEvenement);
                         infoWindow2.open(map, marker);
                         calculate(marker);
+                        panel.style.display = "block";
                     });
 
                 } else {

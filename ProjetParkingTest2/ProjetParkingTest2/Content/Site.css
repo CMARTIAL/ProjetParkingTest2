@@ -1,4 +1,19 @@
-﻿body {
+﻿@import url(https://fonts.googleapis.com/css?family=Mr+Dafoe);
+@import url(https://fonts.googleapis.com/css?family=Titillium+Web:900);
+@import url(https://fonts.googleapis.com/css?family=Righteous);
+@import url(https://fonts.googleapis.com/css?family=Candal);
+@import url(https://fonts.googleapis.com/css?family=Lato:400,700,900,300);
+@import url(http://weloveiconfonts.com/api/?family=fontawesome);
+@import url(https://fonts.googleapis.com/css?family=Permanent+Marker);
+@import url(https://fonts.googleapis.com/css?family=Vampiro+One);
+
+@import url(https://fonts.googleapis.com/css?family=Monoton);
+
+::-webkit-scrollbar {
+    display: none;
+}
+
+body {
     padding-top: 50px;
     padding-bottom: 20px;
 }
@@ -37,7 +52,7 @@ textarea {
     #container #map {
         width: 800px;
         height: 700px;
-        position:unset !important;
+        position: unset !important;
         /*margin: auto;*/
     }
 
@@ -61,8 +76,8 @@ textarea {
     flex-direction: row;
 }
 
-.flex1{
-    flex:1;
+.flex1 {
+    flex: 1;
 }
 
 .backgroundGrey {
@@ -73,7 +88,6 @@ textarea {
 }
 
 .backgroundOrange {
-   
     color: white;
     padding: 5px;
     margin: 0 0 0 5px;
@@ -83,7 +97,7 @@ textarea {
     padding: 0 0 0 10px;
     color: gray;
     font-size: 30px;
-    text-align:center;
+    text-align: center;
 }
 
 .Theme {
@@ -92,14 +106,14 @@ textarea {
     font-size: 30px;
 }
 
-.Margin10{
-    margin : 0 10px 0 10px;
+.Margin10 {
+    margin: 0 10px 0 10px;
 }
 
-.Zindex{
-    z-index:1;
+.Zindex {
+    z-index: 1;
     background-color: #000000bd;
-        padding : 10px
+    padding: 10px
 }
 
 .Panelgoogle {
@@ -107,10 +121,11 @@ textarea {
     height: 700px;
     overflow: scroll;
     background-color: white;
+    display: none;
 }
 
 div#content {
-    border: 1px solid black;
+
 }
 
 /* BORDEL */
@@ -176,7 +191,6 @@ body {
     -webkit-text-stroke: 1px #f008b7;
     -webkit-filter: drop-shadow(2px 2px 20px #f008b7);
     z-index: 20;
-
 }
 
 .windows .dreams {
@@ -609,7 +623,7 @@ body {
 
 a {
     color: inherit;
-} 
+}
 /* FIN BORDEL */
 
 /* SUITE */
@@ -617,11 +631,11 @@ a {
 body {
     background-color: #000000;
     margin: 0px;
-    overflow: hidden;
+    /*overflow: hidden;*/
     background-image: radial-gradient(ellipse farthest-corner at center top, #23233f 0%, #000000 60%);
     background-image: url(http://1nova.com/wallpapers/wp-content/uploads/sites/34/2015/02/Retro-80s-Arcade-Game.jpg);
-    background-size: inherit;
-    background-position: top center;
+    /*background-size: cover;*/
+    /*background-position: top center;*/
 }
 
 h1.bath {
@@ -694,3 +708,252 @@ h2.bath {
         stroke-dashoffset: 0;
     }
 }
+
+.victoryTitre {
+    position: relative;
+    font-family: 'Permanent Marker', cursive;
+    font-variant: small-caps;
+    margin-top: 50px;
+    font-size: 70px;
+    -webkit-transform: skew(-5deg,-5deg);
+    padding-left: 5px;
+    background-image: -webkit-linear-gradient(#FF0FF8 0%, #F9F9F7 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    border-bottom: 5px solid #f38ff0;
+    -webkit-filter: drop-shadow(2px 2px 20px #f008b7);
+}
+
+
+
+h3.glow {
+    text-align: center;
+    font-size: 2em;
+    margin: 70px 0 20px 0;
+    color: #c100d8;
+    font-family: Vampiro One;
+    text-decoration: none;
+    -webkit-transition: all 0.5s;
+    -moz-transition: all 0.5s;
+    transition: all 0.5s;
+}
+
+    h3.glow:hover {
+        color: #ffffff;
+        -webkit-animation: neon 1.5s ease-in-out infinite alternate;
+        -moz-animation: neon 1.5s ease-in-out infinite alternate;
+        animation: neon 1.5s ease-in-out infinite alternate;
+    }
+
+@-webkit-keyframes neon {
+    from {
+        text-shadow: 0 0 10px #fff, 0 0 20px #fff, 0 0 30px #fff, 0 0 40px #ff00de, 0 0 70px #ff00de, 0 0 80px #ff00de, 0 0 100px #ff00de, 0 0 150px #ff00de;
+    }
+
+    to {
+        text-shadow: 0 0 5px #fff, 0 0 10px #fff, 0 0 15px #fff, 0 0 20px #ff00de, 0 0 35px #ff00de, 0 0 40px #ff00de, 0 0 50px #ff00de, 0 0 75px #ff00de;
+    }
+}
+
+/* FORM */
+
+
+/* ------------------- */
+/* TEMPLATE        -- */
+/* ----------------- */
+
+form > div {
+    display: flex;
+    flex-wrap: wrap;
+}
+
+    form > div > p {
+        min-width: 33.33%;
+        padding: 10px;
+    }
+
+form p {
+    color: #c100d8;
+}
+
+/* ------------------- */
+/* Form Styles
+/* ----------------- */
+
+form > div {
+    margin-bottom: 1em;
+}
+
+button,
+input,
+optgroup,
+select,
+keygen::-webkit-keygen-select,
+select[_moz-type="-mozilla-keygen"],
+textarea {
+    color: #c100d8;
+    font-family: Vampiro One;
+    margin: 0;
+    margin-top: 0.5em;
+}
+
+label {
+    display: block;
+    margin: 0.75em 0;
+    font-weight: bold;
+}
+
+input[type="radio"] + label,
+input[type="checkbox"] + label {
+    margin: 0;
+    font-weight: 400;
+}
+
+input {
+    line-height: normal;
+}
+
+textarea {
+    line-height: 1.25em;
+}
+
+select {
+    border: 1px solid #ccc;
+    background-color: #fff;
+}
+
+input[type=checkbox],
+input[type=radio] {
+    box-sizing: border-box;
+    padding: 0;
+    display: block;
+    margin-right: 0.25em;
+    margin-top: 2px;
+    float: left;
+    clear: both;
+}
+
+input[type=search] {
+    -webkit-appearance: textfield;
+    -moz-box-sizing: content-box;
+    -webkit-box-sizing: content-box;
+    box-sizing: content-box;
+}
+
+    input[type=search]::-webkit-search-cancel-button,
+    input[type=search]::-webkit-search-decoration {
+        -webkit-appearance: none;
+    }
+
+input[type=text],
+input[type=password],
+input[type=email],
+input[type=url],
+input[type=date],
+input[type=month],
+input[type=time],
+input[type=datetime],
+input[type=datetime-local],
+input[type=week],
+input[type=number],
+input[type=search],
+input[type=tel],
+input[type=color],
+select[_moz-type="-mozilla-keygen"],
+keygen::-webkit-keygen-select,
+select,
+textarea {
+    border: 1px solid #ccc;
+    box-shadow: inset 0 1px 3px #ddd;
+    border-radius: 2px;
+    vertical-align: middle;
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    box-sizing: border-box;
+    width: 300px;
+    padding: 0.5em 0.6em;
+    margin-bottom: 0.5em;
+}
+
+input[type=color] {
+    padding: 0;
+}
+
+input:not([type]) {
+    display: inline-block;
+    border: 1px solid #ccc;
+    box-shadow: inset 0 1px 3px #ddd;
+    border-radius: 2px;
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    box-sizing: border-box;
+    padding: 0.5em 0.6em;
+}
+
+input[type=color] {
+    padding: 0.2em 0.5em;
+}
+
+input[type=file]:focus,
+input[type=radio]:focus,
+input[type=checkbox]:focus {
+    outline: 1px auto #129FEA;
+}
+
+input[readonly],
+select[readonly],
+textarea[readonly] {
+    background-color: #eee;
+    color: #777;
+    border-color: #ccc;
+}
+
+input:focus:invalid,
+textarea:focus:invalid,
+select:focus:invalid {
+    color: #b94a48;
+    border-color: #e9322d;
+}
+
+input[type=file]:focus:invalid:focus,
+input[type=radio]:focus:invalid:focus,
+input[type=checkbox]:focus:invalid:focus {
+    outline-color: #e9322d;
+}
+
+/*   */
+
+.pulse:hover, .pulse:focus {
+    font-family: Vampiro One;
+    animation: pulse 1s;
+    box-shadow: 0 0 0 1em #c100d8;
+}
+
+@keyframes pulse {
+    0% {
+        box-shadow: rgba(202, 59, 220, 0.78) 
+    }
+}
+
+button {
+    font-family: Vampiro One;
+    color: #ef6eae;
+    transition: 0.25s;
+    border-color: #c100d8;
+    color: #c100d8;
+}
+
+button {
+    background: none;
+    border: 2px solid;
+    font-family: Vampiro One;
+    line-height: 1;
+    margin: 0.5em;
+    padding: 1em 2em;
+}
+
+code {
+    color: #c100d8;
+    font-family: Vampiro One;
+}
+

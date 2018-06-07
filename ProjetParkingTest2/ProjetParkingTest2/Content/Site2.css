@@ -30,36 +30,7 @@
     -webkit-text-stroke: 0.1px #ed2121;
     color: #fff;
     text-shadow: -3px 3px 0px #ed2121;
-    margin-left: 10px;
-}
-
-    .petitStreet:before {
-        content: '';
-        position: absolute;
-        height: 1px;
-        width: 100px;
-        top: 9px;
-        margin-left: 22px;
-        left: 7px;
-        background: #ed2121;
-        box-shadow: -8px 13px #ed2121;
-    }
-
-.windows .petitStreet:before {
-    left: 7px;
-    width: 91px;
-}
-
-.petitStreet:after {
-    content: '';
-    position: absolute;
-    height: 2px;
-    width: 89px;
-    top: 12px;
-    left: 5px;
-    margin-left: 22px;
-    background: #ed2121;
-    box-shadow: -4px 13px #ed2121;
+    margin: 0px;
 }
 
 
@@ -90,6 +61,7 @@
     -webkit-filter: drop-shadow(2px 2px 20px #56f7ff);
     font-weight: bold;
     z-index: 20;
+    margin-top: 10px;
 }
 
 .petitvictorypurple {

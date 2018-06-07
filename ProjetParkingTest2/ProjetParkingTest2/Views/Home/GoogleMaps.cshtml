@@ -41,28 +41,28 @@
     </style>
 </head>
 <body>
-        <div id="container">
-            <h1>Trouvez un parking pour l'évènement de votre choix !</h1>
-            <div id="destinationForm">
-                <form action="Maps">
-                    <div id="imageEventPartial" class="center column">
-                        <label for="name" class="center">Veuillez Selectionner un evenement</label>
-                        @Html.Partial("ImagePartial")
-                    </div>
-                    <div id="champAdresseEvenemnt">
-                        <div id="listEvent" class="center" style="color:#ff27ff">
-                            @Html.DropDownListFor(model => model.Id, new SelectList(EvenementViewModel.GetAll(), "Id", "Titre"), new { id = "ddList" })
+    <div id="container">
+        <h1 class="victoryTitre">Trouvez votre parking de rêve !</h1>
+        <div id="destinationForm">
+            <form action="Maps">
+                <div id="imageEventPartial" class="center column">
+                    <h3 class="glow">Veuillez selectionner un evenement</h3>
+                    @Html.Partial("ImagePartial")
+                </div>
+                <div id="champAdresseEvenemnt">
+                    <div id="listEvent" class="center" style="color:#ff27ff">
+                        @Html.DropDownListFor(model => model.Id, new SelectList(EvenementViewModel.GetAll(), "Id", "Titre"), new { id = "ddList" })
 
-                        </div>
                     </div>
-                    <div id="champAdresseConvive" class="column">
-                        <label class="center" for="name">D'où partez vous ?</label>
-                        <input class="center" style="width:600px" type="text" id="adressse_id" name="adresseConvive" placeholder="Adresse de départ" />
-                    </div>
-                    <input class="btn-success center" type="submit" value="Rechercher" />
-                </form>
-            </div>
+                </div>
+                <div id="champAdresseConvive" class="column">
+                    <h3 class="glow">D'où partez vous ?</h3>
+                    <input class="center" type="text" id="adressse_id" name="adresseConvive" placeholder="Votre adresse de départ" />
+                </div>
+                <button class="pulse center" type="submit">Rechercher</button>
+            </form>
         </div>
+    </div>
 </body>
 @section scripts
 {
@@ -74,27 +74,11 @@
     });
 
 
-    /*
-    $('#ddList').onchange(function (e) {
-        e.preventDefault(); // <------------------ stop default behaviour of button
-        var element = this;
-        $.ajax({
-            url: "Homecontroller/ChangeImage",
-            type: "POST",
-            data: e,
-            traditional: true,
-            success: function (result) {
-                if (data.status == "Success") {
-                    $("#imageEventPartial").html(result);
-                } else {
-                    alert("Une erreur s'est produite lors de la recuperation de l'image");
-                }
-            },
-            error: function () {
-                alert("An error has occured!!!");
-            }
-        });
-    });
-    */
+        if (navigator.platform.indexOf('Win') != -1) {
+            window.document.getElementById("wrapper").setAttribute("class", "windows");
+        } else if (navigator.platform.indexOf('Mac') != -1) {
+            window.document.getElementById("wrapper").setAttribute("class", "mac");
+        }
+
     </script>
 }
