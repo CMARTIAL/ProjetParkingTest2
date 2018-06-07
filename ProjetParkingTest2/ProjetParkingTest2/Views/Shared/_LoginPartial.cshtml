@@ -13,7 +13,7 @@
         @Html.ActionLink(User.Identity.GetUserName() + "!", "Index", "Manage", routeValues: null, htmlAttributes: new { title = "Manage" })
     </h1>
 </li>
-        <li><h1 class="victoryMenu"><a href="javascript:document.getElementById('logoutForm').submit()">Se déconnecter</a></h1></li>
+        <li><a href="javascript:document.getElementById('logoutForm').submit()"><h1 class="victoryMenu">Se déconnecter</h1></a></li>
     </ul>
     }
 }

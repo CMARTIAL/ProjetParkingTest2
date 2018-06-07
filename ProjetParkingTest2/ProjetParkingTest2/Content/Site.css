@@ -339,17 +339,15 @@ body {
     position: relative;
     font-family: 'Permanent Marker', cursive;
     font-variant: small-caps;
-    font-size: 20px;
-    -webkit-transform: skew(-15deg,-15deg);
-    padding-left: 0px;
+    font-size: 15px;
+    -webkit-transform: skew(-10deg,-10deg);
     background-image: -webkit-linear-gradient(#FF0FF8 0%, #F9F9F7 100%);
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
-    margin: 0;
+    margin: 2px;
     -webkit-filter: drop-shadow(2px 2px 20px #f008b7);
     font-weight: bold;
     z-index: 20;
-    margin-top: -3px;
     margin-left: 0px;
 }
 
@@ -606,3 +604,84 @@ a {
     color: inherit;
 } 
 /* FIN BORDEL */
+
+/* SUITE */
+
+body {
+    background-color: #000000;
+    margin: 0px;
+    overflow: hidden;
+    background-image: radial-gradient(ellipse farthest-corner at center top, #23233f 0%, #000000 60%);
+    background-image: url(http://1nova.com/wallpapers/wp-content/uploads/sites/34/2015/02/Retro-80s-Arcade-Game.jpg);
+    background-size: inherit;
+    background-position: top center;
+}
+
+h1.bath {
+    color: #C6CBF5;
+    font-family: 'Orbitron', sans-serif;
+    font-size: 120px;
+    font-weight: 1000;
+    line-height: 1.2;
+    left: 50%;
+    margin: 0;
+    margin-top: 35px;
+    margin-left: -420px;
+    position: absolute;
+    text-align: center;
+    text-transform: uppercase;
+    top: 80px;
+    width: 852px;
+    z-index: 11;
+    background: -webkit-linear-gradient(top, #151C60, #C6CBF5 40%, black 40%, #E1A0CE 65%, white);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    -webkit-text-stroke-width: 2px;
+    -webkit-text-stroke-color: white;
+}
+
+h2.bath {
+    color: #d100b1;
+    display: block;
+    font-family: 'Yellowtail', cursive;
+    font-size: 150px;
+    margin-right: -8em;
+    position: absolute;
+    text-shadow: 0 0 1px #d100b1, 0 -3px 3px rgba(255, 255, 255, 0.8), 0 3px 3px rgba(0, 0, 0, 0.5), 0 0 15px #d100b1, 0 0 45px rgba(209, 0, 177, 0.8);
+    text-align: center;
+    text-decoration: underline;
+    text-transform: none;
+    -webkit-transform: skew(-10deg) rotate(-10deg);
+    -ms-transform: skew(-10deg) rotate(-10deg);
+    transform: skew(-10deg) rotate(-10deg);
+    top: 120px;
+    width: 100%;
+    z-index: 11;
+}
+
+.logo-triangle {
+    -webkit-animation: dash 6s linear forwards;
+    animation: dash 6s linear forwards;
+    fill: url(#grad1);
+    -webkit-filter: url(#dropshadow);
+    filter: url(#dropshadow);
+    left: 50%;
+    margin-left: -200px;
+    position: absolute;
+    stroke-dasharray: 1200;
+    stroke-dashoffset: 1200;
+    top: 6em;
+    z-index: 8;
+}
+
+@-webkit-keyframes dash {
+    to {
+        stroke-dashoffset: 0;
+    }
+}
+
+@keyframes dash {
+    to {
+        stroke-dashoffset: 0;
+    }
+}
