@@ -65,7 +65,7 @@
         var vertexHeight = 15000;
         var planeDefinition = 100;
         var planeSize = 1245000;
-        var totalObjects = 500000;
+        var totalObjects = 100000;
         var frame = 60;
 
         var container = document.createElement('div');
@@ -74,10 +74,10 @@
         var camera = new THREE.PerspectiveCamera(55, window.innerWidth / window.innerHeight, 1, 400000)
         camera.position.z = 50000;
         camera.position.y = 15000;
-        camera.lookAt(new THREE.Vector3(0, 15900, 0));
+        camera.lookAt(new THREE.Vector3(0, 1525900, 0));
 
         var scene = new THREE.Scene();
-        scene.fog = new THREE.Fog(0x23233f, 1, 300000);
+        scene.fog = new THREE.Fog(3381759, 1000);
 
         var uniforms = {
             time: {
@@ -95,7 +95,7 @@
         });
 
         var plane = new THREE.Mesh(new THREE.PlaneGeometry(planeSize, planeSize, planeDefinition, planeDefinition), material);
-        plane.rotation.x -= Math.PI * .500;
+        plane.rotation.x -= Math.PI * .50;
 
         scene.add(plane);
 
@@ -110,7 +110,7 @@
         }
 
         var material = new THREE.ParticleBasicMaterial({
-            size: 40
+            size: 200
         });
         var particles = new THREE.ParticleSystem(geometry, material);
 
@@ -126,7 +126,7 @@
             requestAnimationFrame(render);
             camera.position.z -= 150;
             uniforms.time.value = frame;
-            frame += .03;
+            frame += .873;
             //  dateVerts();
             renderer.render(scene, camera);
         }</script>
