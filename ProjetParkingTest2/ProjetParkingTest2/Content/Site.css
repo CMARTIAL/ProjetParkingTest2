@@ -729,6 +729,21 @@ h2.bath {
     -webkit-filter: drop-shadow(2px 2px 20px #f008b7);
 }
 
+.victoryTitreBlue {
+    position: relative;
+    font-family: 'Permanent Marker', cursive;
+    font-variant: small-caps;
+    margin-top: 50px;
+    font-size: 70px;
+    -webkit-transform: skew(-5deg,-5deg);
+    padding-left: 5px;
+    background-image: -webkit-linear-gradient(#FF0FF8 0%, #56f7ff 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    border-bottom: 5px solid #f38ff0;
+    -webkit-filter: drop-shadow(2px 2px 20px #56f7ff);
+}
+
 
 
 h3.glow {
