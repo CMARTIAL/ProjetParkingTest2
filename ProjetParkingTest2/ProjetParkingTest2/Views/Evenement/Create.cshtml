@@ -4,111 +4,138 @@
 {
     @Html.AntiForgeryToken()
 
-    <div class="form-horizontal">
-        <h4>EvenementViewModel</h4>
-        <hr />
+    <h3 class="glow">Ajout d'un évènement</h3>
+
+    <div class="center">
+
         @Html.ValidationSummary(true, "", new { @class = "text-danger" })
         <div class="form-group">
-            @Html.LabelFor(model => model.Titre, htmlAttributes: new { @class = "control-label col-md-2" })
+            <label class="petitvictorypurple">
+                @Html.LabelFor(model => model.Titre, htmlAttributes: new { })
+            </label>
             <div class="col-md-10">
                 @Html.EditorFor(model => model.Titre, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.Titre, "", new { @class = "text-danger" })
+                <label class="petitvictorypurple"> @Html.ValidationMessageFor(model => model.Titre, "", new { })</label>
             </div>
         </div>
 
         <div class="form-group">
-            @Html.LabelFor(model => model.Duree, htmlAttributes: new { @class = "control-label col-md-2" })
+            <label class="petitvictorypurple">
+                @Html.LabelFor(model => model.Duree, htmlAttributes: new { })
+            </label>
             <div class="col-md-10">
                 @Html.EditorFor(model => model.Duree, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.Duree, "", new { @class = "text-danger" })
+                <label class="petitvictorypurple"> @Html.ValidationMessageFor(model => model.Duree, "", new { })</label>
             </div>
         </div>
 
         <div class="form-group">
-            @Html.LabelFor(model => model.Theme, htmlAttributes: new { @class = "control-label col-md-2" })
+            <label class="petitvictorypurple">
+                @Html.LabelFor(model => model.Theme, htmlAttributes: new { })
+            </label>
             <div class="col-md-10">
                 @Html.EditorFor(model => model.Theme, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.Theme, "", new { @class = "text-danger" })
+                <label class="petitvictorypurple"> @Html.ValidationMessageFor(model => model.Theme, "", new { })</label>
             </div>
         </div>
 
         <div class="form-group">
-            @Html.LabelFor(model => model.Tarif, htmlAttributes: new { @class = "control-label col-md-2" })
+            <label class="petitvictorypurple">
+                @Html.LabelFor(model => model.Tarif, htmlAttributes: new { })
+            </label>
             <div class="col-md-10">
                 @Html.EditorFor(model => model.Tarif, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.Tarif, "", new { @class = "text-danger" })
+                <label class="petitvictorypurple">@Html.ValidationMessageFor(model => model.Tarif, "", new { })</label>
             </div>
         </div>
 
         <div class="form-group">
-            @Html.LabelFor(model => model.Description, htmlAttributes: new { @class = "control-label col-md-2" })
+            <label class="petitvictorypurple">
+                @Html.LabelFor(model => model.Description, htmlAttributes: new { })
+            </label>
             <div class="col-md-10">
                 @Html.EditorFor(model => model.Description, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.Description, "", new { @class = "text-danger" })
+                <label class="petitvictorypurple"> @Html.ValidationMessageFor(model => model.Description, "", new { })</label>
             </div>
         </div>
 
         <div class="form-group">
-            @Html.LabelFor(model => model.DateEvenement, htmlAttributes: new { @class = "control-label col-md-2" })
+            <label class="petitvictorypurple">
+                @Html.LabelFor(model => model.DateEvenement, htmlAttributes: new { })
+            </label>
             <div class="col-md-10">
                 @Html.EditorFor(model => model.DateEvenement, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.DateEvenement, "", new { @class = "text-danger" })
-            </div>
-        </div>
-
-
-        <div class="form-group">
-            @Html.LabelFor(model => model.AdresseEvenement.Rue, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.AdresseEvenement.Rue, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.AdresseEvenement.Rue, "", new { @class = "text-danger" })
+                <label class="petitvictorypurple">@Html.ValidationMessageFor(model => model.DateEvenement, "", new { })</label>
             </div>
         </div>
 
         <div class="form-group">
-            @Html.LabelFor(model => model.AdresseEvenement.Numero, htmlAttributes: new { @class = "control-label col-md-2" })
+            <label class="petitvictorypurple">
+                @Html.LabelFor(model => model.AdresseEvenement.Numero, htmlAttributes: new { })
+            </label>
             <div class="col-md-10">
                 @Html.EditorFor(model => model.AdresseEvenement.Numero, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.AdresseEvenement.Numero, "", new { @class = "text-danger" })
+                <label class="petitvictorypurple">@Html.ValidationMessageFor(model => model.AdresseEvenement.Numero, "", new { })</label>
             </div>
         </div>
 
         <div class="form-group">
-            @Html.LabelFor(model => model.AdresseEvenement.CodePostal, htmlAttributes: new { @class = "control-label col-md-2" })
+            <label class="petitvictorypurple">
+                @Html.LabelFor(model => model.AdresseEvenement.Rue, htmlAttributes: new { })
+            </label>
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.AdresseEvenement.Rue, new { htmlAttributes = new { @class = "form-control" } })
+                <label class="petitvictorypurple">@Html.ValidationMessageFor(model => model.AdresseEvenement.Rue, "", new { })</label>
+            </div>
+        </div>
+
+
+
+        <div class="form-group">
+            <label class="petitvictorypurple">
+                @Html.LabelFor(model => model.AdresseEvenement.CodePostal, htmlAttributes: new { })
+            </label>
             <div class="col-md-10">
                 @Html.EditorFor(model => model.AdresseEvenement.CodePostal, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.AdresseEvenement.CodePostal, "", new { @class = "text-danger" })
+                <label class="petitvictorypurple">@Html.ValidationMessageFor(model => model.AdresseEvenement.CodePostal, "", new { })</label>
             </div>
         </div>
 
         <div class="form-group">
-            @Html.LabelFor(model => model.AdresseEvenement.Ville, htmlAttributes: new { @class = "control-label col-md-2" })
+            <label class="petitvictorypurple">
+                @Html.LabelFor(model => model.AdresseEvenement.Ville, htmlAttributes: new { })
+            </label>
             <div class="col-md-10">
                 @Html.EditorFor(model => model.AdresseEvenement.Ville, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.AdresseEvenement.Ville, "", new { @class = "text-danger" })
+                <label class="petitvictorypurple"> @Html.ValidationMessageFor(model => model.AdresseEvenement.Ville, "", new { })</label>
             </div>
         </div>
 
         <div class="form-group">
-            @Html.LabelFor(model => model.AdresseEvenement.Pays, htmlAttributes: new { @class = "control-label col-md-2" })
+            <label class="petitvictorypurple">
+                @Html.LabelFor(model => model.AdresseEvenement.Pays, htmlAttributes: new { })
+            </label>
             <div class="col-md-10">
                 @Html.EditorFor(model => model.AdresseEvenement.Pays, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.AdresseEvenement.Pays, "", new { @class = "text-danger" })
+                <label class="petitvictorypurple">   @Html.ValidationMessageFor(model => model.AdresseEvenement.Pays, "", new { })</label>
             </div>
         </div>
 
-
-        <fieldset>
-            <legend>Image de l'évènement</legend>
-
-            @Html.TextBoxFor(model => model.ImageEvenement, "", new { @type = "file", @multiple = "multiple" })
-
-        </fieldset>
-
         <div class="form-group">
-            <div class="col-md-offset-2 col-md-10">
-                <input type="submit" value="Create" class="btn btn-default" />
-            </div>
+            <fieldset>
+                <legend class="petitvictorypurple">Image de l'évènement</legend>
+                <div class="col-md-10">
+                    @Html.TextBoxFor(model => model.ImageEvenement, "", new { @type = "file", @multiple = "multiple", @style = "" })
+                </div>
+            </fieldset>
+        </div>
+    </div>
+
+    <div class="form-group">
+        <div class="center col-md-offset-2 col-md-10">
+
+            <button class="pulse center" type="submit">Enregistrer l'évènement !</button>
+
         </div>
     </div>
 }
@@ -116,7 +143,7 @@
 
 
 <div>
-    @Html.ActionLink("Back to List", "Index")
+    <button class="pulse center" onclick="location.href='@Url.Action("Index", "Evenement")'">Retour</button>
 </div>
 
 @section Scripts {
