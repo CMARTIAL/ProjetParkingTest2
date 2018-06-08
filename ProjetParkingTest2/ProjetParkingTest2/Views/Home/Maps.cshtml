@@ -80,10 +80,98 @@
                 zoom: 5, // Zoom par défaut
                 center: latLng, // Coordonnées de départ de la carte de type latLng
                 mapTypeId: google.maps.MapTypeId.TERRAIN, // Type de carte, différentes valeurs possible HYBRID, ROADMAP, SATELLITE, TERRAIN
-                maxZoom: 30
+                maxZoom: 30,
+
+                styles: [
+                    { elementType: 'geometry', stylers: [{ color: '#000853' }] },
+                    { elementType: 'labels.text.stroke', stylers: [{ color: '#0090FF' }] },
+                    { elementType: 'labels.text.fill', stylers: [{ color: '#D824E3' }] },
+                    {
+                        featureType: 'administrative.locality',
+                        elementType: 'labels.text.fill',
+                        stylers: [{ color: '#00E6FF' }]
+                    },
+                    {
+                        featureType: '',
+                        elementType: 'labels.text.fill',
+                        stylers: [{ color: '#00E6FF' }]
+                    },
+                    {
+                        featureType: 'poi',
+                        elementType: 'labels.text.fill',
+                        stylers: [{ color: '#00E6FF' }]
+                    },
+                    {
+                        featureType: 'poi.park',
+                        elementType: 'geometry',
+                        stylers: [{ color: '#003153' }]
+                    },
+                    {
+                        featureType: 'poi.park',
+                        elementType: 'labels.text.fill',
+                        stylers: [{ color: '#23AC00' }]
+                    },
+                    {
+                        featureType: 'road',
+                        elementType: 'geometry',
+                        stylers: [{ color: '#D824E3' }]
+                    },
+                    {
+                        featureType: 'road',
+                        elementType: 'geometry.stroke',
+                        stylers: [{ color: '#0253C8' }]
+                    },
+                    {
+                        featureType: 'road',
+                        elementType: 'labels.text.fill',
+                        stylers: [{ color: '#9ca5b3' }]
+                    },
+                    {
+                        featureType: 'road.highway',
+                        elementType: 'geometry',
+                        stylers: [{ color: '#00E6FF' }]
+                    },
+                    {
+                        featureType: 'road.highway',
+                        elementType: 'geometry.stroke',
+                        stylers: [{ color: '#2200AF' }]
+                    },
+                    {
+                        featureType: 'road.highway',
+                        elementType: 'labels.text.fill',
+                        stylers: [{ color: '#9CCDF3' }]
+                    },
+                    {
+                        featureType: 'transit',
+                        elementType: 'geometry',
+                        stylers: [{ color: '#01EEFF' }]
+                    },
+                    {
+                        featureType: 'transit.station',
+                        elementType: 'labels.text.fill',
+                        stylers: [{ color: '#D263D5'}]
+                    },
+                    {
+                        featureType: 'water',
+                        elementType: 'geometry',
+                        stylers: [{ color: '#2D173C' }]
+                    },
+                    {
+                        featureType: 'water',
+                        elementType: 'labels.text.fill',
+                        stylers: [{ color: '#00B7CD' }]
+                    },
+                    {
+                        featureType: 'water',
+                        elementType: 'labels.text.stroke',
+                        stylers: [{ color: '#FFFFFF' }]
+                    }
+                ]
+
             };
 
             map = new google.maps.Map(document.getElementById('map'), myOptions);
+
             panel = document.getElementById("panel");
 
 
@@ -91,7 +179,10 @@
             direction = new google.maps.DirectionsRenderer({
                 preserveViewport: true,
                 map: map,
-                panel: panel
+                panel: panel,
+                 polylineOptions: {
+                    strokeColor: "rgb(233, 223, 13)"
+                }
             });
 
             //Marqueur de l'évènement
