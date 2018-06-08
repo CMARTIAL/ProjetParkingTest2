@@ -1,55 +1,58 @@
 ﻿@model IEnumerable<ProjetParkingTest2.Models.ParkingViewModel>
+<link rel="stylesheet" href="~/Content/Site.css" type="text/css" />
+<link rel="stylesheet" href="~/Content/Site2.css" type="text/css" />
 
 <table class="table">
     <tr>
         <th>
-            @Html.DisplayNameFor(model => model.Titre)
+            <h3 class="glow" style="margin:0;font-size:17px">@Html.DisplayNameFor(model => model.Titre)</h3>
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.NBPlaceTotal)
+            <h3 class="glow" style="margin:0;font-size:17px">@Html.DisplayNameFor(model => model.NBPlaceTotal)</h3>
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.NBPlaceLibre)
+            <h3 class="glow" style="margin:0;font-size:17px">@Html.DisplayNameFor(model => model.NBPlaceLibre)</h3>
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.Statut)
+            <h3 class="glow" style="margin:0;font-size:17px">@Html.DisplayNameFor(model => model.Statut)</h3>
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.Tarif)
+            <h3 class="glow" style="margin:0;font-size:17px">@Html.DisplayNameFor(model => model.Tarif)</h3>
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.Horraire)
+            <h3 class="glow" style="margin:0;font-size:17px">@Html.DisplayNameFor(model => model.Horraire)</h3>
         </th>
         <th></th>
     </tr>
 
     @foreach (var item in Model)
     {
-    <tr>
-        <td>
-            @Html.DisplayFor(modelItem => item.Titre)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.NBPlaceTotal)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.NBPlaceLibre)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Statut)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Tarif)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Horraire)
-        </td>
-        <td>
-            @*@Html.ActionLink("Edit", "Edit", new { id = item.Id }) |
-            @Html.ActionLink("Details", "Details", new { id = item.Id })
-            @Html.ActionLink("Delete", "Delete", new { id = item.Id })*@
-        </td>
-    </tr>
+        <tr>
+            <td>
+                <label class="petitvictoryblue" style="font-size:18px;-webkit-transform:unset">@Html.DisplayFor(modelItem => item.Titre)</label>
+            </td>
+            <td>
+                <label class="petitvictoryblue" style="font-size:18px;-webkit-transform:unset">@Html.DisplayFor(modelItem => item.NBPlaceTotal)</label>
+            </td>
+            <td>
+                <label class="petitvictoryblue"style="font-size:18px;-webkit-transform:unset">@Html.DisplayFor(modelItem => item.NBPlaceLibre)</label>
+            </td>
+            <td>
+                <label class="petitvictoryblue"style="font-size:18px;-webkit-transform:unset">@Html.DisplayFor(modelItem => item.Statut)</label>
+            </td>
+            <td>
+                <label class="petitvictoryblue"style="font-size:18px;-webkit-transform:unset">@Html.DisplayFor(modelItem => item.Tarif)</label>
+            </td>
+            <td>
+                <label class="petitvictoryblue"style="font-size:18px;-webkit-transform:unset">@Html.DisplayFor(modelItem => item.Horraire)</label>
+            </td>
+            <td>
+                <label class="petitvictoryblue">
+                    @*<label class="petitvictoryblue">@Html.ActionLink("Edit", "Edit", new { id = item.Id }) |</label
+                        <label class="petitvictoryblue">@Html.ActionLink("Details", "Details", new { id = item.Id })</label
+                        <label class="petitvictoryblue">@Html.ActionLink("Delete", "Delete", new { id = item.Id })*@
+            </td>
+        </tr>
     }
 
     <p>
