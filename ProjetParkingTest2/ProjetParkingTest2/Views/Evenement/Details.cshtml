@@ -6,7 +6,7 @@
     <h3 class="victoryTitre" style="margin-top:-50px; position:absolute; font-size: 35px; border-bottom:none">Evenement - @Html.DisplayFor(model => model.Titre)</h3>
     <div>
 
-        <img src="@Url.Content(Model.ImageEvenement.Path)" alt="Image" />
+        <img class="mg" src="@Url.Content(Model.ImageEvenement.Path)" alt="Image" />
 
         <label class="petitvictorypurple">Titre de l'évènement : @Html.DisplayFor(model => model.Titre)</label>
         <label class="petitvictorypurple">Thème de l'évènement : @Html.DisplayFor(model => model.Theme)</label>
