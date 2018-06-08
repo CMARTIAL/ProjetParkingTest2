@@ -19,12 +19,12 @@
 
         </div>
         <div id="content" class="flex">
-            <div id="evenementDetails" class="column  Zindex" style="width:400px; height:700px;">
+            <div id="evenementDetails" class="column  Zindex" style="width:350px; height:750px;">
 
                 <label class="theory">@Model.Evenement.Titre</label>
 
                 <div id="eventline" style="margin:10px 0 10px 0">
-                    <img src="@Url.Content(@Model.Evenement.ImageEvenement.Path)" alt="Image" style="width: 100%;" />
+                    <img class="mg" src="@Url.Content(@Model.Evenement.ImageEvenement.Path)" alt="Image"/>
                     <h2 class="petitvictoryblue">@Model.Evenement.Theme</h2>
                     <h2 class="petitvictoryblue"> @Model.Evenement.Description</h2>
                     <h2 class="petitvictoryblue">Date : @Model.Evenement.DateEvenement</h2>
